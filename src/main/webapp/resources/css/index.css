@@ -1,0 +1,54 @@
+html, body{
+    margin:0px;
+    padding:0px;
+}
+
+nav{
+	z-index: 999999999;
+}
+
+.home{
+	/*background: url("bg.jpg");*/
+	height: 100vh;
+	background-size: cover;
+	background-position: center;
+	width: 100%;
+}
+
+.viaje{
+	margin-top: 20%;
+}
+
+section h4{
+	font-family: 'Amaranth', sans-serif;
+}
+
+h4 i {
+	font-size: 40px;
+}
+
+nav{
+	margin: 0;
+	width: 100%;
+}
+
+article div button:hover , article div a:hover{
+	background: #C5CCD9 !important;
+	color: #353440 !important;
+}
+
+.card a{
+	background: #555973;
+}
+
+.alojamiento .card img{
+	width: 640px;
+	height: 227px;
+
+}
+
+.viaje .card img{
+	width: 286px;
+	height: 266px;
+
+}
