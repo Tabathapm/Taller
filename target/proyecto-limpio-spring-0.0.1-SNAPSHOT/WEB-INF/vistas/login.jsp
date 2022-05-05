@@ -3,16 +3,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<!-- Bootstrap core CSS -->
-<%--		<link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css" />">--%>
-		<!-- Bootstrap theme -->
-<%--		<link rel="stylesheet" href="<c:url value="/css/bootstrap-theme.min.css" />">--%>
-
 		<%--	CSS		--%>
 		<link href="<c:url value="/css/index.css" />">
+		<%--	Bootstrap	--%>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<%--	Icono	--%>
 		<link rel="icon" type="image/png" href="<c:url value="/images/viajar.png"/>">
-
 	</head>
 	<body>
 		<img src="<c:url value="/images/runway_192834344.jpg" />" style="width: 100%">
@@ -41,7 +37,7 @@
 							<button class="btn btn-primary w-100" Type="Submit"/>Login</button>
 						</form:form>
 						<br>
-						<a href="registrar-usuario"	>Registrarme</a>
+						<p>¿No tenes una cuenta? <a href="registrarme"	>Registrarme</a></p>
 						<%--Bloque que es visible si el elemento error no esta vacio	--%>
 						<c:if test="${not empty error}">
 							<h4><span>${error}</span></h4>

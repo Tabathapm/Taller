@@ -71,4 +71,8 @@ public class ControladorLogin {
 	public ModelAndView inicio() {
 		return new ModelAndView("redirect:/login");
 	}
+	@RequestMapping("/registrarme")
+	public ModelAndView irARegistrarme(){
+		return new ModelAndView("registro-usuario");
+	}
 }
