@@ -37,7 +37,7 @@
 							<button class="btn btn-primary w-100" Type="Submit"/>Login</button>
 						</form:form>
 						<br>
-						<p>¿No tenes una cuenta? <a href="registrarme"	>Registrarme</a></p>
+<%--						<p>¿No tenes una cuenta? <a href="registrarme"	>Registrarme</a></p>--%>
 						<%--Bloque que es visible si el elemento error no esta vacio	--%>
 						<c:if test="${not empty error}">
 							<h4><span>${error}</span></h4>
