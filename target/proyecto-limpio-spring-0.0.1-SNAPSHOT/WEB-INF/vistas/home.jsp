@@ -232,11 +232,11 @@
 		<div class="d-flex" id="wrapper">
 			<!-- Sidebar-->
 			<div class="border-end bg-white" id="sidebar-wrapper">
-				<div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
+				<div class="sidebar-heading border-bottom bg-light">Bienvenido admin</div>
 				<div class="list-group list-group-flush">
-					<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a>
-					<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Shortcuts</a>
-					<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Overview</a>
+					<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Tripulantes</a>
+					<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Hangares</a>
+					<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Asignar vuelos</a>
 					<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>
 					<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
 					<a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
