@@ -61,7 +61,9 @@
                 </a>
                 <div class="collapse" id="collapseHangares" aria-labelledby="headingThree" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="#">- - - - -</a>
+                    	<a class="nav-link" href="hangares">Ver Hangares</a>
+                        <a class="nav-link" href="hangares-vacios">Vacios</a>
+                        <a class="nav-link" href="hangares-asignar">Asignar</a>
                     </nav>
                 </div>
                 <%-- ------------------------ --%>
