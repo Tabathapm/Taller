@@ -1,0 +1,47 @@
+package ar.edu.unlam.tallerweb1.modelo;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Avion {
+
+	    @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private Long Id;
+	    
+	    @ManyToOne
+	    private TipoAvion tipoAvion;
+
+	    private String nombre; //Despues vemos si lo cambiamos a tipo Date
+	    
+
+		public Long getId() {
+			return Id;
+		}
+
+		public void setId(Long id) {
+			Id = id;
+		}
+
+		public String getNombre() {
+			return nombre;
+		}
+
+		public void setNombre(String nombre) {
+			this.nombre = nombre;
+		}
+
+		public TipoAvion getTipoAvion() {
+			return tipoAvion;
+		}
+
+		public void setTipoAvion(TipoAvion tipoAvion) {
+			this.tipoAvion = tipoAvion;
+		}
+	    
+	    
+}

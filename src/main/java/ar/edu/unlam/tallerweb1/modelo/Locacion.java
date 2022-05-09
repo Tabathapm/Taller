@@ -1,0 +1,50 @@
+package ar.edu.unlam.tallerweb1.modelo;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Locacion {
+	
+	 @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private Long Id;
+
+	    private String ciudad;
+	    private String pais;
+	    private String cordenadas;
+	    
+	    
+		public Long getId() {
+			return Id;
+		}
+		public void setId(Long id) {
+			Id = id;
+		}
+		public String getCiudad() {
+			return ciudad;
+		}
+		public void setCiudad(String ciudad) {
+			this.ciudad = ciudad;
+		}
+		public String getPais() {
+			return pais;
+		}
+		public void setPais(String pais) {
+			this.pais = pais;
+		}
+		public String getCordenadas() {
+			return cordenadas;
+		}
+		public void setCordenadas(String cordenadas) {
+			this.cordenadas = cordenadas;
+		} 
+	    
+	    
+	   
+
+}
