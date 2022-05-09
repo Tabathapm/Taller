@@ -71,7 +71,9 @@
                 </a>
                 <div class="collapse" id="collapseUsuarios" aria-labelledby="headingFour" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="#">- - - - -</a>
+                        <a class="nav-link" href="agregarUsuario">Agregar</a>
+                        <a class="nav-link" href="#">Borrar</a>
+                        <a class="nav-link" href="#">Ver todo</a>
                     </nav>
                 </div>
                 <%-- ------------------------ --%>
