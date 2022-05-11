@@ -1,9 +1,13 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Vuelo {
@@ -11,15 +15,22 @@ public class Vuelo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+    
+    @Enumerated(EnumType.STRING)
+    private CategoriaAvion tipoAvion;
+    
+    @ManyToOne
+    private Locacion origen;
+    
+    @ManyToOne
+    private Locacion destino;
+    
+    @OneToOne
+    private Avion avion;
 
-    private String origen;
-    private String destino;
     private String fecha; //Despues vemos si lo cambiamos a tipo Date
     private String hora;
-//    private Avion avion;
-//    private ArrayList tripulacion;
-
-
+    
     public Long getId() {
         return Id;
     }
@@ -28,23 +39,23 @@ public class Vuelo {
         Id = id;
     }
 
-    public String getOrigen() {
-        return origen;
-    }
+    public Locacion getOrigen() {
+		return origen;
+	}
 
-    public void setOrigen(String origen) {
-        this.origen = origen;
-    }
+	public void setOrigen(Locacion origen) {
+		this.origen = origen;
+	}
 
-    public String getDestino() {
-        return destino;
-    }
+	public Locacion getDestino() {
+		return destino;
+	}
 
-    public void setDestino(String destino) {
-        this.destino = destino;
-    }
+	public void setDestino(Locacion destino) {
+		this.destino = destino;
+	}
 
-    public String getFecha() {
+	public String getFecha() {
         return fecha;
     }
 
@@ -59,4 +70,12 @@ public class Vuelo {
     public void setHora(String hora) {
         this.hora = hora;
     }
+
+	public CategoriaAvion getTipoAvion() {
+		return tipoAvion;
+	}
+
+	public void setTipoAvion(CategoriaAvion tipoAvion) {
+		this.tipoAvion = tipoAvion;
+	}
 }

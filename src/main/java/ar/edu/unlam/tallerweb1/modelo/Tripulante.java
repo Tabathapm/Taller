@@ -4,18 +4,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Tripulacion {
+public class Tripulante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @ManyToOne
+    private Vuelo vuelo;
 
     private String nombre;
     private String apellido;
     private String titulo;
-
+    private String inicioActividad; //pasar a date
+    
+  
     public Long getId() {
         return id;
     }
@@ -47,4 +53,12 @@ public class Tripulacion {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
+	public String getInicioActividad() {
+		return inicioActividad;
+	}
+
+	public void setInicioActividad(String inicioActividad) {
+		this.inicioActividad = inicioActividad;
+	}
 }
