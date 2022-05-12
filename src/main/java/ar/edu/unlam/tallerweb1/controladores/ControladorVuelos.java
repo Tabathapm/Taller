@@ -8,7 +8,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class ControladorVuelos {
 
     @RequestMapping("/agregar-vuelo")
-    public ModelAndView agregarVuelo(){
+    public ModelAndView irAgregarVuelo(){
         return new ModelAndView("agregar_vuelo");
+    }
+
+    @RequestMapping("/addVuelo")
+    public ModelAndView agregarVuelo(){
+//        Logica para agregar a la bdd
+        return new ModelAndView("homeDos");
     }
 }

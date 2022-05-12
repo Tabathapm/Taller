@@ -35,7 +35,7 @@
                 </a>
                 <div class="collapse" id="collapseVuelos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="#">Agregar</a>
+                        <a class="nav-link" href="agregar-vuelo">Agregar</a>
                         <a class="nav-link" href="#">Borrar</a>
                         <a class="nav-link" href="#">Ver todos</a>
                     </nav>
