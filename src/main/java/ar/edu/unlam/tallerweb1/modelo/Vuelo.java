@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -28,10 +30,45 @@ public class Vuelo {
     @OneToOne
     private Avion avion;
 
-    private String fecha; //Despues vemos si lo cambiamos a tipo Date
-    private String hora;
+    private Date salida;
+    private Date llegada;
+    private Date estimado;
     
-    public Long getId() {
+    
+    
+    public Avion getAvion() {
+		return avion;
+	}
+
+	public void setAvion(Avion avion) {
+		this.avion = avion;
+	}
+
+	public Date getSalida() {
+		return salida;
+	}
+
+	public void setSalida(Date salida) {
+		this.salida = salida;
+	}
+
+	public Date getLlegada() {
+		return llegada;
+	}
+
+	public void setLlegada(Date llegada) {
+		this.llegada = llegada;
+	}
+
+	public Date getEstimado() {
+		return estimado;
+	}
+
+	public void setEstimado(Date estimado) {
+		this.estimado = estimado;
+	}
+
+	public Long getId() {
         return Id;
     }
 
@@ -55,21 +92,6 @@ public class Vuelo {
 		this.destino = destino;
 	}
 
-	public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
 
 	public CategoriaAvion getTipoAvion() {
 		return tipoAvion;
