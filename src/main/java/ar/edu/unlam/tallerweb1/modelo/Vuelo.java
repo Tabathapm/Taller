@@ -29,6 +29,8 @@ public class Vuelo {
     
     @OneToOne
     private Avion avion;
+    
+    private String nombre;
 
     private Date salida;
     private Date llegada;
@@ -99,5 +101,13 @@ public class Vuelo {
 
 	public void setTipoAvion(CategoriaAvion tipoAvion) {
 		this.tipoAvion = tipoAvion;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 }
