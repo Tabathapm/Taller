@@ -17,10 +17,7 @@ public class Vuelo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    
-    @Enumerated(EnumType.STRING)
-    private CategoriaAvion tipoAvion;
-    
+        
     @ManyToOne
     private Locacion origen;
     
@@ -92,15 +89,6 @@ public class Vuelo {
 
 	public void setDestino(Locacion destino) {
 		this.destino = destino;
-	}
-
-
-	public CategoriaAvion getTipoAvion() {
-		return tipoAvion;
-	}
-
-	public void setTipoAvion(CategoriaAvion tipoAvion) {
-		this.tipoAvion = tipoAvion;
 	}
 
 	public String getNombre() {

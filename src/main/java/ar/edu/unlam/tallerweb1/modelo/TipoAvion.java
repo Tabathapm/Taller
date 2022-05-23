@@ -18,16 +18,16 @@ public class TipoAvion {
 	 private CategoriaAvion categoriaAvion;
 	 
 	 private Integer capacidad;
-	 private Double Carga;
+	 private Double carga;
 	
 	public Double getCarga() {
-		return Carga;
+		return carga;
 	}
 
 	public void setCarga(Double carga) {
-		Carga = carga;
+		this.carga = carga;
 	}
-
+	
 	public Integer getCapacidad() {
 		return capacidad;
 	}

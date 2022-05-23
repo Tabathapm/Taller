@@ -37,7 +37,7 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="agregar-vuelo">Agregar</a>
                         <a class="nav-link" href="#">Borrar</a>
-                        <a class="nav-link" href="#">Ver todos</a>
+                        <a class="nav-link" href="vuelos">Ver Vuelos</a>
                     </nav>
                 </div>
                 <%-- ------------------------ --%>

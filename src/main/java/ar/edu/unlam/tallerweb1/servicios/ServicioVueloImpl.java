@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,12 @@ public class ServicioVueloImpl implements ServicioVuelo {
 	public Vuelo consultarVuelo(String nombre) {
 		
 		return repositorioVuelo.consultarVuelo(nombre);
+	}
+
+	@Override
+	public List<Vuelo> obtenerTodosLosVuelos() {
+		
+		return repositorioVuelo.obtenerTodosLosVuelos();
 	}
 
 }

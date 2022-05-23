@@ -1,7 +1,10 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,10 +25,18 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 	@Override
 	public Vuelo consultarVuelo(String nombre) {
 		
-	final Session session = sessionFactory.getCurrentSession();
+	    Session session = sessionFactory.getCurrentSession();
+	    
 		return (Vuelo) session.createCriteria(Vuelo.class)
 		.add(Restrictions.like("nombre", nombre))
 		.uniqueResult();
+	}
+
+	@Override
+	public List<Vuelo> obtenerTodosLosVuelos() {
+		Session session = sessionFactory.getCurrentSession();
+		
+		return session.createCriteria(Vuelo.class).addOrder(Order.desc("nombre")).list();
 	}
 
 }
