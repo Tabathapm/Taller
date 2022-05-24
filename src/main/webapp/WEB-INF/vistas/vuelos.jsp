@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -23,17 +24,6 @@
 			<div class="row row-cols-1 row-cols-md-5 g-4">
 			
 			
-			<c:forEach items="${Vuelo}" var="vuelos">
-                        
-                            
-                            <p>${Vuelo.Avion.TipoAvion.CategoriaAvion.Nombre}</p>
-                            <p>${Vuelo.Destino.Ciudad}</p>
-                            <p>${Vuelo.Destino.Pais}</p>
-                            <p>${Vuelo.Origen.Ciudad}</p>
-                            <p>${Vuelo.Origen.Pais}</p>                       
-                        
-                        </c:forEach>
-				
 				 <section class="d-flex contenedor" id="wrapper">
 			        <article  class="contenido2" id="page-content-wrapper">
 			            <h3>vuelos</h3>
@@ -50,19 +40,24 @@
                             
                         </tr>
                         </thead>
-                        
-                        <tbody>
+                           
+                           <tbody>
                         <c:forEach items="${vuelo}" var="vuelos">
                         <tr>
+                            <td><p>${vuelos.nombre}</p></td>
+                            <td><p>${vuelos.destino.ciudad}</p></td>
+                            <td><p>${vuelos.avion.tipoAvion.categoriaAvion}</p></td>
+                            <td><p>${vuelos.destino.ciudad}</p></td>
+                            <td><p>${vuelos.destino.pais}</p></td>
+                            <td><p>${vuelos.origen.ciudad}</p></td>
+                            <td><p>${vuelos.origen.pais}</p></td>    
                             
-                            <td><p>${Vuelo.avion.tipoAvion.categoriaAvion.nombre}</p></td>
-                            <td><p>${vuelo.destino.ciudad}</p></td>
-                            <td><p>${Vuelo.destino.pais}</p></td>
-                            <td><p>${Vuelo.origen.ciudad}</p></td>
-                            <td><p>${Vuelo.origen.pais}</p></td>                         
+                                   
                         </tr>
                         </c:forEach>
                         </tbody>
+                        
+                 
                     </table>
                 </div>
 

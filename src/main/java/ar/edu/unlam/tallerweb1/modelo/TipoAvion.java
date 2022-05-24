@@ -36,4 +36,22 @@ public class TipoAvion {
 		this.capacidad = capacidad;
 	}
 
+	public Long getId() {
+		return Id;
+	}
+
+	public void setId(Long id) {
+		Id = id;
+	}
+
+	public CategoriaAvion getCategoriaAvion() {
+		return categoriaAvion;
+	}
+
+	public void setCategoriaAvion(CategoriaAvion categoriaAvion) {
+		this.categoriaAvion = categoriaAvion;
+	}
+	
+	
+
 }
