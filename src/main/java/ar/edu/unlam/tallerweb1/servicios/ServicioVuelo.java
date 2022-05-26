@@ -10,4 +10,6 @@ public interface ServicioVuelo {
 	
 	List<Vuelo> obtenerTodosLosVuelos();
 
+	List<Vuelo> buscarVueloPorNombre(String valorBuscado);
+
 }

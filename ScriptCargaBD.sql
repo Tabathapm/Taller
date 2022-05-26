@@ -16,6 +16,3 @@ insert into vuelo (estimado,llegada,salida,nombre,avion_Id,destino_Id,origen_Id)
 				  ('2021-11-26 09:00:00','2021-11-26 09:00:00','2021-11-26 09:00:00','Buenos Aires - Londres', 1 , 2 , 1),
                   ('2021-11-26 09:00:00','2021-11-26 09:00:00','2021-11-26 09:00:00','Londres - Buenos Aires', 2 , 1 , 2);
                   
-select * from vuelo;
-
-select * from tipoAvion;

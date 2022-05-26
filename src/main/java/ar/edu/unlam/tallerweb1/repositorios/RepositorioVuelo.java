@@ -9,6 +9,8 @@ public interface RepositorioVuelo {
 	Vuelo consultarVuelo(String nombre);
 	
 	List<Vuelo> obtenerTodosLosVuelos();
+
+	List<Vuelo> buscarVueloPorNombre(String nombre);
 	
 
 }

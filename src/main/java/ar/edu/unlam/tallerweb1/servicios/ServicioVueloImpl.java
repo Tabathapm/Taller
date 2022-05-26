@@ -33,4 +33,10 @@ public class ServicioVueloImpl implements ServicioVuelo {
 		return repositorioVuelo.obtenerTodosLosVuelos();
 	}
 
+	@Override
+	public List<Vuelo> buscarVueloPorNombre(String valorBuscado) {
+		
+		return repositorioVuelo.buscarVueloPorNombre(valorBuscado);
+	}
+
 }
