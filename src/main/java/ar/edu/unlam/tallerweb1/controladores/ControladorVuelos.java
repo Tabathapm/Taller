@@ -34,12 +34,11 @@ public class ControladorVuelos {
     
     @RequestMapping("buscarVuelos")
     public ModelAndView buscarVuelos
-    (HttpServletRequest request,
-    @RequestParam(value = "busqueda", required = false) String valorBuscado){
+    (@RequestParam(value = "busqueda", required = false) String valorBuscado){
 
 		ModelMap modelo = new ModelMap();
 
-		modelo.put("vuelo",  servicioVuelo.buscarVueloPorNombre(valorBuscado));
+		modelo.put("vuelo",  servicioVuelo.buscarVuelos(valorBuscado));
 
 
     	return new ModelAndView("vuelos",modelo);

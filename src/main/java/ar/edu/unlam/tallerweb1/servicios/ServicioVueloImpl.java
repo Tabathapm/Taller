@@ -1,12 +1,15 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unlam.tallerweb1.modelo.Locacion;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioVuelo;
 
@@ -22,9 +25,9 @@ public class ServicioVueloImpl implements ServicioVuelo {
 	}
 
 	@Override
-	public Vuelo consultarVuelo(String nombre) {
+	public Vuelo consultarVuelo(Long id) {
 		
-		return repositorioVuelo.consultarVuelo(nombre);
+		return repositorioVuelo.consultarVuelo(id);
 	}
 
 	@Override
@@ -34,9 +37,38 @@ public class ServicioVueloImpl implements ServicioVuelo {
 	}
 
 	@Override
-	public List<Vuelo> buscarVueloPorNombre(String valorBuscado) {
+	public Set<Vuelo> buscarVuelos(String valorBuscado) {
 		
-		return repositorioVuelo.buscarVueloPorNombre(valorBuscado);
+	
+		List <Vuelo> listaNombres= repositorioVuelo.buscarVueloPorNombre(valorBuscado);
+		
+		List <Vuelo> listaLocacion = repositorioVuelo.buscarVueloPorLocacion(valorBuscado);
+		
+		
+		Set <Vuelo> lista = new HashSet<>();
+		
+		lista.addAll(listaNombres);
+		lista.addAll(listaLocacion);
+		
+		
+		return lista;
+		
+		
+	}
+	
+	@Override
+	public List<Locacion> buscarLocacion(String valorBuscado) {
+		
+	//	List <Vuelo> listaNombres= repositorioVuelo.buscarVueloPorNombre(valorBuscado);
+		
+		List <Locacion> listaLocacion = repositorioVuelo.buscarLocacion(valorBuscado);
+		
+		
+	//	listaNombres.addAll(listaLocacion);
+		
+		
+		return listaLocacion;
+		
 	}
 
 }
