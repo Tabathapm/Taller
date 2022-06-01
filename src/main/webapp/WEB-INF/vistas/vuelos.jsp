@@ -51,7 +51,9 @@
                             <td><p>${vuelos.destino.ciudad}-${vuelos.destino.pais}</p></td>
                             <td><p>${vuelos.avion.tipoAvion.categoriaAvion}</p></td>
                             <td><p>${vuelos.salida}</p></td>
-                            <td><a href="${vuelos.id}">ver</a></td>              
+                            
+                            <td><a href="vueloDescripcion?idVuelo=${vuelos.id}">ver</a></td> 
+                                        
                         </tr>
                         </c:forEach>
                         

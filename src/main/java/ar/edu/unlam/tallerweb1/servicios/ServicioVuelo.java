@@ -12,8 +12,10 @@ public interface ServicioVuelo {
 
 	Set<Vuelo> buscarVuelos(String valorBuscado);
 
-	Vuelo consultarVuelo(Long id);
+	Vuelo consultarVuelo(Long idVuelo);
 
 	List<Locacion> buscarLocacion(String valorBuscado);
+
+	
 
 }

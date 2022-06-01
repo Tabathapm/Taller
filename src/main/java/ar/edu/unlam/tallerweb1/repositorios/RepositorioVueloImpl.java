@@ -33,10 +33,13 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 	@Override
 	public Vuelo consultarVuelo(Long id) {
 		
-		return (Vuelo) getSession().createCriteria(Vuelo.class)
-		.add(Restrictions.eq("id", id))
-		.uniqueResult();
+		Criterion crit1 = Restrictions.eq("vuelo.id", id);
 		
+		return (Vuelo)
+		 getSession().createCriteria(Vuelo.class,"vuelo")
+		.add(crit1)
+		.uniqueResult();
+							
 	}
 
 	@Override

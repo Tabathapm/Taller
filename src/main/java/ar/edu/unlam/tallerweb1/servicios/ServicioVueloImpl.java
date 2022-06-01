@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,6 +28,19 @@ public class ServicioVueloImpl implements ServicioVuelo {
 
 	@Override
 	public Vuelo consultarVuelo(Long id) {
+		
+		Vuelo vuelo = repositorioVuelo.consultarVuelo(id);
+			
+		vuelo.getLlegada();
+		
+		Date salida = vuelo.getSalida();
+		Date llegada = vuelo.getLlegada();	
+		
+		
+		//Date estimado = salida.compareTo(llegada);
+		
+		//vuelo.setEstimado(estimado);
+		
 		
 		return repositorioVuelo.consultarVuelo(id);
 	}

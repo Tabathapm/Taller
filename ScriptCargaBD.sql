@@ -16,10 +16,10 @@ insert into locacion (ciudad,coordenadas,pais) values ('Buenos Aires','999','Arg
 													  ('Londres','777','Inglaterra');
                                                       
 												
-insert into vuelo (estimado,llegada,salida,nombre,avion_Id,destino_Id,origen_Id) values
-				  ('2021-11-26 09:05:00','2021-11-26 09:05:00','2021-11-26 09:00:00','Buenos Aires - Londres', 1 , 2 , 1),
-                   ('2021-11-26 10:09:00','2021-11-26 10:09:50','2021-11-26 09:00:00','Tokio - Buenos Aires', 1 , 1 , 3),
-                  ('2021-11-26 09:09:00','2021-11-26 09:09:00','2021-11-26 09:00:00','Londres - Buenos Aires', 2 , 1 , 2);
+insert into vuelo (llegada,salida,nombre,avion_Id,destino_Id,origen_Id) values
+				  ('2021-11-26 09:05:00','2021-11-26 09:00:00','Buenos Aires - Londres', 1 , 2 , 1),
+                   ('2021-11-26 10:09:50','2021-11-26 09:00:00','Tokio - Buenos Aires', 1 , 1 , 3),
+                  ('2021-11-26 09:09:00','2021-11-26 09:00:00','Londres - Buenos Aires', 2 , 1 , 2);
           
 select * from vuelo order by llegada;
 

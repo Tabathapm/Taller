@@ -29,7 +29,7 @@ public class Vuelo {
 
     private Date salida;
     private Date llegada;
-    private Date estimado;
+    private Long estimado;
     
     
     
@@ -57,11 +57,11 @@ public class Vuelo {
 		this.llegada = llegada;
 	}
 
-	public Date getEstimado() {
+	public Long getEstimado() {
 		return estimado;
 	}
 
-	public void setEstimado(Date estimado) {
+	public void setEstimado(Long estimado) {
 		this.estimado = estimado;
 	}
 

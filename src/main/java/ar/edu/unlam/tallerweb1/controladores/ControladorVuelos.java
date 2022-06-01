@@ -32,7 +32,7 @@ public class ControladorVuelos {
         return new ModelAndView("homeDos");
     }
     
-    @RequestMapping("buscarVuelos")
+    @RequestMapping("/buscarVuelos")
     public ModelAndView buscarVuelos
     (@RequestParam(value = "busqueda", required = false) String valorBuscado){
 
@@ -42,6 +42,20 @@ public class ControladorVuelos {
 
 
     	return new ModelAndView("vuelos",modelo);
+    }
+    
+    @RequestMapping("/vueloDescripcion")
+    public ModelAndView consultarVuelo
+    (@RequestParam(value="idVuelo",required = false)Long idVuelo,
+    HttpServletRequest request) {
+    	
+    	ModelMap modelo= new ModelMap();
+    	request.getSession().setAttribute("idVuelo", idVuelo);
+    	
+    	modelo.put("vuelo", servicioVuelo.consultarVuelo(idVuelo));
+    	
+    	
+    	return new ModelAndView("vueloDescripcion",modelo);
     }
    
     
