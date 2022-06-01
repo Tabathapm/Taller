@@ -16,7 +16,7 @@ public class Locacion {
 
 	    private String ciudad;
 	    private String pais;
-	    private String cordenadas;
+	    private String coordenadas;
 	    
 	    
 		public Long getId() {
@@ -37,11 +37,11 @@ public class Locacion {
 		public void setPais(String pais) {
 			this.pais = pais;
 		}
-		public String getCordenadas() {
-			return cordenadas;
+		public String getCoordenadas() {
+			return coordenadas;
 		}
-		public void setCordenadas(String cordenadas) {
-			this.cordenadas = cordenadas;
+		public void setCoordenadas(String coordenadas) {
+			this.coordenadas = coordenadas;
 		} 
 	    
 	    

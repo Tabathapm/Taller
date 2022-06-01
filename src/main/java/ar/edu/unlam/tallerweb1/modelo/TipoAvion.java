@@ -18,16 +18,16 @@ public class TipoAvion {
 	 private CategoriaAvion categoriaAvion;
 	 
 	 private Integer capacidad;
-	 private Double Carga;
+	 private Double carga;
 	
 	public Double getCarga() {
-		return Carga;
+		return carga;
 	}
 
 	public void setCarga(Double carga) {
-		Carga = carga;
+		this.carga = carga;
 	}
-
+	
 	public Integer getCapacidad() {
 		return capacidad;
 	}
@@ -35,5 +35,23 @@ public class TipoAvion {
 	public void setCapacidad(Integer capacidad) {
 		this.capacidad = capacidad;
 	}
+
+	public Long getId() {
+		return Id;
+	}
+
+	public void setId(Long id) {
+		Id = id;
+	}
+
+	public CategoriaAvion getCategoriaAvion() {
+		return categoriaAvion;
+	}
+
+	public void setCategoriaAvion(CategoriaAvion categoriaAvion) {
+		this.categoriaAvion = categoriaAvion;
+	}
+	
+	
 
 }

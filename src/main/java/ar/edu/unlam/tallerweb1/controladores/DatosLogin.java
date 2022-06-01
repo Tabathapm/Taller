@@ -1,15 +1,15 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 public class DatosLogin {
-    private String email;
+    private String credencial;
     private String password;
 
     public String getEmail() {
-        return email;
+        return credencial;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.credencial = email;
     }
 
     public String getPassword() {

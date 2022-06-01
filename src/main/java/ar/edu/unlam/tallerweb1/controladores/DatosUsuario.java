@@ -4,9 +4,9 @@ public class DatosUsuario {
 
 
     private Long id;
-    private String email;
+    private String credencial;
     private String password;
-    private String rol;
+    
     private Boolean activo = false;
 
     public Long getId() {
@@ -18,11 +18,11 @@ public class DatosUsuario {
     }
 
     public String getEmail() {
-        return email;
+        return credencial;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.credencial = email;
     }
 
     public String getPassword() {
@@ -31,14 +31,6 @@ public class DatosUsuario {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
     }
 
     public Boolean getActivo() {

@@ -30,7 +30,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		// uniqueResult da error si se encuentran mas de un resultado en la busqueda.
 		final Session session = sessionFactory.getCurrentSession();
 		return (Usuario) session.createCriteria(Usuario.class)
-				.add(Restrictions.eq("email", email))
+				.add(Restrictions.eq("credencial", email))
 				.add(Restrictions.eq("password", password))
 				.uniqueResult();
 	}
@@ -43,7 +43,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 	@Override
 	public Usuario buscar(String email) {
 		return (Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
-				.add(Restrictions.eq("email", email))
+				.add(Restrictions.eq("credencial", email))
 				.uniqueResult();
 	}
 

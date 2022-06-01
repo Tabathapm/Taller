@@ -3,8 +3,6 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,10 +15,7 @@ public class Vuelo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    
-    @Enumerated(EnumType.STRING)
-    private CategoriaAvion tipoAvion;
-    
+        
     @ManyToOne
     private Locacion origen;
     
@@ -29,10 +24,12 @@ public class Vuelo {
     
     @OneToOne
     private Avion avion;
+    
+    private String nombre;
 
     private Date salida;
     private Date llegada;
-    private Date estimado;
+    private Long estimado;
     
     
     
@@ -60,11 +57,11 @@ public class Vuelo {
 		this.llegada = llegada;
 	}
 
-	public Date getEstimado() {
+	public Long getEstimado() {
 		return estimado;
 	}
 
-	public void setEstimado(Date estimado) {
+	public void setEstimado(Long estimado) {
 		this.estimado = estimado;
 	}
 
@@ -92,12 +89,11 @@ public class Vuelo {
 		this.destino = destino;
 	}
 
-
-	public CategoriaAvion getTipoAvion() {
-		return tipoAvion;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setTipoAvion(CategoriaAvion tipoAvion) {
-		this.tipoAvion = tipoAvion;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 }

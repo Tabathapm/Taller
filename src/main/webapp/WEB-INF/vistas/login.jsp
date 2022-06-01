@@ -28,7 +28,7 @@
 						<form:form action="validar-login" method="POST" modelAttribute="datosLogin">
 							<%--Elementos de entrada de datos, el elemento path debe indicar en que atributo del objeto usuario se guardan los datos ingresados--%>
 							<div class="input-group p-2 d-flex align-items-center">
-								<form:input path="email" id="email" type="email" class="form-control" placeholder="ejemplo@email.com"/>
+								<form:input path="email" id="email" type="credencial" class="form-control" placeholder="ejemplo@email.com"/>
 							</div>
 							<div class="input-group p-2 d-flex align-items-center">
 								<form:input path="password" type="password" id="password" class="form-control" placeholder="**********"/>
