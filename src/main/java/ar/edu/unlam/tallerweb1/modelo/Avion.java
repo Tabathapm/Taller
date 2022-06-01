@@ -1,10 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Avion {
@@ -15,6 +11,11 @@ public class Avion {
 	    
 	    @ManyToOne
 	    private TipoAvion tipoAvion;
+
+		@OneToOne
+		@JoinColumn(name = "hangar_Id",referencedColumnName = "Id")
+		private Hangar hangar;
+
 
 	    private String nombre; //Despues vemos si lo cambiamos a tipo Date
 	    
@@ -42,6 +43,12 @@ public class Avion {
 		public void setTipoAvion(TipoAvion tipoAvion) {
 			this.tipoAvion = tipoAvion;
 		}
-	    
-	    
+
+	public Hangar getHangar() {
+		return hangar;
+	}
+
+	public void setHangar(Hangar hangar) {
+		this.hangar = hangar;
+	}
 }

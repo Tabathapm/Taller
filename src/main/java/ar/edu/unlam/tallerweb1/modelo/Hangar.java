@@ -1,10 +1,8 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import org.hibernate.mapping.Join;
+
+import javax.persistence.*;
 
 @Entity
 public class Hangar {
@@ -14,8 +12,9 @@ public class Hangar {
 	    private Long Id;
 	    
 	    @OneToOne
+		@JoinColumn(name = "avion_Id",referencedColumnName = "Id")
 	    private Avion avion;
-	    
+
 	    private String Nombre;
 	    private Boolean Ocupado;
 	    

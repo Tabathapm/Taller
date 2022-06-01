@@ -17,10 +17,10 @@ public class ControladorHome {
         return new ModelAndView("miPerfil");
     }
 
-    @RequestMapping("/hangares")
-    public ModelAndView irHangares(){
-        return new ModelAndView("hangares");
-    }
+//    @RequestMapping("/hangares")
+//    public ModelAndView irHangares(){
+//        return new ModelAndView("hangares");
+//    }
 
     @RequestMapping("/vuelos")
     public ModelAndView irVuelos(){

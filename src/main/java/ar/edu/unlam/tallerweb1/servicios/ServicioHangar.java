@@ -7,10 +7,15 @@ import ar.edu.unlam.tallerweb1.modelo.Hangar;
 
 public interface ServicioHangar {
 	
-	Boolean alocarHangar (Avion avion,Hangar hangarVacio);
+//	Boolean alocarHangar (Avion avion,Hangar hangarVacio);
 	
-	Hangar traerHangarDeAvion(Avion avion);
+//	Hangar traerHangarDeAvion(Avion avion);
 	
 	List<Hangar> traerHangaresVacios();
-
+//	List<Avion> traerAvionesSinAsignar();
+	List<Avion> traerAvionesSinAsignar();
+	Hangar traerHangaresSinAsignar(Long id);
+	List<Hangar> traerTodosLosHangaresDisponibles();
+	List<Hangar> traerTodosLosHangares();
+	void asigarAvionesAHangar(Long idAvion,Long idHangar);
 }
