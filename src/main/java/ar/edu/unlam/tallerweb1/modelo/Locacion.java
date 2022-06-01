@@ -10,41 +10,48 @@ import javax.persistence.Id;
 @Entity
 public class Locacion {
 	
-	 @Id
+	 	@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Long Id;
+	    private Long id;
 
 	    private String ciudad;
 	    private String pais;
-	    private String cordenadas;
+	    private String coordenadas;
 	    
 	    
 		public Long getId() {
-			return Id;
+			return this.id;
 		}
+
 		public void setId(Long id) {
-			Id = id;
+			this.id = id;
 		}
+
 		public String getCiudad() {
 			return ciudad;
 		}
+
 		public void setCiudad(String ciudad) {
 			this.ciudad = ciudad;
 		}
+
 		public String getPais() {
 			return pais;
 		}
+
 		public void setPais(String pais) {
 			this.pais = pais;
 		}
-		public String getCordenadas() {
-			return cordenadas;
+
+		public String getCoordenadas() {
+			return coordenadas;
 		}
-		public void setCordenadas(String cordenadas) {
-			this.cordenadas = cordenadas;
-		} 
-	    
-	    
-	   
+
+		public void setCoordenadas(String coordenadas) {
+			this.coordenadas = coordenadas;
+		}
+
+
+
 
 }

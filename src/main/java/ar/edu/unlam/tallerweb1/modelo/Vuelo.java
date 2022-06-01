@@ -3,8 +3,6 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,10 +14,7 @@ public class Vuelo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
-    
-    @Enumerated(EnumType.STRING)
-    private CategoriaAvion tipoAvion;
+    private Long id;
     
     @ManyToOne
     private Locacion origen;
@@ -30,13 +25,29 @@ public class Vuelo {
     @OneToOne
     private Avion avion;
 
-    private Date salida;
+    private String fecha;
+	private String hora;
     private Date llegada;
     private Date estimado;
-    
-    
-    
-    public Avion getAvion() {
+
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
+
+	public Avion getAvion() {
 		return avion;
 	}
 
@@ -44,13 +55,13 @@ public class Vuelo {
 		this.avion = avion;
 	}
 
-	public Date getSalida() {
-		return salida;
-	}
-
-	public void setSalida(Date salida) {
-		this.salida = salida;
-	}
+//	public String getSalida() {
+//		return salida;
+//	}
+//
+//	public void setSalida(String salida) {
+//		this.salida = salida;
+//	}
 
 	public Date getLlegada() {
 		return llegada;
@@ -69,11 +80,11 @@ public class Vuelo {
 	}
 
 	public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public Locacion getOrigen() {
@@ -92,12 +103,4 @@ public class Vuelo {
 		this.destino = destino;
 	}
 
-
-	public CategoriaAvion getTipoAvion() {
-		return tipoAvion;
-	}
-
-	public void setTipoAvion(CategoriaAvion tipoAvion) {
-		this.tipoAvion = tipoAvion;
-	}
 }
