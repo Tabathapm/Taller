@@ -1,15 +1,14 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.*;
 
 @Entity
 public class Vuelo {
@@ -30,12 +29,23 @@ public class Vuelo {
     @OneToOne
     private Avion avion;
 
-    private Date salida;
+	@OneToMany
+	List<Tripulante> tripulacionVuelo;
+
+	public List<Tripulante> getTripulacionVuelo() {
+		return tripulacionVuelo;
+	}
+
+	public void setTripulacionVuelo(List<Tripulante> tripulacionVuelo) {
+		this.tripulacionVuelo = tripulacionVuelo;
+	}
+
+	private Date salida;
     private Date llegada;
     private Date estimado;
-    
-    
-    
+
+
+
     public Avion getAvion() {
 		return avion;
 	}
@@ -100,4 +110,6 @@ public class Vuelo {
 	public void setTipoAvion(CategoriaAvion tipoAvion) {
 		this.tipoAvion = tipoAvion;
 	}
+
+
 }
