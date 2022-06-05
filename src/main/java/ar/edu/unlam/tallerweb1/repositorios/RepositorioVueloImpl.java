@@ -41,11 +41,11 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 		.uniqueResult();
 							
 	}
-
+	
 	@Override
 	public List<Vuelo> obtenerTodosLosVuelos() {
 		
-		return getSession().createCriteria(Vuelo.class).addOrder(Order.desc("nombre")).list();
+		return getSession().createCriteria(Vuelo.class).list();
 		
 	}
 
@@ -94,6 +94,9 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 				.add(Restrictions.like("ciudad", locacion, MatchMode.ANYWHERE).ignoreCase())
 				.list();
 	}
+	
+
+	   
 	
 	
 	

@@ -64,12 +64,14 @@
                                 <h5>Avi&oacute;n</h5>
 
                                 <div class="form-check">
-                                    <input class="form-check-input tipoAvion" type="checkbox" name="tipoAvionDefault1" value="comercial" id="comercial">
+                                    <input class="form-check-input tipoAvion" type="checkbox"
+                                     name="tipoAvionDefault1" value="comercial" id="comercial">
                                     <label class="form-check-label" for="comercial">Comercial</label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input tipoAvion" type="checkbox" name="tipoAvionDefault2" value="carga" id="carga" >
+                                    <input class="form-check-input tipoAvion" type="checkbox"
+                                     name="tipoAvionDefault2" value="carga" id="carga" >
                                     <label class="form-check-label" for="carga">Carga</label>
                                 </div>
                             </div>
