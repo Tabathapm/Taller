@@ -70,7 +70,7 @@ public class ControladorVuelos {
     @RequestMapping(value = "/traerVuelo",method = RequestMethod.GET)
     public ModelAndView traerVuelo(){
         ModelMap modelo = new ModelMap();
-        modelo.put("unVuelo",servicioVuelo.consultarVuelo(888L));
+        modelo.put("unVuelo",servicioVuelo.consultarVuelo(1L));
 
         modelo.put("listaPilotos",servicioTripulante.listaTodosLosPilotos());
         modelo.put("listaCopilotos",servicioTripulante.listaTodosLosCopilotos());

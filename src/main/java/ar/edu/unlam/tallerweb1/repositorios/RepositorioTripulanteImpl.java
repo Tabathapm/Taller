@@ -2,6 +2,9 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
+import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
@@ -22,6 +25,11 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
     public RepositorioTripulanteImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+    
+    private Session getSession() {
+        return sessionFactory.getCurrentSession();
+    }
+	
 
     @Override
     public Tripulante traerTripulante(Long id) {
@@ -32,9 +40,9 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
     @Override
     public List<Tripulante> listarTodosLosPilotos() {
         Criterion rest1 = Restrictions.and(Restrictions.like("titulo","Piloto"));
-        Criterion rest2 = Restrictions.isNull("vuelo");
+  
         List<Tripulante> result=sessionFactory.getCurrentSession().createCriteria(Tripulante.class)
-                .add(Restrictions.and(rest1,rest2)).list();
+                .add(rest1).list();
         return result;
         /*return sessionFactory.getCurrentSession().createCriteria(Tripulante.class)
                 .add(Restrictions.like("titulo","Piloto"))
@@ -47,9 +55,9 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
     public List<Tripulante> listaTodosLosCopilotos() {
 
         Criterion rest1 = Restrictions.and(Restrictions.like("titulo","Copiloto"));
-        Criterion rest2 = Restrictions.isNull("vuelo");
+        
          List<Tripulante> result=sessionFactory.getCurrentSession().createCriteria(Tripulante.class)
-                .add(Restrictions.and(rest1,rest2)).list();
+                .add(rest1).list();
          return result;
     }
 
@@ -58,9 +66,9 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
     @Override
     public List<Tripulante> listaTodosLosIngenieros() {
         Criterion rest1 = Restrictions.and(Restrictions.like("titulo","Ingeniero de vuelo"));
-        Criterion rest2 = Restrictions.isNull("vuelo");
         List<Tripulante> result=sessionFactory.getCurrentSession().createCriteria(Tripulante.class)
-                .add(Restrictions.and(rest1,rest2)).list();
+                .add(rest1).list();
+        
         return result;
         /*return sessionFactory.getCurrentSession().createCriteria(Tripulante.class)
                 .add(Restrictions.like("titulo","Ingeniero de vuelo"))
@@ -76,21 +84,70 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
                 .list();
     }
 
+    /*
     @Override
     public List<Tripulante> tripulacionAsignada(Vuelo vuelo) {
         return  sessionFactory.getCurrentSession().createCriteria(Tripulante.class)
-                .add(Restrictions.eq("vuelo",vuelo)).list();
+        		.createAlias("vueloTripulante","vt")
+                .add(Restrictions.eq("vt.vuelo",vuelo)).list();
     }
-
+ */
    @Override
     public void asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante unTripulante) {
+            
+        VueloTripulante vt = new VueloTripulante ();
+        
+        vt.setVuelo(vuelo);
+        vt.setTripulante(unTripulante);
+        
+        getSession().save(vt);
+
+    }
+    /*
+    @Override
+    public void asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante unTripulante) {
+    	
+    	
        Tripulante tr = (Tripulante) sessionFactory.getCurrentSession().createCriteria(Tripulante.class)
                .add(Restrictions.eq("id", unTripulante.getId())).uniqueResult();
         tr.setVuelo(vuelo);
         sessionFactory.getCurrentSession().update(tr);
-
+        
+		Criterion crit1 = Restrictions.eq("vuelo.id", unTripulante.getId());
+				
+				
+	  VueloTripulante vt = (VueloTripulante) getSession().createCriteria(VueloTripulante.class)
+				 .createAlias("tripulante", "Tripulante")
+				 .createAlias("vuelo","Vuelo")
+				 .add(crit1).uniqueResult();
+				 
+				 getSession().save(vt);
+        
     }
-
+    
+    @Override
+    public void asignarTripulantesAlVuelo(Vuelo vuelo, List<Tripulante> tripulantes) {
+    
+        this.limpiarVueloDeTripulacion(vuelo,tripulantes);
+        
+        for (Tripulante tr : tripulantes ) {
+            tr = traerTripulante(tr.getId());
+            tr.setVuelo(vuelo);
+            sessionFactory.getCurrentSession().update(tr);
+        }
+    }
+    
+     public void limpiarVueloDeTripulacion(Vuelo vuelo,List<Tripulante> tripulacion){
+     
+        List<Tripulante> tripulantesAsignados = tripulacionAsignada(vuelo);
+        for (Tripulante tr : trAsignada ) {
+            tr.setVuelo(null);
+            sessionFactory.getCurrentSession().update(tr);
+        }
+    }
+    
+    
+ 
     @Override
     public void asignarTripulantesAlVuelo(Vuelo vuelo, List<Tripulante> tripulantes) {
         this.limpiarVueloDeTripulacion(vuelo,tripulantes);
@@ -108,4 +165,17 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
             sessionFactory.getCurrentSession().update(tr);
         }
     }
+    */
+
+@Override
+public void asignarTripulantesAlVuelo(Vuelo vuelo, List<Tripulante> tripulantes) {
+	// TODO Auto-generated method stub
+	
+}
+
+	@Override
+	public List<Tripulante> tripulacionAsignada(Vuelo vuelo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
