@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,10 +18,10 @@ public class Tripulante {
     @ManyToOne
     private Vuelo vuelo;
 
-    private String nombre;
+	private String nombre;
     private String apellido;
     private String titulo;
-    private String inicioActividad; //pasar a date
+    private Date inicioActividad;
     
   
     public Long getId() {
@@ -54,11 +56,20 @@ public class Tripulante {
         this.titulo = titulo;
     }
 
-	public String getInicioActividad() {
+	public Date getInicioActividad() {
 		return inicioActividad;
 	}
 
-	public void setInicioActividad(String inicioActividad) {
+	public void setInicioActividad(Date inicioActividad) {
 		this.inicioActividad = inicioActividad;
 	}
+	
+    public Vuelo getVuelo() {
+		return vuelo;
+	}
+
+	public void setVuelo(Vuelo vuelo) {
+		this.vuelo = vuelo;
+	}
+
 }

@@ -5,8 +5,8 @@ use db;
 insert into usuario (credencial,password) values('usuario','usuario'),
 												('usuario@mail.com','usuario');
 
-insert into tipoavion (carga,capacidad,categoriaAvion) values (5000,250,'Comercial'),
-															  (25000,20,'Carga');
+insert into tipoavion (carga,capacidad,categoriaAvion) values (5000,250,'COMERCIAL'),
+															  (25000,20,'CARGA');
 
 insert into avion (nombre,tipoAvion_Id) values ('avionA',1),
 											   ('avionB',2);
