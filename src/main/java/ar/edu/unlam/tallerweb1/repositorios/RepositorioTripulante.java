@@ -10,8 +10,11 @@ public interface RepositorioTripulante {
 	    Tripulante traerTripulante(Long id);
 
 	    List<Tripulante> listarTodosLosPilotos();
+	    
 	    List<Tripulante> listaTodosLosCopilotos();
+	    
 	    List<Tripulante> listaTodosLosIngenieros();
+	    
 	    List<Tripulante> listarTodosLosTripulantesDeVuelo();
 
 	    List<Tripulante> tripulacionAsignada(Vuelo vuelo);
@@ -19,6 +22,8 @@ public interface RepositorioTripulante {
 	    void asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante unTripulante);
 
 	    void asignarTripulantesAlVuelo(Vuelo vuelo, List<Tripulante> tripulantes);
+
+		List<Tripulante> listarTodosLosTripulantes();
 	}
 
 

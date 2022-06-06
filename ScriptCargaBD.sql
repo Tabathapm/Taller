@@ -25,6 +25,8 @@ insert into Tripulante  (apellido,estado,titulo) values
 						("Brando",false,"Copiloto"),
                         ("Joestar",false,"Ingeniero de Vuelo"),
                         ("Kujo",true,"Piloto");
+                        
+                      
           
 select * from vuelo order by llegada;
 
@@ -46,3 +48,15 @@ SELECT v1.id,v1.estimado,v1.llegada,v1.nombre,v1.salida,v1.avion_id,v1.destino_I
  select v.id,estimado,llegada,nombre,salida,avion_Id,destino_Id,origen_Id from vuelo as v 
  inner join locacion as l on v.origen_Id = l.id
  where l.ciudad = "a" or l.pais = "Inglaterra";
+ 
+ /*
+   insert into vuelo (llegada,salida,avion_Id,destino_Id,origen_Id) values
+				  ('2021-11-26 09:05:00','2021-11-26 09:00:00', 1 , 2 , 1),
+                   ('2021-11-26 10:09:50','2021-11-26 09:00:00', 1 , 1 , 3),
+                  ('2021-11-26 09:09:00','2021-11-26 09:00:00', 2 , 1 , 2);
+                  
+                        insert into Tripulante  (apellido,titulo,vuelo_Id) values
+						("Brando","Copiloto",1),
+                        ("Joestar","Ingeniero de Vuelo",1),
+                        ("Kujo","Piloto",2);
+*/

@@ -29,6 +29,12 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
     private Session getSession() {
         return sessionFactory.getCurrentSession();
     }
+    
+    @Override
+	public List<Tripulante> listarTodosLosTripulantes() {
+		
+		return getSession().createCriteria(Tripulante.class).list();
+	}
 	
 
     @Override
@@ -178,4 +184,6 @@ public void asignarTripulantesAlVuelo(Vuelo vuelo, List<Tripulante> tripulantes)
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 }

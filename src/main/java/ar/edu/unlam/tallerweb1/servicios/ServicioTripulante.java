@@ -21,5 +21,9 @@ public interface ServicioTripulante {
 
     void asignarTripulantesAlVuelo(Vuelo vuelo1, List<Tripulante> tripulantes);
 
+	List<Tripulante> listarTodosLosTripulantes();
+
+	
+
 
 }
