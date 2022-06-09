@@ -63,7 +63,7 @@
                     <nav class="sb-sidenav-menu-nested nav">
                     	<a class="nav-link" href="hangares">Ver Hangares</a>
                         <a class="nav-link" href="hangares-vacios">Vacios</a>
-                        <a class="nav-link" href="hangares-asignar">Asignar</a>
+<%--                        <a class="nav-link" href="hangares-asignar">Asignar</a>--%>
                     </nav>
                 </div>
                 <%-- ------------------------ --%>
