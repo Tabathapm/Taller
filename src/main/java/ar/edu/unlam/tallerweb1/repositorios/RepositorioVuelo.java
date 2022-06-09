@@ -16,6 +16,8 @@ public interface RepositorioVuelo {
 	Vuelo consultarVuelo(Long id);
 
 	List<Locacion> buscarLocacion(String locacion);
+
+	List<Vuelo> listarTodosLosVuelosSinTripulacion();
 	
  
 }

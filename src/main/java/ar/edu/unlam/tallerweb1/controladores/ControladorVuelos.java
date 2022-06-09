@@ -76,6 +76,20 @@ public class ControladorVuelos {
         return new ModelAndView("tripulantes",modelo);
 
     }
+    
+    @RequestMapping("/asignarTripulacion")
+    public ModelAndView asignarTripulacionAVuelo() {
+    	
+    	ModelMap modelo = new ModelMap();
+    	
+    	modelo.put("vuelosSinTripulacion",servicioVuelo.listarTodosLosVuelosSinTripulacion());
+    	
+    	
+    	return new ModelAndView("asignarTripulacion",modelo);
+    	
+    	
+    	
+    }
     /*
      * 
 	    @RequestMapping(value = "/traerVuelo",method = RequestMethod.GET)

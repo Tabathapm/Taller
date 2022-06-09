@@ -86,4 +86,11 @@ public class ServicioVueloImpl implements ServicioVuelo {
 		
 	}
 
+	@Override
+	public List<Vuelo> listarTodosLosVuelosSinTripulacion() {
+
+		
+		return  repositorioVuelo.listarTodosLosVuelosSinTripulacion();
+	}
+
 }

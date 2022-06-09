@@ -16,6 +16,8 @@ public interface ServicioVuelo {
 
 	List<Locacion> buscarLocacion(String valorBuscado);
 
+	List<Vuelo> listarTodosLosVuelosSinTripulacion();
+
 	
 
 }

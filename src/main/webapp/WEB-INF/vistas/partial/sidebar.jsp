@@ -51,6 +51,7 @@
                         <a class="nav-link" href="#">Copilotos</a>
                         <a class="nav-link" href="#">Ing. de vuelo</a>
                         <a class="nav-link" href="#">Tripulantes de cabina</a>
+                        <a class="nav-link" href="asignarTripulacion">Ver todos</a>
                         <a class="nav-link" href="tripulantes">Ver todos</a>
                     </nav>
                 </div>

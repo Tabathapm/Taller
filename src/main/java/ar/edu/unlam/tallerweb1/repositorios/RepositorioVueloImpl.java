@@ -1,5 +1,12 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -15,6 +22,8 @@ import org.springframework.stereotype.Repository;
 import ar.edu.unlam.tallerweb1.modelo.Locacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
+import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
+
 
 @Repository("repositorioVuelo")
 public class RepositorioVueloImpl implements RepositorioVuelo {
@@ -94,13 +103,106 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 				.add(Restrictions.like("ciudad", locacion, MatchMode.ANYWHERE).ignoreCase())
 				.list();
 	}
+
+	@Override
+	public List<Vuelo> listarTodosLosVuelosSinTripulacion() {
+		
+		 List <Vuelo> vuelos = getSession().createCriteria(Vuelo.class).list();
+		 
+		 List <VueloTripulante> vt = getSession().createCriteria(VueloTripulante.class).list();
+		 
+		 List <Vuelo> vuelosSinTripulantes = new ArrayList <>();
+		 
+		 
+		 for (int i = 0 ; i < vuelos.size() ; i++) {
+
+			if(!(vuelos.get(i).getId().equals(vt.get(i).getVuelo().getId())))
+				vuelosSinTripulantes.add(vuelos.get(i));
+			
+		  }
+		 
+		 return vuelosSinTripulantes;
 	
+	}
 
 	   
 	
 	
 	
-    /*
+	/*
+	 * @Override
+	public List<Vuelo> listarTodosLosVuelosSinTripulacion() {
+		
+		 Criterion crit1 = Restrictions.eq("vt.vuelo", 1);
+		
+		
+		 return getSession().createCriteria(VueloTripulante.class,"vt")
+		 .createAlias("vuelo","vuelo")
+		 .add(crit1)
+		 .list();
+						
+		
+	}
+	 * 
+	 * public Boolean hayColicion() throws ColitionException {
+		for (int i = 0; i < this.vehiculos.size(); i++) {
+	    for (int j = 1; j < this.vehiculos.size(); j++) {
+	    	if(this.vehiculos.get(j).getLatitud().equals(this.vehiculos.get(i).getLatitud())&&
+	    	   this.vehiculos.get(j).getLongitud().equals(this.vehiculos.get(i).getLongitud())&&
+	    	   !(this.vehiculos.get(j).equals(this.vehiculos.get(i)))) {
+	    		throw new ColitionException();
+	    	}
+			
+		}
+			
+		}
+		return false;
+	}
+	 * 
+	 * 
+	 * 
+    @Override
+	public List<Vuelo> listarTodosLosVuelosSinTripulacion() {
+	
+
+                      List<Vuelo> vueloSinTripulacion= new ArrayList<>();
+
+                       try {
+                          Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC","root","11037");
+                           Statement sentencia = conexion.createStatement();
+                           String consulta = "select * from vuelo as v "
+                        		   			+"inner join vuelotripulante vt on v.id=vt.vuelo_Id "
+                                   			+"where vt.vuelo_Id = 1 );";
+                           ResultSet rs = sentencia.executeQuery(consulta);
+                           while(rs.next()) {
+                               Vuelo vuelo= new Vuelo();
+                               vuelo.setId(rs.getLong("Id"));
+                               vuelo.setNombre(rs.getString("nombre"));
+
+                               vueloSinTripulacion.add(vuelo);
+                           }
+                           
+                      } catch (SQLException e) {
+                          e.printStackTrace();
+                      }
+
+                      return vueloSinTripulacion;
+
+	}
+    
+    
+
+     *  var query = getSession()
+		              .createQuery("from Vuelo as v "
+                      +"inner join Vuelotripulante vt on v.id=vt.vuelo_Id "
+                      +"where vt.vuelo_Id = null");
+                      
+                       .createQuery("select * from vuelo as v "
+                      +"inner join vuelotripulante vt on v.id=vt.vuelo_Id "
+                      +"where vt.vuelo_Id = null);";
+               
+                      
+                      return query.getResultList();
 	@Override
 	public List<Vuelo> buscarVueloPorLocacion(String locacion) {
 		  var query = getSession().createQuery("select v.id,v.estimado,"
