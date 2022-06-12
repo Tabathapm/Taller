@@ -29,6 +29,7 @@ public class Vuelo {
 
     private Date salida;
     private Date llegada;
+    private Date llegadaReal;
     private Long estimado;
     
     
@@ -65,15 +66,15 @@ public class Vuelo {
 		this.estimado = estimado;
 	}
 
-	public Long getId() {
-        return Id;
-    }
+    public Long getId() {
+		return Id;
+	}
 
-    public void setId(Long id) {
-        Id = id;
-    }
+	public void setId(Long id) {
+		this.Id = id;
+	}
 
-    public Locacion getOrigen() {
+	public Locacion getOrigen() {
 		return origen;
 	}
 
@@ -96,4 +97,14 @@ public class Vuelo {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public Date getLlegadaReal() {
+		return llegadaReal;
+	}
+
+	public void setLlegadaReal(Date llegadaReal) {
+		this.llegadaReal = llegadaReal;
+	}
+	
+	
 }

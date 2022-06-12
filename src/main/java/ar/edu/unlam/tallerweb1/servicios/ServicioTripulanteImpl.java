@@ -2,7 +2,10 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
+import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTripulante;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioVuelo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +17,13 @@ import java.util.Set;
 public class ServicioTripulanteImpl implements ServicioTripulante {
 
     RepositorioTripulante repositorioTripulante;
+    RepositorioVuelo repositorioVuelo;
 
     @Autowired
-    public ServicioTripulanteImpl(RepositorioTripulante repositorioTripulante) {
+    public ServicioTripulanteImpl(RepositorioTripulante repositorioTripulante,RepositorioVuelo repositorioVuelo) {
         this.repositorioTripulante = repositorioTripulante;
+        this.repositorioVuelo = repositorioVuelo;
+        
     }
     
     @Override
@@ -54,8 +60,12 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
     	}
 
     @Override
-    public void asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante unTripulante) {
-        repositorioTripulante.asignarUnTripulanteAvuelo(vuelo,unTripulante);
+    public VueloTripulante asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante tripulante) {
+    	
+    	repositorioTripulante.obtenerFechasDeVuelos(tripulante);
+    	vuelo.getSalida();
+    	  
+       return repositorioTripulante.asignarUnTripulanteAvuelo(vuelo,tripulante);
     }
 
     @Override

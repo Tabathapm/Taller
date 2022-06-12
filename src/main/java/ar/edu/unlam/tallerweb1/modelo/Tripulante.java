@@ -13,7 +13,7 @@ public class Tripulante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long Id;
     
 	private String nombre;
     private String apellido;
@@ -25,11 +25,11 @@ public class Tripulante {
     
   
     public Long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getNombre() {

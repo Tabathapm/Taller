@@ -30,7 +30,8 @@
 					    
                         <c:forEach items="${vuelosSinTripulacion}" var="vuelos">
                         <tr>
-                            <td><p>${vuelos.Id}</p></td>
+                            <td><p>${vuelos.id}</p></td>
+                            <td><p>${vuelos.nombre}</p></td>
                          
                            
                             

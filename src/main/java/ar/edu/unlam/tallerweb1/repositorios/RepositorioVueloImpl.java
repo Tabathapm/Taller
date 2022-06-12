@@ -25,6 +25,7 @@ import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 
 
+
 @Repository("repositorioVuelo")
 public class RepositorioVueloImpl implements RepositorioVuelo {
 	
@@ -111,24 +112,49 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 		 
 		 List <VueloTripulante> vt = getSession().createCriteria(VueloTripulante.class).list();
 		 
-		 List <Vuelo> vuelosSinTripulantes = new ArrayList <>();
+		 List <Vuelo> vuelosSinTripulacion = new ArrayList <>();
 		 
+		 if(vuelos.size()==0) {
+			 
+			 return vuelos;
+			 
+		 }
 		 
+		/* 
 		 for (int i = 0 ; i < vuelos.size() ; i++) {
-
-			if(!(vuelos.get(i).getId().equals(vt.get(i).getVuelo().getId())))
-				vuelosSinTripulantes.add(vuelos.get(i));
+			 for (int j = 0 ; j < vt.size() ; j++) {
+			 
+			if(null!=vt.get(j).getVuelo())
+			if(!(vuelosSinTripulacion.contains(vuelos.get(i)))
+			   &&!((vt.get(j).getVuelo()).equals(vuelos.get(i)))) {
+				vuelosSinTripulacion.add(vuelos.get(i));
+				 
 			
+			}
 		  }
+		 } 
 		 
-		 return vuelosSinTripulantes;
+	*/ 
+		 
+   
+		 for (int i = 0 ; i < vuelos.size() ; i++) {
+			 for (int j = 0 ; j < vt.size() ; j++) {
+	
+		  if(null!=vt.get(j).getVuelo()) 	 
+			if(!(vuelosSinTripulacion.contains(vuelos.get(i)))
+			   &&(vuelos.get(i).getId().equals(vt.get(j).getVuelo().getId()))) 
+				vuelosSinTripulacion.add(vuelos.get(i));
+			  		
+			 }
+		  } 
+		 
+		 return vuelosSinTripulacion;
+		 
 	
 	}
+	
 
-	   
-	
-	
-	
+
 	/*
 	 * @Override
 	public List<Vuelo> listarTodosLosVuelosSinTripulacion() {
@@ -143,24 +169,8 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 						
 		
 	}
-	 * 
-	 * public Boolean hayColicion() throws ColitionException {
-		for (int i = 0; i < this.vehiculos.size(); i++) {
-	    for (int j = 1; j < this.vehiculos.size(); j++) {
-	    	if(this.vehiculos.get(j).getLatitud().equals(this.vehiculos.get(i).getLatitud())&&
-	    	   this.vehiculos.get(j).getLongitud().equals(this.vehiculos.get(i).getLongitud())&&
-	    	   !(this.vehiculos.get(j).equals(this.vehiculos.get(i)))) {
-	    		throw new ColitionException();
-	    	}
-			
-		}
-			
-		}
-		return false;
-	}
-	 * 
-	 * 
-	 * 
+
+
     @Override
 	public List<Vuelo> listarTodosLosVuelosSinTripulacion() {
 	

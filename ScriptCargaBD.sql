@@ -26,13 +26,42 @@ insert into Tripulante  (apellido,estado,titulo) values
                         ("Joestar",false,"Ingeniero de Vuelo"),
                         ("Kujo",true,"Piloto");
                         
- insert into vuelotripulante (tripulante_id,vuelo_id) values
+ insert into vuelotripulante (tripulante_Id,vuelo_Id) values
 							 (1,1),
                              (2,1);
                              
-                             
-          
+drop procedure if exists obtenerFechasDeTripulante;
+DELIMITER //
+create procedure obtenerFechasDeTripulante(in idTripulante long)
+begin
+    
+    select * from vuelo as v
+    inner join vuelotripulante as vt on v.Id = vt.vuelo_Id
+    inner join tripulante as t on vt.tripulante_Id = t.Id
+    where t.Id = idTripulante;
+    
+end//
+DELIMITER ; 
+
+drop procedure if exists obtenerFechasDeTripulanteA;
+DELIMITER //
+create procedure obtenerFechasDeTripulanteA()
+begin
+    
+    select * from vuelo as v
+    inner join vuelotripulante as vt on v.Id = vt.vuelo_Id
+    inner join tripulante as t on vt.tripulante_Id = t.Id
+    ;
+    
+end//
+DELIMITER ; 
+         
+   
+         
+         
 select * from vuelo order by llegada;
+
+select * from vuelotripulante;
 
 select * from locacion;
 

@@ -9,10 +9,16 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+
 
 @SuppressWarnings("deprecation")
 @Repository("RepositorioTripulante")
@@ -39,9 +45,10 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
 
     @Override
     public Tripulante traerTripulante(Long id) {
-        return (Tripulante) sessionFactory.getCurrentSession().createCriteria(Tripulante.class)
+        return (Tripulante) getSession().createCriteria(Tripulante.class)
                 .add(Restrictions.eq("id",id)).uniqueResult();
     }
+    
 
     @Override
     public List<Tripulante> listarTodosLosPilotos() {
@@ -62,8 +69,12 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
 
         Criterion rest1 = Restrictions.and(Restrictions.like("titulo","Copiloto"));
         
-         List<Tripulante> result=sessionFactory.getCurrentSession().createCriteria(Tripulante.class)
-                .add(rest1).list();
+         List<Tripulante> result=
+        		 sessionFactory.getCurrentSession().createCriteria(Tripulante.class)
+        		 .createAlias("tripulante", "vt")
+        		 .createAlias("vuelo", "vuelo")
+                 .add(rest1).list();
+         
          return result;
     }
 
@@ -99,7 +110,7 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
     }
  */
    @Override
-    public void asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante unTripulante) {
+    public VueloTripulante asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante unTripulante) {
             
         VueloTripulante vt = new VueloTripulante ();
         
@@ -107,9 +118,43 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
         vt.setTripulante(unTripulante);
         
         getSession().save(vt);
+        
+        return vt;
 
     }
+   
+   @Override
+	public List<VueloTripulante> obtenerFechasDeVuelos(Tripulante tripulante) {
+	   
+	   Long id = tripulante.getId();
+	   
+       Criterion rest1 = Restrictions.and(Restrictions.like("t.Id",id));
+       
+       List<VueloTripulante> result=getSession().createCriteria(VueloTripulante.class,"vt")
+    		   				 .createAlias("tripulante", "t")
+    		   				 .createAlias("vuelo", "v")
+                             .add(rest1).list();
+       
+       return result;
+	}
+   
     /*
+     * 
+     *   @Override
+	public List<Vuelo> obtenerFechasDeVuelos(Tripulante tripulante) {
+	   
+	   Long id = tripulante.getId();
+	   
+	   List<Vuelo> r = new ArrayList<>(); 
+       
+       Query<Vuelo> query = getSession().createSQLQuery("CALL obtenerFechasDeTripulante(:idTripulante)")
+    		   .addEntity(Vuelo.class)
+    		   .setParameter("idTripulante",id);
+       
+       r = query.list();
+     
+       return r;
+	}
     @Override
     public void asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante unTripulante) {
     	
@@ -184,6 +229,10 @@ public void asignarTripulantesAlVuelo(Vuelo vuelo, List<Tripulante> tripulantes)
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+
+	
 
 	
 }
