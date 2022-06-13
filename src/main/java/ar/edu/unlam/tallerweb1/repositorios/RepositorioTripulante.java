@@ -27,7 +27,7 @@ public interface RepositorioTripulante {
 
 		List<Tripulante> listarTodosLosTripulantes();
 
-		List<VueloTripulante> obtenerFechasDeVuelos(Tripulante tripulante);
+		List<VueloTripulante> obtenerVuelosDeTripulante(Tripulante tripulante);
 	}
 
 

@@ -28,6 +28,7 @@ public class RepositorioTripulanteTest extends SpringTest {
     private static final String nv2 = "v2";
     private static final String nv3 = "v3";
     private static final String nt1 = "t1";
+    private static final String nt2 = "t2";
     
     
     @Test
@@ -93,6 +94,7 @@ public class RepositorioTripulanteTest extends SpringTest {
     	
     	Vuelo v1 = givenVuelo(nv1);
     	Tripulante t1 = givenTripulante(nt1);
+    	Tripulante t2 = givenTripulante(nt2);
     	Vuelo v2 = givenVuelo(nv2);
     	Vuelo v3 = givenVuelo(nv3);
     	
@@ -112,7 +114,7 @@ public class RepositorioTripulanteTest extends SpringTest {
 			f3=formato.parse("05-06-2005 15:55");
 			
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
@@ -122,13 +124,14 @@ public class RepositorioTripulanteTest extends SpringTest {
         
         vtA.setTripulante(t1);
     	vtA.setVuelo(v1);
-    	vtA.setTripulante(t1);
-    	vtA.setVuelo(v2);
-    	vtC.setTripulante(t1);
+    	vtB.setTripulante(t1);
+    	vtB.setVuelo(v2);
+    	vtC.setTripulante(t2);
     	vtC.setVuelo(v3);
 
     	
     	session().save(t1);
+    	session().save(t2);
     	session().save(v1);
     	session().save(v2);
     	session().save(v3);
@@ -137,11 +140,14 @@ public class RepositorioTripulanteTest extends SpringTest {
     	session().save(vtC);
     	
     	  	
-    	List <VueloTripulante> a = repositorioTripulante.obtenerFechasDeVuelos(t1);
+    	List <VueloTripulante> a = repositorioTripulante.obtenerVuelosDeTripulante(t1);
     	
     	 String nombre = a.get(0).getTripulante().getNombre();
-    	
+
     	assertThat(nombre.equals(nt1));
+    	assertThat(a.size()).isEqualTo(2);
+    	assertThat(a.get(0).getVuelo().getSalida().equals(f1));
+    	assertThat(a.get(0).getVuelo().getSalida()).isNotEqualTo(f2);
     }
     
  

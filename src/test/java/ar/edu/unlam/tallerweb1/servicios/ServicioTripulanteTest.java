@@ -5,6 +5,7 @@ import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTripulante;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioVuelo;
+import excepciones.FechaYaOcupadaException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -27,6 +29,9 @@ public class ServicioTripulanteTest {
     
     private static final String nv1 = "v1";
     private static final String nt1 = "t1";
+    private static final String nv2 = "v2";
+    private static final String nv3 = "v3";
+    private static final String nt2 = "t2";
     
     private RepositorioTripulante repositorioTripulante = mock(RepositorioTripulante.class);
     private RepositorioVuelo repositorioVuelo = mock(RepositorioVuelo.class);
@@ -35,17 +40,17 @@ public class ServicioTripulanteTest {
     @Test
     public void queSePuedaAsignarUnTripulanteAUnVuelo() {
     	
-    	Vuelo v1 = givenVuelo(nv1);
+    	Vuelo v1 = givenVueloConFecha(nv1);
     	Tripulante t1 = givenTripulante(nt1);
     	
     	whenAsignoTripulanteAVuelo(v1,t1);
-   	
+  	
     	thenSeAsignoCorrectamente(v1,t1);
 
     }
     
-    private VueloTripulante whenAsignoTripulanteAVuelo(Vuelo v1, Tripulante t1) {
-		return servicioTripulante.asignarUnTripulanteAvuelo(v1, t1);
+    private VueloTripulante whenAsignoTripulanteAVuelo(Vuelo v, Tripulante t) {
+		return servicioTripulante.asignarUnTripulanteAvuelo(v, t);
 		
 	}
 
@@ -59,28 +64,33 @@ public class ServicioTripulanteTest {
     }
 	
 	 @Test
-	 public void queNoSePuedaAsignarUnTripulanteAUnVueloEnLaMismaFecha() {
+	 public void queNoSePuedaAsignarUnTripulanteAUnVueloEnLaMismaFecha() { //No se puede resolver, requiere repo funcional
 	    	
-	    	Vuelo v1 = givenVuelo(nv1);
+	    	Vuelo v1 = givenVueloConFecha(nv1);
+	    	Vuelo v2 = givenVueloConFecha(nv2);
+
 	    	Tripulante t1 = givenTripulante(nt1);
 	    	
 	    	whenAsignoTripulanteAVuelo(v1,t1);
-	   	
-	    	thenSeAsignoCorrectamente(v1,t1);
-
+	    	
+	    	whenAsignoTripulanteAVuelo(v2,t1);
+	    	
+	    	
+	    	thenNoSeAsigno(v1,v2,t1);
+	    	
+	
 	    }
 	 
 
-	private void thenNoSeAsigno(Vuelo v,Tripulante t) {
-	    	
-	    	assertThat(t).isNotNull();
-	    	assertThat(v).isNotNull();
-	    	
-	    	verify(repositorioTripulante,times(0)).asignarUnTripulanteAvuelo(v,t);
+
+	private void thenNoSeAsigno(Vuelo v1,Vuelo v2,Tripulante t) {
+	
+	 	verify(repositorioTripulante,times(1)).asignarUnTripulanteAvuelo(v1,t);
+	  	verify(repositorioTripulante,times(1)).asignarUnTripulanteAvuelo(v2,t);
 	    	
 	    }
 	
-	
+	//(expected = FechaYaOcupadaException.class)
 	
 	
 	
@@ -115,6 +125,26 @@ public class ServicioTripulanteTest {
 		Vuelo v = new Vuelo();
     	v.setId(new Random().nextLong());
     	v.setNombre(nombre);
+    	
+		return v;
+	}
+	
+
+	private Vuelo givenVueloConFecha(String nombre) {
+		Vuelo v = new Vuelo();
+		Date date = new Date();
+		SimpleDateFormat formato = new SimpleDateFormat ("dd-MM-yyyy HH:mm");
+		
+        try {
+			date=formato.parse("05-05-2005 15:55");
+	
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+        
+    	v.setId(new Random().nextLong());
+    	v.setNombre(nombre);
+    	v.setSalida(date);
     	
 		return v;
 	}

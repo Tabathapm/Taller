@@ -124,7 +124,7 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
     }
    
    @Override
-	public List<VueloTripulante> obtenerFechasDeVuelos(Tripulante tripulante) {
+	public List<VueloTripulante> obtenerVuelosDeTripulante(Tripulante tripulante) {
 	   
 	   Long id = tripulante.getId();
 	   

@@ -5,10 +5,13 @@ import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTripulante;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioVuelo;
+import excepciones.FechaYaOcupadaException;
+import excepciones.VueloSinFechaException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -60,11 +63,28 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
     	}
 
     @Override
-    public VueloTripulante asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante tripulante) {
+    public VueloTripulante asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante tripulante)
+    throws FechaYaOcupadaException,VueloSinFechaException {
     	
-    	repositorioTripulante.obtenerFechasDeVuelos(tripulante);
-    	vuelo.getSalida();
-    	  
+    	List <VueloTripulante> vt = repositorioTripulante.obtenerVuelosDeTripulante(tripulante);
+    	
+    	Date fecha = vuelo.getSalida();
+    	
+    	if(fecha==null) {
+    		throw new VueloSinFechaException();
+    	}
+    	
+    	Date fechaObtenida;
+    	
+    	for (int i = 0; i < vt.size(); i++) {
+    		
+    		fechaObtenida = vt.get(i).getVuelo().getSalida();
+    		
+    		if(vt.get(i).getVuelo().getSalida().equals(fecha)) 
+    			throw new FechaYaOcupadaException();
+	
+		}
+  
        return repositorioTripulante.asignarUnTripulanteAvuelo(vuelo,tripulante);
     }
 
