@@ -29,8 +29,12 @@ public class Vuelo {
 
     private Date salida;
     private Date llegada;
+    
     private Date llegadaReal;
-    private Long estimado;
+    private Long horasReales;
+    private Long minutosReales;
+    private Long horasEstimadas;
+    private Long minutosEstimados;
     
     
     
@@ -58,15 +62,23 @@ public class Vuelo {
 		this.llegada = llegada;
 	}
 
-	public Long getEstimado() {
-		return estimado;
+    public Long getHorasReales() {
+		return horasReales;
 	}
 
-	public void setEstimado(Long estimado) {
-		this.estimado = estimado;
+	public void setHorasReales(Long horasReales) {
+		this.horasReales = horasReales;
 	}
 
-    public Long getId() {
+	public Long getHorasEstimadas() {
+		return horasEstimadas;
+	}
+
+	public void setHorasEstimadas(Long horasEstimadas) {
+		this.horasEstimadas = horasEstimadas;
+	}
+
+	public Long getId() {
 		return Id;
 	}
 
@@ -105,6 +117,23 @@ public class Vuelo {
 	public void setLlegadaReal(Date llegadaReal) {
 		this.llegadaReal = llegadaReal;
 	}
+
+	public Long getMinutosReales() {
+		return minutosReales;
+	}
+
+	public void setMinutosReales(Long minutosReales) {
+		this.minutosReales = minutosReales;
+	}
+
+	public Long getMinutosEstimados() {
+		return minutosEstimados;
+	}
+
+	public void setMinutosEstimados(Long minutosEstimados) {
+		this.minutosEstimados = minutosEstimados;
+	}
+	
 	
 	
 }

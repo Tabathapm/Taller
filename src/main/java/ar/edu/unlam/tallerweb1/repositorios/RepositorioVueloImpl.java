@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -25,7 +26,7 @@ import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 
 
-
+@SuppressWarnings({ "unchecked", "deprecation" })
 @Repository("repositorioVuelo")
 public class RepositorioVueloImpl implements RepositorioVuelo {
 	
@@ -39,6 +40,11 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 	private Session getSession() {
         return sessionFactory.getCurrentSession();
     }
+	
+	@Override
+	public void guardar(Vuelo vuelo) {
+		sessionFactory.getCurrentSession().save(vuelo);
+	}
 	
 	@Override
 	public Vuelo consultarVuelo(Long id) {
@@ -60,7 +66,7 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 	}
 
 	
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<Vuelo> buscarVueloPorNombre(String nombre) {
 		
@@ -71,7 +77,7 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 		
 	}
 
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public List<Vuelo> buscarVueloPorLocacion(String locacionBuscada) {
 		
@@ -95,7 +101,7 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 		
 	}
 	
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public List <Locacion> buscarLocacion(String locacion) {
 		
@@ -104,9 +110,19 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 				.add(Restrictions.like("ciudad", locacion, MatchMode.ANYWHERE).ignoreCase())
 				.list();
 	}
+	
+	
 
 	@Override
-	public List<Vuelo> listarTodosLosVuelosSinTripulacion() {
+	public void calcularEstimadoDeVuelos() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+
+	@Override
+	public List<Vuelo> listarTodosLosVuelosSinTripulacion() { //arreglar junto al test
 		
 		 List <Vuelo> vuelos = getSession().createCriteria(Vuelo.class).list();
 		 
@@ -116,27 +132,10 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 		 
 		 if(vuelos.size()==0) {
 			 
-			 return vuelos;
+			 return vuelos; //tirar excepcion?
 			 
 		 }
-		 
-		/* 
-		 for (int i = 0 ; i < vuelos.size() ; i++) {
-			 for (int j = 0 ; j < vt.size() ; j++) {
-			 
-			if(null!=vt.get(j).getVuelo())
-			if(!(vuelosSinTripulacion.contains(vuelos.get(i)))
-			   &&!((vt.get(j).getVuelo()).equals(vuelos.get(i)))) {
-				vuelosSinTripulacion.add(vuelos.get(i));
-				 
-			
-			}
-		  }
-		 } 
-		 
-	*/ 
-		 
-   
+
 		 for (int i = 0 ; i < vuelos.size() ; i++) {
 			 for (int j = 0 ; j < vt.size() ; j++) {
 	
@@ -150,8 +149,9 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 		 
 		 return vuelosSinTripulacion;
 		 
-	
 	}
+
+	
 	
 
 
@@ -170,49 +170,8 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 		
 	}
 
+ 
 
-    @Override
-	public List<Vuelo> listarTodosLosVuelosSinTripulacion() {
-	
-
-                      List<Vuelo> vueloSinTripulacion= new ArrayList<>();
-
-                       try {
-                          Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC","root","11037");
-                           Statement sentencia = conexion.createStatement();
-                           String consulta = "select * from vuelo as v "
-                        		   			+"inner join vuelotripulante vt on v.id=vt.vuelo_Id "
-                                   			+"where vt.vuelo_Id = 1 );";
-                           ResultSet rs = sentencia.executeQuery(consulta);
-                           while(rs.next()) {
-                               Vuelo vuelo= new Vuelo();
-                               vuelo.setId(rs.getLong("Id"));
-                               vuelo.setNombre(rs.getString("nombre"));
-
-                               vueloSinTripulacion.add(vuelo);
-                           }
-                           
-                      } catch (SQLException e) {
-                          e.printStackTrace();
-                      }
-
-                      return vueloSinTripulacion;
-
-	}
-    
-    
-
-     *  var query = getSession()
-		              .createQuery("from Vuelo as v "
-                      +"inner join Vuelotripulante vt on v.id=vt.vuelo_Id "
-                      +"where vt.vuelo_Id = null");
-                      
-                       .createQuery("select * from vuelo as v "
-                      +"inner join vuelotripulante vt on v.id=vt.vuelo_Id "
-                      +"where vt.vuelo_Id = null);";
-               
-                      
-                      return query.getResultList();
 	@Override
 	public List<Vuelo> buscarVueloPorLocacion(String locacion) {
 		  var query = getSession().createQuery("select v.id,v.estimado,"

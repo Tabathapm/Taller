@@ -14,6 +14,12 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.Locacion;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioVuelo;
+import excepciones.ErrorEnFechasException;
+import excepciones.VueloSinAvionException;
+import excepciones.VueloSinDestinoException;
+import excepciones.VueloSinLlegadaException;
+import excepciones.VueloSinOrigenException;
+import excepciones.VueloSinSalidaException;
 
 @Service("servicioVuelo")
 @Transactional
@@ -24,6 +30,23 @@ public class ServicioVueloImpl implements ServicioVuelo {
 	@Autowired
 	public ServicioVueloImpl(RepositorioVuelo repositorioVuelo){
 		this.repositorioVuelo = repositorioVuelo;
+	}
+	
+	@Override
+	public void agregarVuelo(Vuelo vuelo) {
+		
+		if(vuelo.getAvion().equals(null))
+			throw new VueloSinAvionException();
+		if(vuelo.getDestino().equals(null))
+			throw new VueloSinDestinoException();
+		if(vuelo.getOrigen().equals(null))
+			throw new VueloSinOrigenException();
+		if(vuelo.getSalida().equals(null))
+			throw new VueloSinSalidaException();
+		if(vuelo.getLlegada().equals(null))
+			throw new VueloSinLlegadaException();
+		
+		repositorioVuelo.guardar(vuelo);
 	}
 
 	@Override
@@ -91,6 +114,53 @@ public class ServicioVueloImpl implements ServicioVuelo {
 
 		
 		return  repositorioVuelo.listarTodosLosVuelosSinTripulacion();
+	}
+	
+	@Override
+	public Boolean validarFechasDelVuelo(Vuelo vuelo) {
+		
+		Date salida = vuelo.getSalida();
+		Date llegada = vuelo.getLlegada();
+		
+		
+		if(salida.equals(null)||llegada.equals(null)) {
+			throw new ErrorEnFechasException();
+		}
+		if(salida.after(llegada)||salida.equals(llegada)) {
+			throw new ErrorEnFechasException();
+		}
+		
+		return true;
+			
+	}
+	
+	@Override
+	public Vuelo calcularEstimadoDeVuelo(Vuelo vuelo) {
+		
+		Date salida = vuelo.getSalida();
+		Date llegada = vuelo.getLlegada();
+		Long horasEstimadas = vuelo.getHorasEstimadas();
+		
+		if(horasEstimadas.equals(null)) {
+			throw new ErrorEnFechasException();
+		}
+		
+		Long horasEstimadasCalc;
+		Long minutosEstimadosCalc; 
+		
+		long calculo = llegada.getTime() - salida.getTime();
+		
+		horasEstimadasCalc = (calculo/60000)/60;
+		
+		minutosEstimadosCalc = (calculo/60000)-(horasEstimadasCalc*60);
+		
+		vuelo.setHorasEstimadas(horasEstimadasCalc);
+		
+		vuelo.setMinutosEstimados(minutosEstimadosCalc);
+		
+		
+		return vuelo;
+			
 	}
 
 }

@@ -19,5 +19,9 @@ public interface RepositorioVuelo {
 
 	List<Vuelo> listarTodosLosVuelosSinTripulacion();
 	
+	Vuelo calcularEstimadoDeVuelo(Vuelo vuelo);
 	
+	void calcularEstimadoDeVuelos();
+
+	void guardar(Vuelo vuelo);
 }

@@ -13,18 +13,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class RepositorioVueloTest extends SpringTest {
 
     @Autowired
     private RepositorioVuelo repositorioVuelo;
-    
-    
+     
     @Test
     @Transactional
     @Rollback
-    public void sePuedenTraerVueloSinTripulacion() {
+    public void sePuedenTraerVueloSinTripulacion() { //resolver
     	
     	Vuelo vueloA = new Vuelo();
     	Vuelo vueloB = new Vuelo();
@@ -63,6 +66,54 @@ public class RepositorioVueloTest extends SpringTest {
     	assertThat(vuelosEncontrados.size()).isEqualTo(1);
     	 	
     }
+    
+    @Test
+    @Transactional
+    @Rollback
+    public void sePuedenCalcularCorrectamenteLosEstimadosDeUnVuelo() {
+    	
+    	Vuelo v1 = givenVueloConFecha("v1");
+    	
+    	whenCalcularEstimado(v1);
+    	
+    	thenValidarCalculadoDeEstimado(v1);
+    	 	
+    }
+    
+
+	private void thenValidarCalculadoDeEstimado(Vuelo v1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void whenCalcularEstimado(Vuelo v1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private Vuelo givenVueloConFecha(String nombre) {
+		Vuelo v = new Vuelo();
+		Date salida = new Date();
+		Date llegada = new Date();
+		SimpleDateFormat formato = new SimpleDateFormat ("dd-MM-yyyy HH:mm");
+		
+        try {
+			salida=formato.parse("05-05-2005 15:55");
+			llegada=formato.parse("05-05-2005 16:00");
+	
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+        
+    	v.setId(new Random().nextLong());
+    	v.setNombre(nombre);
+    	v.setSalida(salida);
+    	v.setLlegada(llegada);
+    	
+		return v;
+	}
+	
+	
 
     
 }

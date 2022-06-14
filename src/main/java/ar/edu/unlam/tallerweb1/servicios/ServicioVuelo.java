@@ -18,6 +18,12 @@ public interface ServicioVuelo {
 
 	List<Vuelo> listarTodosLosVuelosSinTripulacion();
 
+	void agregarVuelo(Vuelo vuelo);
+
+	Vuelo calcularEstimadoDeVuelo(Vuelo vuelo);
+
+	Boolean validarFechasDelVuelo(Vuelo vuelo);
+
 	
 
 }

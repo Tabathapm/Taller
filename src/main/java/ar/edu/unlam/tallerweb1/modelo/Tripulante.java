@@ -20,10 +20,12 @@ public class Tripulante {
     private String titulo;
     
     private Date inicioActividad;
+    
     private Long horasActivo;
+    private Long horasDecanso;
     private Boolean estado;
     
-  
+    
     public Long getId() {
         return Id;
     }
@@ -79,7 +81,15 @@ public class Tripulante {
 	public void setEstado(Boolean estado) {
 		this.estado = estado;
 	}
+
+	public Long getHorasDecanso() {
+		return horasDecanso;
+	}
+
+	public void setHorasDecanso(Long horasDecanso) {
+		this.horasDecanso = horasDecanso;
+	}
 	
-   
+    
 
 }
