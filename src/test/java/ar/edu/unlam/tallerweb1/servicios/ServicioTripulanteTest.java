@@ -1,11 +1,11 @@
 package ar.edu.unlam.tallerweb1.servicios;
+import ar.edu.unlam.tallerweb1.excepciones.FechaYaOcupadaException;
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTripulante;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioVuelo;
-import excepciones.FechaYaOcupadaException;
 
 import org.junit.Before;
 import org.junit.Test;

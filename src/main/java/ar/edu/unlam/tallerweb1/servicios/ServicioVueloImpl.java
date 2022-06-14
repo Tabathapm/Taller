@@ -11,16 +11,16 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unlam.tallerweb1.excepciones.DestinoOrigenIgualesException;
+import ar.edu.unlam.tallerweb1.excepciones.ErrorEnFechasException;
+import ar.edu.unlam.tallerweb1.excepciones.VueloSinAvionException;
+import ar.edu.unlam.tallerweb1.excepciones.VueloSinDestinoException;
+import ar.edu.unlam.tallerweb1.excepciones.VueloSinLlegadaException;
+import ar.edu.unlam.tallerweb1.excepciones.VueloSinOrigenException;
+import ar.edu.unlam.tallerweb1.excepciones.VueloSinSalidaException;
 import ar.edu.unlam.tallerweb1.modelo.Locacion;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioVuelo;
-import excepciones.DestinoOrigenIgualesException;
-import excepciones.ErrorEnFechasException;
-import excepciones.VueloSinAvionException;
-import excepciones.VueloSinDestinoException;
-import excepciones.VueloSinLlegadaException;
-import excepciones.VueloSinOrigenException;
-import excepciones.VueloSinSalidaException;
 
 @Service("servicioVuelo")
 @Transactional
@@ -105,9 +105,6 @@ public class ServicioVueloImpl implements ServicioVuelo {
 	@Override
 	public void agregarVuelo(Vuelo vuelo) {
 		
-		if(vuelo.getAvion().equals(null))
-			throw new VueloSinAvionException();
-		
 		validarFechasDelVuelo(vuelo);
 		validarLocacionesDelVuelo(vuelo);
 		
@@ -163,10 +160,10 @@ public class ServicioVueloImpl implements ServicioVuelo {
 		Date salida = vuelo.getSalida();
 		Date llegada = vuelo.getLlegada();
 		
-		if(salida.equals(null))
+		if(salida==(null))
 			throw new VueloSinSalidaException();
 		
-		if(llegada.equals(null))
+		if(llegada==(null))
 			throw new VueloSinLlegadaException();
 		
 		if(salida.after(llegada)||salida.equals(llegada)) 
@@ -180,10 +177,10 @@ public class ServicioVueloImpl implements ServicioVuelo {
 		String origen = vuelo.getOrigen().getCoordenadas();
 		String destino = vuelo.getDestino().getCoordenadas();
 		
-		if(vuelo.getDestino().equals(null))
+		if(vuelo.getDestino()==(null))
 			throw new VueloSinDestinoException();
 		
-		if(vuelo.getOrigen().equals(null))
+		if(vuelo.getOrigen()==(null))
 			throw new VueloSinOrigenException();
 		
 		if(destino.equals(origen)) 

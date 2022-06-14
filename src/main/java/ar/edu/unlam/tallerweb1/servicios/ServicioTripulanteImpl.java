@@ -1,12 +1,12 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import ar.edu.unlam.tallerweb1.excepciones.FechaYaOcupadaException;
+import ar.edu.unlam.tallerweb1.excepciones.VueloSinFechaException;
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTripulante;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioVuelo;
-import excepciones.FechaYaOcupadaException;
-import excepciones.VueloSinFechaException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,8 +63,7 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
     	}
 
     @Override
-    public VueloTripulante asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante tripulante)
-    throws FechaYaOcupadaException,VueloSinFechaException {
+    public VueloTripulante asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante tripulante){
     	
     	List <VueloTripulante> vt = repositorioTripulante.obtenerVuelosDeTripulante(tripulante);
     	
