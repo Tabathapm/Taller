@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.Locacion;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioVuelo;
+import excepciones.DestinoOrigenIgualesException;
 import excepciones.ErrorEnFechasException;
 import excepciones.VueloSinAvionException;
 import excepciones.VueloSinDestinoException;
@@ -32,22 +33,7 @@ public class ServicioVueloImpl implements ServicioVuelo {
 		this.repositorioVuelo = repositorioVuelo;
 	}
 	
-	@Override
-	public void agregarVuelo(Vuelo vuelo) {
-		
-		if(vuelo.getAvion().equals(null))
-			throw new VueloSinAvionException();
-		if(vuelo.getDestino().equals(null))
-			throw new VueloSinDestinoException();
-		if(vuelo.getOrigen().equals(null))
-			throw new VueloSinOrigenException();
-		if(vuelo.getSalida().equals(null))
-			throw new VueloSinSalidaException();
-		if(vuelo.getLlegada().equals(null))
-			throw new VueloSinLlegadaException();
-		
-		repositorioVuelo.guardar(vuelo);
-	}
+	
 
 	@Override
 	public Vuelo consultarVuelo(Long id) {
@@ -117,33 +103,26 @@ public class ServicioVueloImpl implements ServicioVuelo {
 	}
 	
 	@Override
-	public Boolean validarFechasDelVuelo(Vuelo vuelo) {
+	public void agregarVuelo(Vuelo vuelo) {
 		
-		Date salida = vuelo.getSalida();
-		Date llegada = vuelo.getLlegada();
+		if(vuelo.getAvion().equals(null))
+			throw new VueloSinAvionException();
 		
+		validarFechasDelVuelo(vuelo);
+		validarLocacionesDelVuelo(vuelo);
 		
-		if(salida.equals(null)||llegada.equals(null)) {
-			throw new ErrorEnFechasException();
-		}
-		if(salida.after(llegada)||salida.equals(llegada)) {
-			throw new ErrorEnFechasException();
-		}
+		vuelo = setNombreDeVuelo(vuelo);
 		
-		return true;
-			
+		vuelo = setEstimadoDeVuelo(vuelo);
+		
+		repositorioVuelo.guardar(vuelo);
 	}
 	
 	@Override
-	public Vuelo calcularEstimadoDeVuelo(Vuelo vuelo) {
+	public Vuelo setEstimadoDeVuelo(Vuelo vuelo) {
 		
 		Date salida = vuelo.getSalida();
 		Date llegada = vuelo.getLlegada();
-		Long horasEstimadas = vuelo.getHorasEstimadas();
-		
-		if(horasEstimadas.equals(null)) {
-			throw new ErrorEnFechasException();
-		}
 		
 		Long horasEstimadasCalc;
 		Long minutosEstimadosCalc; 
@@ -162,5 +141,58 @@ public class ServicioVueloImpl implements ServicioVuelo {
 		return vuelo;
 			
 	}
+	
+	@Override
+	public Vuelo setNombreDeVuelo(Vuelo vuelo) {
+		
+		String origen = vuelo.getOrigen().getCiudad();
+		String destino = vuelo.getDestino().getCiudad();
+		Long Id = vuelo.getId();
+		
+		String nombreGen = Id+"|"+origen+" - "+destino+". ";
+		
+		vuelo.setNombre(nombreGen);
+		
+		return vuelo;
+	
+	}
+	
+	@Override
+	public void validarFechasDelVuelo(Vuelo vuelo) {
+		
+		Date salida = vuelo.getSalida();
+		Date llegada = vuelo.getLlegada();
+		
+		if(salida.equals(null))
+			throw new VueloSinSalidaException();
+		
+		if(llegada.equals(null))
+			throw new VueloSinLlegadaException();
+		
+		if(salida.after(llegada)||salida.equals(llegada)) 
+			throw new ErrorEnFechasException();
+	
+	}
+	
+	@Override
+	public void validarLocacionesDelVuelo(Vuelo vuelo) {
+		
+		String origen = vuelo.getOrigen().getCoordenadas();
+		String destino = vuelo.getDestino().getCoordenadas();
+		
+		if(vuelo.getDestino().equals(null))
+			throw new VueloSinDestinoException();
+		
+		if(vuelo.getOrigen().equals(null))
+			throw new VueloSinOrigenException();
+		
+		if(destino.equals(origen)) 
+			throw new DestinoOrigenIgualesException();
+	
+	}
+	
+	
+	
+	
 
 }

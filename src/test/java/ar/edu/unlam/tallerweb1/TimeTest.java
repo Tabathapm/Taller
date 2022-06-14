@@ -6,6 +6,7 @@ import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
@@ -50,7 +51,14 @@ public class TimeTest {
 
 		Date date1 = new Date();
 		Date date2 = new Date();
+		
+		String a = "a";
+		
+		String b = "b";
+		
+		Long ab =1L; 
 
+		System.out.println(ab+a + " - " + b);
 		
 		  try {
 		    	 date1=formato.parse("05-05-2005 15:55");
@@ -67,9 +75,7 @@ public class TimeTest {
 		    	System.out.println("Oh nyo");
 		    }
 		
-		
-	   
-	   
+  
 	}
 	
 	@Test

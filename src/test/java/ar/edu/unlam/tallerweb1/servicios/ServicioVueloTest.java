@@ -1,4 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
+import ar.edu.unlam.tallerweb1.modelo.Avion;
+import ar.edu.unlam.tallerweb1.modelo.Locacion;
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
@@ -40,23 +42,23 @@ public class ServicioVueloTest {
     @Test
     public void queSePuedaGuardarUnVuelo() {
     	
-    	Vuelo v1 = givenVueloConFecha(nv1);
+    	Vuelo v1 = givenVueloCompleto();
     	
+    	whenGuardoVuelo(v1);
     	
-    	
+    	thenSeGuardo(v1);
     	
 
     }
     
-    private Vuelo whenGuardoVuelo(Vuelo v) {
-		return v;
+    private void whenGuardoVuelo(Vuelo v) {
+		servicioVuelo.agregarVuelo(v);
 	
-		
 	}
 
 	private void thenSeGuardo(Vuelo v) {
     	
-    
+		verify(repositorioVuelo,times(1)).guardar(v);
     	
     }
 	
@@ -79,11 +81,16 @@ public class ServicioVueloTest {
 	}
 	
 
-	private Vuelo givenVueloConFecha(String nombre) {
+	private Vuelo givenVueloCompleto() {
 		Vuelo v = new Vuelo();
 		Date salida = new Date();
 		Date llegada = new Date();
+		Locacion destino = new Locacion();
+		Locacion origen = new Locacion();
+		Avion avion = new Avion();
 		SimpleDateFormat formato = new SimpleDateFormat ("dd-MM-yyyy HH:mm");
+		
+		
 		
         try {
 			salida=formato.parse("05-05-2005 15:55");
@@ -93,10 +100,15 @@ public class ServicioVueloTest {
 			e.printStackTrace();
 		}
         
+        destino.setCoordenadas("iwiwo");
+		origen.setCoordenadas("owowo");
     	v.setId(new Random().nextLong());
-    	v.setNombre(nombre);
     	v.setSalida(salida);
     	v.setLlegada(llegada);
+    	v.setDestino(destino);
+    	v.setOrigen(origen);
+    	v.setAvion(avion);
+
     	
 		return v;
 	}

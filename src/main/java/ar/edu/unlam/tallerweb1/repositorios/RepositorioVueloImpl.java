@@ -151,6 +151,12 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 		 
 	}
 
+	@Override
+	public Vuelo calcularEstimadoDeVuelo(Vuelo vuelo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 

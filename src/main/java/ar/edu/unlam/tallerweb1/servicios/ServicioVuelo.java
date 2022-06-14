@@ -20,9 +20,13 @@ public interface ServicioVuelo {
 
 	void agregarVuelo(Vuelo vuelo);
 
-	Vuelo calcularEstimadoDeVuelo(Vuelo vuelo);
+	void validarFechasDelVuelo(Vuelo vuelo);
 
-	Boolean validarFechasDelVuelo(Vuelo vuelo);
+	void validarLocacionesDelVuelo(Vuelo vuelo);
+
+	Vuelo setNombreDeVuelo(Vuelo vuelo);
+
+	Vuelo setEstimadoDeVuelo(Vuelo vuelo);
 
 	
 
