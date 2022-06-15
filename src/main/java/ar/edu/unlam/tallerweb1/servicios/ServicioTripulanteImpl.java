@@ -9,15 +9,14 @@ import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTripulante;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioVuelo;
 
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Restrictions;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
+
 
 @Service
 public class ServicioTripulanteImpl implements ServicioTripulante {
@@ -94,7 +93,6 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
     public Vuelo obtenerPrimerVueloDeTripulante(Tripulante tripulante) {
 
     	List<VueloTripulante> vt=repositorioTripulante.obtenerVuelosDeTripulante(tripulante);
-    	Long id = tripulante.getId();
     	Vuelo vueloEncontrado = new Vuelo();
     	
     	if(vt.size()==0) {
@@ -112,6 +110,45 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 	   return vueloEncontrado;  
     }
     
+
+    @Override
+	public Tripulante setHorasActivoDeTripulante(Tripulante t) {
+	   	
+    	Vuelo vueloObtenido = obtenerPrimerVueloDeTripulante(t);
+    	
+    	Date salidaVuelo = vueloObtenido.getSalida();
+    	Date llegadaVuelo = vueloObtenido.getLlegada();
+    	Date hoy = new Date();
+    	
+
+    	Long horasDesdeSalida = ( ((hoy.getTime()-salidaVuelo.getTime()) /60000)/60);
+    	Long horasDesdeLlegada = ( ((hoy.getTime()-llegadaVuelo.getTime()) /60000)/60);
+    	Long horasActivo = 0L;
+    	Long horasDescanso = 0L;
+    	
+    	
+    	if(hoy.after(salidaVuelo)) 
+    	    horasActivo = horasDesdeSalida;
+    	
+    	if(hoy.after(llegadaVuelo))
+    		horasDescanso = horasDesdeLlegada;
+    	
+    	if(horasDescanso+2L>horasActivo)
+    		horasActivo=0L;
+    	
+    	t.setHorasActivo(horasActivo);
+    	t.setHorasDecanso(horasDescanso);
+
+    	
+		return t;
+	}
+
+	@Override
+	public Tripulante setHorasDescansoDeTripulante(Tripulante t) {
+		
+		return t;
+	}
+    
  
 	@Override
 	public void calcularTripulanteDisponibleParaVuelo(Vuelo v, Tripulante t) {
@@ -119,18 +156,6 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 		
 	}
 
-	@Override
-	public Tripulante setHorasActivoDeTripulante(Tripulante t) {
-		// obtener el vuelo con menor fecha de este tripulante Date salidaVuelo =
-		return null;
-	}
-
-	@Override
-	public Tripulante setHorasDescansoDeTripulante(Tripulante t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	@Override //To do
     public void asignarTripulantesAlVuelo(Vuelo vuelo, List<Tripulante> tripulantes) {
         repositorioTripulante.asignarTripulantesAlVuelo(vuelo,tripulantes);

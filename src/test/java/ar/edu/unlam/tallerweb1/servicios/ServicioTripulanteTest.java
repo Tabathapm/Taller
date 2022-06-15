@@ -50,21 +50,7 @@ public class ServicioTripulanteTest {
 
     }
     
-    private VueloTripulante whenAsignoTripulanteAVuelo(Vuelo v, Tripulante t) {
-		return servicioTripulante.asignarUnTripulanteAvuelo(v, t);
-		
-	}
-
-	private void thenSeAsignoCorrectamente(Vuelo v,Tripulante t) {
-    	
-    	assertThat(t).isNotNull();
-    	assertThat(v).isNotNull();
-    	
-    	verify(repositorioTripulante,times(1)).asignarUnTripulanteAvuelo(v,t);
-    	
-    }
-	
-
+    @Test
 	public void queSeObtengaElPrimerVueloDelTripulante() {
 		
 		Vuelo v1 = givenVueloCompletoB();
@@ -83,14 +69,8 @@ public class ServicioTripulanteTest {
 		thenSeObtieneElVuelo(obtenido,v2);
 			
 	}
-	
-	private void thenSeObtieneElVuelo(Vuelo v1,Vuelo v2) {
-		assertThat(v1).isNotNull();
-		assertThat(v1.getSalida().before(v2.getSalida()));
-		
-	}
-
-	@Test(expected = TripulanteSinVueloException.class)
+    
+    @Test(expected = TripulanteSinVueloException.class)
 	public void queNoSeObtengaElPrimerVueloDelTripulante() {
 		
 		VueloTripulante a = givenVTVacio();
@@ -100,33 +80,10 @@ public class ServicioTripulanteTest {
 		
 		
 	}
-	
-	private Vuelo whenTengoVuelos(Tripulante t) {
-		return servicioTripulante.obtenerPrimerVueloDeTripulante(t);
-		
-	}
-	
-	private void whenNoTengoVuelos(Tripulante t) {
-		servicioTripulante.obtenerPrimerVueloDeTripulante(t);
-		
-	}
-
-	private VueloTripulante givenVTVacio() {
-		VueloTripulante vt = new VueloTripulante();
-		return vt;
-	}
-	
-	private VueloTripulante givenVT(Vuelo v,Tripulante t) {
-		VueloTripulante vt = new VueloTripulante();
-		vt.setVuelo(v);
-		vt.setTripulante(t);
-		
-		return vt;
-	}
-
-	@Test
+    
+    @Test
 	 public void queNoSePuedaAsignarUnTripulanteAUnVueloEnLaMismaFecha() { //No se puede resolver, requiere repo funcional 
-	    																	// pasar a repo ?
+	    																	// pasar a repo ? a revisar
 	    	Vuelo v1 = givenVueloConFecha(nv1);
 	    	Vuelo v2 = givenVueloConFecha(nv2);
 
@@ -141,8 +98,39 @@ public class ServicioTripulanteTest {
 	    	
 	
 	    }
-	 
+    
+    private VueloTripulante whenAsignoTripulanteAVuelo(Vuelo v, Tripulante t) {
+		return servicioTripulante.asignarUnTripulanteAvuelo(v, t);
+		
+	}
 
+	private void thenSeAsignoCorrectamente(Vuelo v,Tripulante t) {
+    	
+    	assertThat(t).isNotNull();
+    	assertThat(v).isNotNull();
+    	
+    	verify(repositorioTripulante,times(1)).asignarUnTripulanteAvuelo(v,t);
+    	
+    }
+	
+
+	private void thenSeObtieneElVuelo(Vuelo v1,Vuelo v2) {
+		assertThat(v1).isNotNull();
+		assertThat(v1.getSalida().before(v2.getSalida()));
+		
+	}
+
+	private Vuelo whenTengoVuelos(Tripulante t) {
+		return servicioTripulante.obtenerPrimerVueloDeTripulante(t);
+		
+	}
+	
+	private void whenNoTengoVuelos(Tripulante t) {
+		servicioTripulante.obtenerPrimerVueloDeTripulante(t);
+		
+	}
+
+	
 
 	private void thenNoSeAsigno(Vuelo v1,Vuelo v2,Tripulante t) {
 	
@@ -151,26 +139,6 @@ public class ServicioTripulanteTest {
 	    	
 	    }
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-    
 
     private Tripulante givenTripulante(String nombre) {
     	Tripulante t = new Tripulante();
@@ -180,6 +148,18 @@ public class ServicioTripulanteTest {
 		return t;
 	}
 
+    private VueloTripulante givenVTVacio() {
+		VueloTripulante vt = new VueloTripulante();
+		return vt;
+	}
+	
+	private VueloTripulante givenVT(Vuelo v,Tripulante t) {
+		VueloTripulante vt = new VueloTripulante();
+		vt.setVuelo(v);
+		vt.setTripulante(t);
+		
+		return vt;
+	}
 
 	private Vuelo givenVuelo(String nombre) {
 		Vuelo v = new Vuelo();

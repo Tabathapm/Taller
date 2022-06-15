@@ -43,7 +43,7 @@ public class TimeTest {
 	      
 		System.out.println(date);
 	} */
-	
+	/*
 	@Test
 	public void compareFechas() throws ParseException {
 			
@@ -51,6 +51,16 @@ public class TimeTest {
 
 		Date date1 = new Date();
 		Date date2 = new Date();
+		
+		date2.getTime();
+		
+		Long a = (date2.getTime()/60000)/60;
+		
+		System.out.println(date2);
+		
+		System.out.println(a);
+		
+		
 		
 		String a = "a";
 		
@@ -75,9 +85,9 @@ public class TimeTest {
 		    	System.out.println("Oh nyo");
 		    }
 		
-  
+   
 	}
-	
+	*/
 	@Test
 	public void diffEnHorasLimpio() throws ParseException {
 			
@@ -104,7 +114,7 @@ public class TimeTest {
 	   
 	   
 	}
-	
+	/*	
 	@Test
 	public void diferenciaEntreFechasEnMinutos() throws ParseException {
 			
@@ -140,7 +150,7 @@ public class TimeTest {
 	   
 	   
 	}
-/*	
+
 	@Test
 	public void datetime2() {
 	      try {
