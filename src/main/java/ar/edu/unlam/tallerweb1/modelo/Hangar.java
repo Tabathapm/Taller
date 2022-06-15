@@ -11,12 +11,14 @@ public class Hangar {
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long Id;
 	    
-	    @OneToOne
+	    @OneToOne(cascade = {CascadeType.ALL})
 		@JoinColumn(name = "avion_Id",referencedColumnName = "Id")
 	    private Avion avion;
 
 	    private String Nombre;
 	    private Boolean Ocupado;
+
+
 	    
 	    public Long getId() {
 			return Id;

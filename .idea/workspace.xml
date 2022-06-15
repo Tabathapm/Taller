@@ -10,7 +10,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0710c379-e97b-4a16-8bff-50d42a38f420" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_6_2022_16_13_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_6_2022_16_13__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_6_2022_16_15_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_6_2022_16_15__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_6_2022_16_17_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_6_2022_16_17__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/servicios/AvionYaExistenteEnHangarException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ar/edu/unlam/tallerweb1/controladores/ControladorHangarTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ar/edu/unlam/tallerweb1/repositorios/RepositorioHangarTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ar/edu/unlam/tallerweb1/servicios/ServicioHangarTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b8bb2292-cc97-4b62-b2a5-4373a7171207.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b8bb2292-cc97-4b62-b2a5-4373a7171207.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScriptCargaBD.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ScriptCargaBD.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/controladores/AsignarAvionAHangar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/controladores/AsignarAvionAHangar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/controladores/ControladorHangar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/controladores/ControladorHangar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/modelo/Avion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/modelo/Avion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/modelo/Hangar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/modelo/Hangar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/repositorios/RepositorioHangarImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/repositorios/RepositorioHangarImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/servicios/ServicioHangarImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/servicios/ServicioHangarImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernateContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernateContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/vistas/hangares-asignar.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/vistas/hangares-vervacios.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/vistas/hangares-vervacios.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/vistas/hangares.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/vistas/hangares.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/vistas/partial/sidebar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/vistas/partial/sidebar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ar/edu/unlam/tallerweb1/controladores/ControladorLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ar/edu/unlam/tallerweb1/controladores/ControladorLogin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ar/edu/unlam/tallerweb1/controladores/DatosLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ar/edu/unlam/tallerweb1/controladores/DatosLogin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ar/edu/unlam/tallerweb1/modelo/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ar/edu/unlam/tallerweb1/modelo/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ar/edu/unlam/tallerweb1/repositorios/RepositorioUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ar/edu/unlam/tallerweb1/repositorios/RepositorioUsuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ar/edu/unlam/tallerweb1/repositorios/RepositorioUsuarioImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ar/edu/unlam/tallerweb1/repositorios/RepositorioUsuarioImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ar/edu/unlam/tallerweb1/servicios/ServicioLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ar/edu/unlam/tallerweb1/servicios/ServicioLogin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ar/edu/unlam/tallerweb1/servicios/ServicioLoginImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ar/edu/unlam/tallerweb1/servicios/ServicioLoginImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hibernateContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/hibernateContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/WEB-INF/classes/ar/edu/unlam/tallerweb1/controladores/ControladorLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/WEB-INF/classes/ar/edu/unlam/tallerweb1/controladores/ControladorLogin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/WEB-INF/classes/ar/edu/unlam/tallerweb1/controladores/DatosLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/WEB-INF/classes/ar/edu/unlam/tallerweb1/controladores/DatosLogin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/WEB-INF/classes/ar/edu/unlam/tallerweb1/modelo/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/WEB-INF/classes/ar/edu/unlam/tallerweb1/modelo/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/WEB-INF/classes/ar/edu/unlam/tallerweb1/repositorios/RepositorioUsuarioImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/WEB-INF/classes/ar/edu/unlam/tallerweb1/repositorios/RepositorioUsuarioImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/WEB-INF/vistas/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/WEB-INF/vistas/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ar/edu/unlam/tallerweb1/SpringTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/ar/edu/unlam/tallerweb1/SpringTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/ar/edu/unlam/tallerweb1/persistencia/ConexionBaseDeDatosTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/ar/edu/unlam/tallerweb1/persistencia/ConexionBaseDeDatosTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/test-hibernateContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/test-hibernateContext.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +142,79 @@
       <recent name="ar.edu.unlam.tallerweb1.servicios" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.54">
+    <configuration name="All in proyecto-limpio-spring" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="proyecto-limpio-spring" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RepositorioHangarTest.testQueAsignaAvionAHangar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="proyecto-limpio-spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ar.edu.unlam.tallerweb1.repositorios.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ar.edu.unlam.tallerweb1.repositorios" />
+      <option name="MAIN_CLASS_NAME" value="ar.edu.unlam.tallerweb1.repositorios.RepositorioHangarTest" />
+      <option name="METHOD_NAME" value="testQueAsignaAvionAHangar" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RepositorioHangarTest.testQueConsultaHangares" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="proyecto-limpio-spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ar.edu.unlam.tallerweb1.repositorios.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ar.edu.unlam.tallerweb1.repositorios" />
+      <option name="MAIN_CLASS_NAME" value="ar.edu.unlam.tallerweb1.repositorios.RepositorioHangarTest" />
+      <option name="METHOD_NAME" value="testQueConsultaHangares" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RepositorioHangarTest.testQueObtieneAvionesSinAsignarAHangares" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="proyecto-limpio-spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ar.edu.unlam.tallerweb1.repositorios.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ar.edu.unlam.tallerweb1.repositorios" />
+      <option name="MAIN_CLASS_NAME" value="ar.edu.unlam.tallerweb1.repositorios.RepositorioHangarTest" />
+      <option name="METHOD_NAME" value="testQueObtieneAvionesSinAsignarAHangares" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RepositorioHangarTest.testQueObtieneTodosLosHangaresDisponibles" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="proyecto-limpio-spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ar.edu.unlam.tallerweb1.repositorios.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ar.edu.unlam.tallerweb1.repositorios" />
+      <option name="MAIN_CLASS_NAME" value="ar.edu.unlam.tallerweb1.repositorios.RepositorioHangarTest" />
+      <option name="METHOD_NAME" value="testQueObtieneTodosLosHangaresDisponibles" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 9.0.54" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.54" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/proyecto_limpio_spring_war_exploded/" />
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -190,6 +303,15 @@
         </option>
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.RepositorioHangarTest.testQueObtieneTodosLosHangaresDisponibles" />
+        <item itemvalue="JUnit.RepositorioHangarTest.testQueObtieneAvionesSinAsignarAHangares" />
+        <item itemvalue="JUnit.RepositorioHangarTest.testQueConsultaHangares" />
+        <item itemvalue="JUnit.RepositorioHangarTest.testQueAsignaAvionAHangar" />
+        <item itemvalue="JUnit.All in proyecto-limpio-spring" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -260,5 +382,8 @@
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Taller$All_in_proyecto_limpio_spring.ic" NAME="All in proyecto-limpio-spring Coverage Results" MODIFIED="1655163903162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

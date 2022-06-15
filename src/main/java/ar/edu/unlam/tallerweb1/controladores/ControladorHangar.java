@@ -62,14 +62,8 @@ public class ControladorHangar {
     @RequestMapping(path = "/homeDos", method = RequestMethod.POST)
     public ModelAndView asignarHangaresVacios(@ModelAttribute("asignarAvionAHangar") AsignarAvionAHangar asignarAvionAHangar, HttpServletRequest request) {
         ModelMap model = new ModelMap();
-        //List<Hangar> hangares = servicioHangar.traerHangaresVacios();
-        //Hangar hangar = servicioHangar.traerHangaresSinAsignar(asignarAvionAHangar.getIdHangar());
-        //Avion avion = servicioAvion.traerAvionSinHangar(asignarAvionAHangar.getIdAvion());
         servicioHangar.asigarAvionesAHangar(asignarAvionAHangar.getIdAvion(),asignarAvionAHangar.getIdHangar());
-        //model.put("hangarVacio",hangar);
-        //model.put("avionVacio",avion);
         return new ModelAndView("homeDos",model);
-
 
     }
 

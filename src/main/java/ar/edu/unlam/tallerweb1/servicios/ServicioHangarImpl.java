@@ -13,72 +13,41 @@ import ar.edu.unlam.tallerweb1.modelo.Hangar;
 public class ServicioHangarImpl implements ServicioHangar {
 
 	@Autowired
-	private RepositorioHangar servicioHangar;
-
-
-
-//	@Override
-//	public Boolean alocarHangar(Avion avion, Hangar hangarVacio) {
-//		if(hangarVacio.getOcupado()!=true) {
-//			hangarVacio.setAvion(avion);
-//			hangarVacio.setOcupado(true);
-//		}
-//		return hangarVacio.getOcupado();
-//	}
-
-
-
-
-//	@Override
-//	public Hangar traerHangarDeAvion(Avion avion) {
-//
-//		// Esto necesita repos Hangar hangarAvion = hangares.getAvion(avion);
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	private RepositorioHangar repositorioHangar;
 
 
 	@Override
 	public List<Hangar> traerTodosLosHangares() {
 		// TODO Auto-generated method stub
 
-		return servicioHangar.obtenerTodosLosHangares();
+		return repositorioHangar.obtenerTodosLosHangares();
 
 	}
 
 	@Override
 	public List<Hangar> traerHangaresVacios() {
-		return servicioHangar.obtenerHangaresVacios();
+		return repositorioHangar.obtenerHangaresVacios();
 	}
 
 	@Override
 	public List<Avion> traerAvionesSinAsignar() {
-		return servicioHangar.obtenerAvionesSinAsignar();
+		return repositorioHangar.obtenerAvionesSinAsignar();
 	}
 
-//	@Override
-//	public Hangar traerHangaresSinAsignar() {
-//		return servicioHangar.consultarHangar(id);
-//	}
-
-//	@Override
-//	public List<Avion> traerAvionesSinAsignar(){
-//		return servicioHangar.obtenerAvionesSinAsignar();
-//	}
 
 	@Override
 	public Hangar traerHangaresSinAsignar(Long id){
-		return servicioHangar.consultarHangar(id);
+		return repositorioHangar.consultarHangar(id);
 	}
 
 	@Override
 	public List<Hangar> traerTodosLosHangaresDisponibles(){
-		return servicioHangar.obtenerTodosLosHangaresDisponibles();
+		return repositorioHangar.obtenerTodosLosHangaresDisponibles();
 	}
 
 	@Override
 	public void asigarAvionesAHangar(Long idAvion,Long idHangar){
-		 servicioHangar.asignarAvionAHangar(idAvion,idHangar);
+		repositorioHangar.asignarAvionAHangar(idAvion,idHangar);
 	}
 
 }
