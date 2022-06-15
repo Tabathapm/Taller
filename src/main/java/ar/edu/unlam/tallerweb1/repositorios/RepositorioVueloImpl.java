@@ -111,15 +111,6 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 				.list();
 	}
 	
-	
-
-	@Override
-	public void calcularEstimadoDeVuelos() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
 
 	@Override
 	public List<Vuelo> listarTodosLosVuelosSinTripulacion() { //arreglar junto al test
@@ -132,7 +123,7 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 		 
 		 if(vuelos.size()==0) {
 			 
-			 return vuelos; //tirar excepcion?
+			 return vuelos; //tirar excepcion? noooo
 			 
 		 }
 
@@ -150,15 +141,6 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 		 return vuelosSinTripulacion;
 		 
 	}
-
-	@Override
-	public Vuelo calcularEstimadoDeVuelo(Vuelo vuelo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	
 
 
 	/*

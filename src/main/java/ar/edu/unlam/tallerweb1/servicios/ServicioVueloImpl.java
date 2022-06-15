@@ -76,8 +76,7 @@ public class ServicioVueloImpl implements ServicioVuelo {
 		
 		
 		return lista;
-		
-		
+	
 	}
 	
 	@Override

@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.excepciones.FechaYaOcupadaException;
+import ar.edu.unlam.tallerweb1.excepciones.TripulanteSinVueloException;
 import ar.edu.unlam.tallerweb1.excepciones.VueloSinFechaException;
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
@@ -8,6 +9,8 @@ import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTripulante;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioVuelo;
 
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -86,8 +89,49 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
   
        return repositorioTripulante.asignarUnTripulanteAvuelo(vuelo,tripulante);
     }
-
+    
     @Override
+    public Vuelo obtenerPrimerVueloDeTripulante(Tripulante tripulante) {
+
+    	List<VueloTripulante> vt=repositorioTripulante.obtenerVuelosDeTripulante(tripulante);
+    	Long id = tripulante.getId();
+    	Vuelo vueloEncontrado = new Vuelo();
+    	
+    	if(vt.size()==0) {
+    		throw new TripulanteSinVueloException();
+    	}
+    	
+    	vueloEncontrado = vt.get(0).getVuelo();
+	
+    	for (int i = 0; i < vt.size(); i++) {
+    			if(vueloEncontrado.getSalida().after(vt.get(i).getVuelo().getSalida())) {
+    				vueloEncontrado = vt.get(i).getVuelo();
+    			}	
+		}
+    		
+	   return vueloEncontrado;  
+    }
+    
+ 
+	@Override
+	public void calcularTripulanteDisponibleParaVuelo(Vuelo v, Tripulante t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Tripulante setHorasActivoDeTripulante(Tripulante t) {
+		// obtener el vuelo con menor fecha de este tripulante Date salidaVuelo =
+		return null;
+	}
+
+	@Override
+	public Tripulante setHorasDescansoDeTripulante(Tripulante t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override //To do
     public void asignarTripulantesAlVuelo(Vuelo vuelo, List<Tripulante> tripulantes) {
         repositorioTripulante.asignarTripulantesAlVuelo(vuelo,tripulantes);
     }

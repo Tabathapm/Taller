@@ -24,6 +24,14 @@ public interface ServicioTripulante {
 
 	List<Tripulante> listarTodosLosTripulantes();
 
+	void calcularTripulanteDisponibleParaVuelo(Vuelo v,Tripulante t);
+
+	Tripulante setHorasActivoDeTripulante(Tripulante t);
+	
+	Tripulante setHorasDescansoDeTripulante(Tripulante t);
+
+	Vuelo obtenerPrimerVueloDeTripulante(Tripulante tripulante);
+	
 	
 
 

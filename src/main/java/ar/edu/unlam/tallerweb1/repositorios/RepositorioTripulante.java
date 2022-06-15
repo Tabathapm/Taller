@@ -28,6 +28,8 @@ public interface RepositorioTripulante {
 		List<Tripulante> listarTodosLosTripulantes();
 
 		List<VueloTripulante> obtenerVuelosDeTripulante(Tripulante tripulante);
+
+
 	}
 
 

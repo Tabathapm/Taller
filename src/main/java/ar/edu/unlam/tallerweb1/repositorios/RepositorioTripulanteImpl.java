@@ -20,7 +20,7 @@ import java.util.List;
 
 
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings({ "unchecked", "deprecation" })
 @Repository("RepositorioTripulante")
 @Transactional
 public class RepositorioTripulanteImpl implements RepositorioTripulante {
@@ -128,7 +128,7 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
 	   
 	   Long id = tripulante.getId();
 	   
-       Criterion rest1 = Restrictions.and(Restrictions.like("t.Id",id));
+       Criterion rest1 = Restrictions.like("t.Id",id);
        
        List<VueloTripulante> result=getSession().createCriteria(VueloTripulante.class,"vt")
     		   				 .createAlias("tripulante", "t")
@@ -137,6 +137,8 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
        
        return result;
 	}
+   
+   
    
     /*
      * 
@@ -217,10 +219,12 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
         }
     }
     */
+   
+  
 
-@Override
-public void asignarTripulantesAlVuelo(Vuelo vuelo, List<Tripulante> tripulantes) {
-	// TODO Auto-generated method stub
+	@Override
+	public void asignarTripulantesAlVuelo(Vuelo vuelo, List<Tripulante> tripulantes) {
+		// TODO Auto-generated method stub
 	
 }
 

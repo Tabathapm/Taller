@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 import ar.edu.unlam.tallerweb1.excepciones.FechaYaOcupadaException;
+import ar.edu.unlam.tallerweb1.excepciones.TripulanteSinVueloException;
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
@@ -63,9 +64,35 @@ public class ServicioTripulanteTest {
     	
     }
 	
-	 @Test
-	 public void queNoSePuedaAsignarUnTripulanteAUnVueloEnLaMismaFecha() { //No se puede resolver, requiere repo funcional
-	    	
+	@Test(expected = TripulanteSinVueloException.class)
+	public void queSeObtengaElPrimerVueloDelTripulante() {
+		
+		VueloTripulante a = givenVT();
+		Tripulante t = givenTripulante("t1");
+		
+		whenNoTengoVuelos(t);
+		
+		thenNoTieneVueloException();
+	}
+	
+	 private void thenNoTieneVueloException() {
+		
+		
+	}
+
+	private void whenNoTengoVuelos(Tripulante t) {
+		servicioTripulante.obtenerPrimerVueloDeTripulante(t);
+		
+	}
+
+	private VueloTripulante givenVT() {
+		VueloTripulante vt = new VueloTripulante();
+		return vt;
+	}
+
+	@Test
+	 public void queNoSePuedaAsignarUnTripulanteAUnVueloEnLaMismaFecha() { //No se puede resolver, requiere repo funcional 
+	    																	// pasar a repo ?
 	    	Vuelo v1 = givenVueloConFecha(nv1);
 	    	Vuelo v2 = givenVueloConFecha(nv2);
 
