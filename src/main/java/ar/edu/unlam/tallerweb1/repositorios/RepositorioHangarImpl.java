@@ -44,7 +44,7 @@ public class RepositorioHangarImpl implements RepositorioHangar {
     public Hangar consultarHangar(Long id){
         return (Hangar) sessionFactory.getCurrentSession().createCriteria(Hangar.class)
                 .add(Restrictions.eq("Id",id))
-                .add(Restrictions.eq("Ocupado", Boolean.FALSE))
+//                .add(Restrictions.eq("Ocupado", Boolean.FALSE))
                 .uniqueResult();
     }
 
@@ -69,8 +69,6 @@ public class RepositorioHangarImpl implements RepositorioHangar {
                  Avion avion = new Avion();
                  avion.setId(rs.getLong("Id"));
                  avion.setNombre(rs.getString("nombre"));
-//                 avion.setHangar(rs.getObject("hangar",Hangar.class));
-//                 avion.setTipoAvion(rs.getObject("tipoAvion", TipoAvion.class));
                  avionesSinAsignar.add(avion);
              }
         } catch (SQLException e) {

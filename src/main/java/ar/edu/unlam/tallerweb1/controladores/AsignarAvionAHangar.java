@@ -6,6 +6,19 @@ public class AsignarAvionAHangar {
     private Long idHangar;
     private Long idAvion;
 
+    public AsignarAvionAHangar(String nombre, Boolean ocupado, Long idHangar, Long idAvion) {
+        Nombre = nombre;
+        Ocupado = ocupado;
+        this.idHangar = idHangar;
+        this.idAvion = idAvion;
+    }
+
+    public AsignarAvionAHangar(Long idHangar,Long idAvion){
+        this.idHangar = idHangar;
+        this.idAvion = idAvion;
+    }
+
+
     public String getNombre() {
         return Nombre;
     }
