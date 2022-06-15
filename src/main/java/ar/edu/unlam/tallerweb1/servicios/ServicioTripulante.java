@@ -31,7 +31,8 @@ public interface ServicioTripulante {
 	Tripulante setHorasDescansoDeTripulante(Tripulante t);
 
 	Vuelo obtenerPrimerVueloDeTripulante(Tripulante tripulante);
-	
+
+
 	
 
 
