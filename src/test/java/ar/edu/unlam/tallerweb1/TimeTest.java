@@ -6,6 +6,7 @@ import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
@@ -44,6 +45,67 @@ public class TimeTest {
 	} */
 	
 	@Test
+	public void compareFechas() throws ParseException {
+			
+		SimpleDateFormat formato = new SimpleDateFormat ("dd-MM-yyyy HH:mm");
+
+		Date date1 = new Date();
+		Date date2 = new Date();
+		
+		String a = "a";
+		
+		String b = "b";
+		
+		Long ab =1L; 
+
+		System.out.println(ab+a + " - " + b);
+		
+		  try {
+		    	 date1=formato.parse("05-05-2005 15:55");
+		    	 date2=formato.parse("05-05-2005 20:30");
+
+		    	 if(date1.after(date2)) {
+		    		 System.out.println("fecha 1 despues de 2");
+		    	 }
+		    	 else
+		    		 System.out.println("fecha 2 despues de 1");
+		    }
+		    
+		    catch (ParseException e){
+		    	System.out.println("Oh nyo");
+		    }
+		
+  
+	}
+	
+	@Test
+	public void diffEnHorasLimpio() throws ParseException {
+			
+		SimpleDateFormat formato = new SimpleDateFormat ("dd-MM-yyyy HH:mm");
+
+		Date date1 = new Date();
+		Date date2 = new Date();
+
+		
+		  try {
+		    	 date1=formato.parse("05-05-2005 15:55");
+		    	 date2=formato.parse("05-05-2005 20:30");
+		    
+		    	 long diffInMillies = date2.getTime() - date1.getTime();
+		    	 System.out.println(diffInMillies/60000 + " " + (diffInMillies/60000)/60); //primer valor en minutos, segundo en horas
+	    	
+		    }
+		    
+		    catch (ParseException e){
+		    	System.out.println("Oh nyo");
+		    }
+		
+		
+	   
+	   
+	}
+	
+	@Test
 	public void diferenciaEntreFechasEnMinutos() throws ParseException {
 			
 		SimpleDateFormat formato = new SimpleDateFormat ("dd-MM-yyyy HH:mm");
@@ -60,12 +122,12 @@ public class TimeTest {
 		    	 date2=formato.parse("05-05-2005 17:55");
 		    	 
 		    
-		    	 long diffInMillies = date2.getTime() - date1.getTime();
-		    	 System.out.println(diffInMillies/60000 + " " + (diffInMillies/60000)/60); //primer valor en minutos, segundo en horas
-		    	 System.out.println(timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS)
-		    			           +" "
-		    			           + timeUnit.convert(diffInMillies,TimeUnit.HOURS));
-		    	
+//		    	 long diffInMillies = date2.getTime() - date1.getTime();
+//		    	 System.out.println(diffInMillies/60000 + " " + (diffInMillies/60000)/60); //primer valor en minutos, segundo en horas
+//		    	 System.out.println(timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS)
+//		    			           +" "
+//		    			           + timeUnit.convert(diffInMillies,TimeUnit.HOURS));
+//		    	
 		    	
 		    	
 		    }

@@ -29,7 +29,12 @@ public class Vuelo {
 
     private Date salida;
     private Date llegada;
-    private Long estimado;
+    
+    private Date llegadaReal;
+    private Long horasReales;
+    private Long minutosReales;
+    private Long horasEstimadas;
+    private Long minutosEstimados;
     
     
     
@@ -57,23 +62,31 @@ public class Vuelo {
 		this.llegada = llegada;
 	}
 
-	public Long getEstimado() {
-		return estimado;
+    public Long getHorasReales() {
+		return horasReales;
 	}
 
-	public void setEstimado(Long estimado) {
-		this.estimado = estimado;
+	public void setHorasReales(Long horasReales) {
+		this.horasReales = horasReales;
+	}
+
+	public Long getHorasEstimadas() {
+		return horasEstimadas;
+	}
+
+	public void setHorasEstimadas(Long horasEstimadas) {
+		this.horasEstimadas = horasEstimadas;
 	}
 
 	public Long getId() {
-        return Id;
-    }
+		return Id;
+	}
 
-    public void setId(Long id) {
-        Id = id;
-    }
+	public void setId(Long id) {
+		this.Id = id;
+	}
 
-    public Locacion getOrigen() {
+	public Locacion getOrigen() {
 		return origen;
 	}
 
@@ -96,4 +109,31 @@ public class Vuelo {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public Date getLlegadaReal() {
+		return llegadaReal;
+	}
+
+	public void setLlegadaReal(Date llegadaReal) {
+		this.llegadaReal = llegadaReal;
+	}
+
+	public Long getMinutosReales() {
+		return minutosReales;
+	}
+
+	public void setMinutosReales(Long minutosReales) {
+		this.minutosReales = minutosReales;
+	}
+
+	public Long getMinutosEstimados() {
+		return minutosEstimados;
+	}
+
+	public void setMinutosEstimados(Long minutosEstimados) {
+		this.minutosEstimados = minutosEstimados;
+	}
+	
+	
+	
 }

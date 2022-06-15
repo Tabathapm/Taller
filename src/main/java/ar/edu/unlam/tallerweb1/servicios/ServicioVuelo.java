@@ -16,6 +16,18 @@ public interface ServicioVuelo {
 
 	List<Locacion> buscarLocacion(String valorBuscado);
 
+	List<Vuelo> listarTodosLosVuelosSinTripulacion();
+
+	void agregarVuelo(Vuelo vuelo);
+
+	void validarFechasDelVuelo(Vuelo vuelo);
+
+	void validarLocacionesDelVuelo(Vuelo vuelo);
+
+	Vuelo setNombreDeVuelo(Vuelo vuelo);
+
+	Vuelo setEstimadoDeVuelo(Vuelo vuelo);
+
 	
 
 }

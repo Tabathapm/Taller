@@ -1,5 +1,13 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -15,7 +23,10 @@ import org.springframework.stereotype.Repository;
 import ar.edu.unlam.tallerweb1.modelo.Locacion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
+import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 
+
+@SuppressWarnings({ "unchecked", "deprecation" })
 @Repository("repositorioVuelo")
 public class RepositorioVueloImpl implements RepositorioVuelo {
 	
@@ -29,6 +40,11 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 	private Session getSession() {
         return sessionFactory.getCurrentSession();
     }
+	
+	@Override
+	public void guardar(Vuelo vuelo) {
+		sessionFactory.getCurrentSession().save(vuelo);
+	}
 	
 	@Override
 	public Vuelo consultarVuelo(Long id) {
@@ -50,7 +66,7 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 	}
 
 	
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<Vuelo> buscarVueloPorNombre(String nombre) {
 		
@@ -61,7 +77,7 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 		
 	}
 
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public List<Vuelo> buscarVueloPorLocacion(String locacionBuscada) {
 		
@@ -85,7 +101,7 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 		
 	}
 	
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public List <Locacion> buscarLocacion(String locacion) {
 		
@@ -96,11 +112,54 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 	}
 	
 
-	   
+	@Override
+	public List<Vuelo> listarTodosLosVuelosSinTripulacion() { //arreglar junto al test
+		
+		 List <Vuelo> vuelos = getSession().createCriteria(Vuelo.class).list();
+		 
+		 List <VueloTripulante> vt = getSession().createCriteria(VueloTripulante.class).list();
+		 
+		 List <Vuelo> vuelosSinTripulacion = new ArrayList <>();
+		 
+		 if(vuelos.size()==0) {
+			 
+			 return vuelos; //tirar excepcion? noooo
+			 
+		 }
+
+		 for (int i = 0 ; i < vuelos.size() ; i++) {
+			 for (int j = 0 ; j < vt.size() ; j++) {
 	
-	
-	
-    /*
+		  if(null!=vt.get(j).getVuelo()) 	 
+			if(!(vuelosSinTripulacion.contains(vuelos.get(i)))
+			   &&(vuelos.get(i).getId().equals(vt.get(j).getVuelo().getId()))) 
+				vuelosSinTripulacion.add(vuelos.get(i));
+			  		
+			 }
+		  } 
+		 
+		 return vuelosSinTripulacion;
+		 
+	}
+
+
+	/*
+	 * @Override
+	public List<Vuelo> listarTodosLosVuelosSinTripulacion() {
+		
+		 Criterion crit1 = Restrictions.eq("vt.vuelo", 1);
+		
+		
+		 return getSession().createCriteria(VueloTripulante.class,"vt")
+		 .createAlias("vuelo","vuelo")
+		 .add(crit1)
+		 .list();
+						
+		
+	}
+
+ 
+
 	@Override
 	public List<Vuelo> buscarVueloPorLocacion(String locacion) {
 		  var query = getSession().createQuery("select v.id,v.estimado,"

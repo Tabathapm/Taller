@@ -25,7 +25,7 @@ public class Avion {
 		}
 
 		public void setId(Long id) {
-			Id = id;
+			this.Id = id;
 		}
 
 		public String getNombre() {

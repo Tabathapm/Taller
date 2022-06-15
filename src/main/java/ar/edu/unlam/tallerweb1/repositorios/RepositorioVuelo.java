@@ -14,8 +14,10 @@ public interface RepositorioVuelo {
 	List<Vuelo> buscarVueloPorLocacion(String locacion);
 	
 	Vuelo consultarVuelo(Long id);
-
-	List<Locacion> buscarLocacion(String locacion);
 	
- 
+	List<Locacion> buscarLocacion(String locacion);
+
+	List<Vuelo> listarTodosLosVuelosSinTripulacion();
+	
+	void guardar(Vuelo vuelo);
 }

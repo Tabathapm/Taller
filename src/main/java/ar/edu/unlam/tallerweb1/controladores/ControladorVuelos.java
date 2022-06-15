@@ -67,10 +67,35 @@ public class ControladorVuelos {
     	return new ModelAndView("vueloDescripcion",modelo);
     }
     
-    @RequestMapping(value = "/traerVuelo",method = RequestMethod.GET)
+    @RequestMapping("/tripulantes")
     public ModelAndView traerVuelo(){
         ModelMap modelo = new ModelMap();
-        modelo.put("unVuelo",servicioVuelo.consultarVuelo(888L));
+
+        modelo.put("tripulantes",servicioTripulante.listarTodosLosTripulantes());
+        
+        return new ModelAndView("tripulantes",modelo);
+
+    }
+    
+    @RequestMapping("/asignarTripulacion")
+    public ModelAndView asignarTripulacionAVuelo() {
+    	
+    	ModelMap modelo = new ModelMap();
+    	
+    	modelo.put("vuelosSinTripulacion",servicioVuelo.listarTodosLosVuelosSinTripulacion());
+    	
+    	
+    	return new ModelAndView("asignarTripulacion",modelo);
+    	
+    	
+    	
+    }
+    /*
+     * 
+	    @RequestMapping(value = "/traerVuelo",method = RequestMethod.GET)
+	    public ModelAndView traerVuelo(){
+        ModelMap modelo = new ModelMap();
+        modelo.put("unVuelo",servicioVuelo.consultarVuelo(1L));
 
         modelo.put("listaPilotos",servicioTripulante.listaTodosLosPilotos());
         modelo.put("listaCopilotos",servicioTripulante.listaTodosLosCopilotos());
@@ -80,7 +105,6 @@ public class ControladorVuelos {
         return new ModelAndView("mostrarVueloAsignarTrip",modelo);
 
     }
-    /*
     @RequestMapping(value = "edit",method = RequestMethod.POST)
     public ModelAndView editTripulantes(@ModelAttribute("vuelo1") Vuelo vuelo1 ){
         ModelMap modelo = new ModelMap();
