@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1.servicios;
 import ar.edu.unlam.tallerweb1.excepciones.FechaYaOcupadaException;
 import ar.edu.unlam.tallerweb1.excepciones.TripulanteSinVueloException;
+import ar.edu.unlam.tallerweb1.modelo.Avion;
+import ar.edu.unlam.tallerweb1.modelo.Locacion;
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
@@ -19,15 +21,13 @@ import static org.mockito.Mockito.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 public class ServicioTripulanteTest {
 
-
-	private static final SimpleDateFormat formato = new SimpleDateFormat ("dd-MM-yyyy HH:mm");
-    private static final Date fechaActual = new Date();
-    
     private static final String nv1 = "v1";
     private static final String nt1 = "t1";
     private static final String nv2 = "v2";
@@ -64,29 +64,63 @@ public class ServicioTripulanteTest {
     	
     }
 	
-	@Test(expected = TripulanteSinVueloException.class)
+
 	public void queSeObtengaElPrimerVueloDelTripulante() {
 		
-		VueloTripulante a = givenVT();
+		Vuelo v1 = givenVueloCompletoB();
+		Vuelo v2 = givenVueloCompleto();
+		Tripulante t1 = givenTripulante("t1");
+		VueloTripulante vt1 = givenVT(v1,t1);
+		VueloTripulante vt2 = givenVT(v2,t1);
+		List <VueloTripulante> vtl = new ArrayList<>();
+		vtl.add(vt1);
+		vtl.add(vt2);
+		
+		when(repositorioTripulante.obtenerVuelosDeTripulante(t1)).thenReturn(vtl);
+		
+		Vuelo obtenido = whenTengoVuelos(t1);
+		
+		thenSeObtieneElVuelo(obtenido,v2);
+			
+	}
+	
+	private void thenSeObtieneElVuelo(Vuelo v1,Vuelo v2) {
+		assertThat(v1).isNotNull();
+		assertThat(v1.getSalida().before(v2.getSalida()));
+		
+	}
+
+	@Test(expected = TripulanteSinVueloException.class)
+	public void queNoSeObtengaElPrimerVueloDelTripulante() {
+		
+		VueloTripulante a = givenVTVacio();
 		Tripulante t = givenTripulante("t1");
 		
 		whenNoTengoVuelos(t);
 		
-		thenNoTieneVueloException();
+		
 	}
 	
-	 private void thenNoTieneVueloException() {
-		
+	private Vuelo whenTengoVuelos(Tripulante t) {
+		return servicioTripulante.obtenerPrimerVueloDeTripulante(t);
 		
 	}
-
+	
 	private void whenNoTengoVuelos(Tripulante t) {
 		servicioTripulante.obtenerPrimerVueloDeTripulante(t);
 		
 	}
 
-	private VueloTripulante givenVT() {
+	private VueloTripulante givenVTVacio() {
 		VueloTripulante vt = new VueloTripulante();
+		return vt;
+	}
+	
+	private VueloTripulante givenVT(Vuelo v,Tripulante t) {
+		VueloTripulante vt = new VueloTripulante();
+		vt.setVuelo(v);
+		vt.setTripulante(t);
+		
 		return vt;
 	}
 
@@ -116,8 +150,7 @@ public class ServicioTripulanteTest {
 	  	verify(repositorioTripulante,times(1)).asignarUnTripulanteAvuelo(v2,t);
 	    	
 	    }
-	
-	//(expected = FechaYaOcupadaException.class)
+
 	
 	
 	
@@ -174,6 +207,79 @@ public class ServicioTripulanteTest {
     	v.setSalida(date);
     	
 		return v;
+	}
+	
+	private Vuelo givenVueloCompleto() {
+		Vuelo v = new Vuelo();
+		Date salida = new Date();
+		Date llegada = new Date();
+		Locacion destino = new Locacion();
+		Locacion origen = new Locacion();
+		Avion avion = new Avion();
+		SimpleDateFormat formato = new SimpleDateFormat ("dd-MM-yyyy HH:mm");
+		
+		
+		
+        try {
+			salida=formato.parse("05-05-2005 15:55");
+			llegada=formato.parse("05-05-2005 16:00");
+	
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+        
+        destino.setCoordenadas("iwiwo");
+		origen.setCoordenadas("owowo");
+    	v.setId(new Random().nextLong());
+    	v.setSalida(salida);
+    	v.setLlegada(llegada);
+    	v.setDestino(destino);
+    	v.setOrigen(origen);
+    	v.setAvion(avion);
+
+    	
+		return v;
+	}
+	
+	private Vuelo givenVueloCompletoB() {
+		Vuelo v = new Vuelo();
+		Date salida = new Date();
+		Date llegada = new Date();
+		Locacion destino = new Locacion();
+		Locacion origen = new Locacion();
+		Avion avion = new Avion();
+		SimpleDateFormat formato = new SimpleDateFormat ("dd-MM-yyyy HH:mm");
+		
+		
+		
+        try {
+			salida=formato.parse("05-05-2022 15:55");
+			llegada=formato.parse("05-05-2022 16:00");
+	
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+        
+        destino.setCoordenadas("iwiwo");
+		origen.setCoordenadas("owowo");
+    	v.setId(new Random().nextLong());
+    	v.setSalida(salida);
+    	v.setLlegada(llegada);
+    	v.setDestino(destino);
+    	v.setOrigen(origen);
+    	v.setAvion(avion);
+
+    	
+		return v;
+	}
+	
+	private Tripulante givenTripulanteCompleto(String nombre,String titulo) {
+		Tripulante t = new Tripulante();
+		
+		t.setNombre(nombre);
+		t.setTitulo(titulo);
+		
+		return t;
 	}
 	
 
