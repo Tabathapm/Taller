@@ -53,33 +53,6 @@ public class RepositorioHangarImpl implements RepositorioHangar {
 //        sessionFactory.getCurrentSession().save(avion);
 //    }
 
-    @Override
-    public List<Avion> obtenerAvionesSinAsignar(){
-//        Todo lo que tengo que hacer tiene que ir dentro del try
-        List<Avion> avionesSinAsignar = new ArrayList<>();
-
-         try {
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC","root","666malakian");
-             Statement sentencia = conexion.createStatement();
-             String consulta = "select * from avion\n" +
-                     "      where not exists(select 1 from hangar\n" +
-                     "      where hangar.avion_Id = avion.id);";
-             ResultSet rs = sentencia.executeQuery(consulta);
-             while(rs.next()) {
-                 Avion avion = new Avion();
-                 avion.setId(rs.getLong("Id"));
-                 avion.setNombre(rs.getString("nombre"));
-                 avionesSinAsignar.add(avion);
-             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return avionesSinAsignar;
-
-
-
-    }
 
     @Override
     public List<Hangar> obtenerTodosLosHangaresDisponibles(){

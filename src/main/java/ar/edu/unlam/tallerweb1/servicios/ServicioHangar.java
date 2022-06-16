@@ -12,8 +12,6 @@ public interface ServicioHangar {
 //	Hangar traerHangarDeAvion(Avion avion);
 	
 	List<Hangar> traerHangaresVacios();
-//	List<Avion> traerAvionesSinAsignar();
-	List<Avion> traerAvionesSinAsignar();
 	Hangar traerHangaresSinAsignar(Long id);
 	List<Hangar> traerTodosLosHangaresDisponibles();
 	List<Hangar> traerTodosLosHangares();

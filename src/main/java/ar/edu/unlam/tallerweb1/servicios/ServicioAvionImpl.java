@@ -15,12 +15,6 @@ public class ServicioAvionImpl implements ServicioAvion {
     private RepositorioAvion servicioAvion;
 
 
-
-    @Override
-    public Avion traerAvionSinHangar(Long id) {
-        return servicioAvion.verAvionSinHangar(id);
-    }
-
     @Override
     public List<Avion> traerAvionesSinHangar() {
         return servicioAvion.verAvionesSinHangar();

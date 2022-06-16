@@ -30,12 +30,6 @@ public class ServicioHangarImpl implements ServicioHangar {
 	}
 
 	@Override
-	public List<Avion> traerAvionesSinAsignar() {
-		return repositorioHangar.obtenerAvionesSinAsignar();
-	}
-
-
-	@Override
 	public Hangar traerHangaresSinAsignar(Long id){
 		return repositorioHangar.consultarHangar(id);
 	}

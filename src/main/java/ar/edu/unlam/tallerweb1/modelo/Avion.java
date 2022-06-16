@@ -12,9 +12,8 @@ public class Avion {
 	    @ManyToOne
 	    private TipoAvion tipoAvion;
 
-//		@OneToOne(mappedBy = "avion")
-		@OneToOne
-		@JoinColumn(name = "hangar_Id",referencedColumnName = "Id")
+		@OneToOne(mappedBy = "avion")
+		//@JoinColumn(name = "hangar_Id",referencedColumnName = "Id")
 		private Hangar hangar;
 
 

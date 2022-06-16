@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface ServicioAvion {
 
-Avion traerAvionSinHangar(Long id);
 List<Avion> traerAvionesSinHangar();
 
 

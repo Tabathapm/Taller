@@ -86,3 +86,4 @@ WHERE hangar.Id = 0005;
 UPDATE avion
 SET hangar_Id = 0001
 WHERE avion.Id = 1;
+

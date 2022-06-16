@@ -8,7 +8,7 @@ public interface RepositorioAvion {
 
 
 
-    Avion verAvionSinHangar(Long id);
+//    Avion verAvionSinHangar(Long id);
     List<Avion> verAvionesSinHangar();
 
 }
