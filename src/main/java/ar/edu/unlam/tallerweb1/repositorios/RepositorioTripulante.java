@@ -29,6 +29,8 @@ public interface RepositorioTripulante {
 
 		List<VueloTripulante> obtenerVuelosDeTripulante(Tripulante tripulante);
 
+		List<Tripulante> mostrarTripulacion(String titulo);
+
 
 	}
 

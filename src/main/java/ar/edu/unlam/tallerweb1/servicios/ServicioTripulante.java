@@ -32,6 +32,8 @@ public interface ServicioTripulante {
 
 	Vuelo obtenerPrimerVueloDeTripulante(Tripulante tripulante);
 
+    List<Tripulante> mostrarTripulantesTipo(String titulo);
+
 
 	
 

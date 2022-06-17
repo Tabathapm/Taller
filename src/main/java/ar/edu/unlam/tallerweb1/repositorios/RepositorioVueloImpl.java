@@ -173,7 +173,13 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 	            		
 	}
 	*/
-	
+
+	@Override
+	public List<Locacion> mostrarLocacion() {
+		List <Locacion> locaciones = sessionFactory.getCurrentSession().createCriteria(Locacion.class)
+				.list();
+		return locaciones;
+	}
 	
 	
 

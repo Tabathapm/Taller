@@ -20,4 +20,7 @@ public interface RepositorioVuelo {
 	List<Vuelo> listarTodosLosVuelosSinTripulacion();
 	
 	void guardar(Vuelo vuelo);
+
+	List<Locacion> mostrarLocacion();
+
 }

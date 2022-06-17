@@ -102,23 +102,24 @@ SELECT v1.id,v1.estimado,v1.llegada,v1.nombre,v1.salida,v1.avion_id,v1.destino_I
 */
 
 -- Script Leandro
-insert into tipoAvion
+/*insert into tipoAvion
 values(001,10.000,1000,'Comercial'),
-      (002,20.000,2000,'Comercial');
+      (002,20.000,2000,'Comercial');*/
 
-insert into tipoAvion(Id,Carga,categoriaAvion)
+/*insert into tipoAvion(Id,Carga,categoriaAvion)
 values(003,1.000,'Carga'),
-      (004,1.000,'Carga');
+      (004,1.000,'Carga');*/
 
 
-insert into avion
-values(1,'Avion Olimpia',001),
-      (2,'Avion Ackerman',002);
+insert into avion(nombre,tipoAvion_Id)
+values
+('Avion Olimpia',1),
+('Avion Ackerman',2);
 
-insert into avion(Id,nombre,tipoAvion_Id)
-values(3,'Avion Juli',003),
-      (4,'Avion Rocio',004);
-
+insert into avion(nombre,tipoAvion_Id)
+values
+('Avion Juli',1),
+('Avion Rocio',2);
 
 select * from hangar;
 
@@ -145,3 +146,37 @@ WHERE hangar.Id = 0005;
 UPDATE avion
 SET hangar_Id = 0001
 WHERE avion.Id = 1;
+
+INSERT INTO usuario(activo, credencial, password)
+VALUES
+(true, 'tabathapm@gmail.com', '123');
+
+INSERT INTO locacion(ciudad, pais)
+VALUES
+("Mendoza", "Argentina"),
+("Cordoba", "Argentina"),
+("Chubut", "Argentina"),
+("Montevideo", "Uruguay");
+
+INSERT INTO tripulante(nombre, apellido, titulo, estado)
+VALUES
+("Juli", "Barraza", "Piloto", true),
+("Peter", "Parker", "Piloto", true),
+("Jack", "Sparrow", "Piloto", true),
+("Jodie", "Comer", "Piloto", true),
+("Due", "Lipa", "Copiloto", true),
+("Ed", "Sheeran", "Copiloto", true),
+("Harry", "Style", "Copiloto", true),
+("Miley", "Cyrus", "Copiloto", true),
+("Billie", "Eilish", "tripulante de cabina", true),
+("Elton", "John", "tripulante de cabina", true),
+("Taylor", "Swift", "tripulante de cabina", true),
+("Rick", "Astley", "tripulante de cabina", true),
+("Dove", "Cameron", "tripulante de cabina", true),
+("Liam", "Hemsworth", "tripulante de cabina", true),
+("Tony", "Stark", "tripulante de cabina", true),
+("Charly", "Garcia", "tripulante de cabina", true),
+("Villanelle", "Astankova", "Ingeniero de Vuelo", true),
+("Selena", "Gomez", "Ingeniero de Vuelo", true),
+("Charlie", "Puth", "Ingeniero de Vuelo", true),
+("John", "Lennon", "Ingeniero de Vuelo", true);

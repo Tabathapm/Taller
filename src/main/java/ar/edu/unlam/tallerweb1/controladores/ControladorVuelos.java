@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import ar.edu.unlam.tallerweb1.modelo.Locacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -32,13 +33,34 @@ public class ControladorVuelos {
 
     @RequestMapping("/agregar-vuelo")
     public ModelAndView irAgregarVuelo(){
-        return new ModelAndView("agregar_vuelo");
+//      --------------------------------
+        ModelMap modelo = new ModelMap();
+//      --------------------------------
+        List <Locacion> listaLocaciones = servicioVuelo.mostrarLocaciones();
+        List <Tripulante> listaPilotos  = servicioTripulante.mostrarTripulantesTipo("Piloto");
+        List <Tripulante> listaCopilotos  = servicioTripulante.mostrarTripulantesTipo("Copiloto");
+        List <Tripulante> listaTripulantesDeCabina  = servicioTripulante.mostrarTripulantesTipo("tripulante de cabina");
+        List <Tripulante> listaIngDeVuelo  = servicioTripulante.mostrarTripulantesTipo("Ingeniero de Vuelo");
+//      ------------------------------------------
+        modelo.put("locaciones", listaLocaciones);
+        modelo.put("pilotos", listaPilotos);
+        modelo.put("copilotos", listaCopilotos);
+        modelo.put("tripulantes", listaTripulantesDeCabina);
+        modelo.put("ingsDeVuelo", listaIngDeVuelo);
+//      ------------------------------------------
+        return new ModelAndView("agregar_vuelo", modelo);
     }
 
-    @RequestMapping("/addVuelo")
-    public ModelAndView agregarVuelo(){
-//        Logica para agregar a la bdd
-        return new ModelAndView("homeDos");
+    @RequestMapping(path = "/addVuelo", method = RequestMethod.POST)
+    public ModelAndView agregarVuelo(@ModelAttribute("datosVuelo") DatosVuelo datosVuelo, HttpServletRequest request){
+//      -------------------------------------------------------------------------------------------------------------
+        ModelMap model = new ModelMap();
+        Vuelo vuelo = new Vuelo();
+
+        model.put("verQueOnda", datosVuelo);
+
+//        quiero ver que recibe 'datosVuelo'
+        return new ModelAndView("verDatosVuelos", model);
     }
     
     @RequestMapping("/buscarVuelos")

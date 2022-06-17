@@ -161,4 +161,8 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
         repositorioTripulante.asignarTripulantesAlVuelo(vuelo,tripulantes);
     }
 
+	@Override
+	public List<Tripulante> mostrarTripulantesTipo(String titulo) {
+		return repositorioTripulante.mostrarTripulacion(titulo);
+	}
 }

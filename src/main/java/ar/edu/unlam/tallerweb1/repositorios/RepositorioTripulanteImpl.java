@@ -234,7 +234,13 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
 		return null;
 	}
 
-	
+    @Override
+    public List<Tripulante> mostrarTripulacion(String titulo) {
+        List <Tripulante> tripulantes = sessionFactory.getCurrentSession().createCriteria(Tripulante.class)
+                .add(Restrictions.eq("titulo",titulo ))
+                .list();
+        return tripulantes;
+    }
 
 	
 
