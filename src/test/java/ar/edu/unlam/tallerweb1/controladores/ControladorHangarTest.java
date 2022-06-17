@@ -13,6 +13,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,10 +32,28 @@ private ServicioAvion servicioAvion;
 @Mock
 private ServicioHangar servicioHangar;
 
+
 @InjectMocks
 private ControladorHangar controladorHangar = new ControladorHangar();
 
 private ModelAndView mav;
+
+    @Test
+    public void testQueVaALaVistaDeHangares(){
+
+        whenObtenerVistaHangares();
+
+        thenLavistaEsHangares();
+    }
+
+    private void thenLavistaEsHangares() {
+        assertThat(mav.getViewName()).isEqualTo("hangares");
+    }
+
+    private void whenObtenerVistaHangares() {
+        mav = controladorHangar.irHangares();
+    }
+
 
     @Test
     public void verHangaresVaciosTest(){
@@ -58,6 +78,17 @@ private ModelAndView mav;
 
     }
 
+    @Test
+    public void testQueAsignaHangaresVacios(){
+        AsignarAvionAHangar asignarAvionAHangar = new AsignarAvionAHangar(20L,17L);
+
+        //when
+        mav = controladorHangar.asignarHangaresVacios(asignarAvionAHangar);
+
+        //then
+        assertThat(mav.getViewName()).isEqualTo("homeDos");
+
+    }
 
 
 }

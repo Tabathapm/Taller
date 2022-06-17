@@ -6,6 +6,10 @@ public class AsignarAvionAHangar {
     private Long idHangar;
     private Long idAvion;
 
+    public AsignarAvionAHangar() {
+
+    }
+
     public AsignarAvionAHangar(String nombre, Boolean ocupado, Long idHangar, Long idAvion) {
         Nombre = nombre;
         Ocupado = ocupado;

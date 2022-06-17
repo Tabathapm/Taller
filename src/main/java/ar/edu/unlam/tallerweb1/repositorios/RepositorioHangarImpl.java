@@ -25,7 +25,6 @@ public class RepositorioHangarImpl implements RepositorioHangar {
     @Autowired
     private SessionFactory sessionFactory;
 
-
     @Override
     public Hangar verHangares(Hangar hangar) {
         return (Hangar) sessionFactory.getCurrentSession().createCriteria(Hangar.class)
@@ -44,15 +43,8 @@ public class RepositorioHangarImpl implements RepositorioHangar {
     public Hangar consultarHangar(Long id){
         return (Hangar) sessionFactory.getCurrentSession().createCriteria(Hangar.class)
                 .add(Restrictions.eq("Id",id))
-//                .add(Restrictions.eq("Ocupado", Boolean.FALSE))
                 .uniqueResult();
     }
-
-//    @Override
-//    public void guardar (Avion avion){
-//        sessionFactory.getCurrentSession().save(avion);
-//    }
-
 
     @Override
     public List<Hangar> obtenerTodosLosHangaresDisponibles(){
@@ -90,7 +82,4 @@ public class RepositorioHangarImpl implements RepositorioHangar {
         sessionFactory.getCurrentSession().save(avion);
 
     }
-
-
-
 }

@@ -18,15 +18,6 @@ public class RepositorioAvionImpl implements RepositorioAvion {
     @Autowired
     private SessionFactory sessionFactory;
 
-
-//    @Override
-//    public Avion verAvionSinHangar(Long id) {
-//        return (Avion) sessionFactory.getCurrentSession().createCriteria(Avion.class)
-//                .add(Restrictions.eq("Id",id))
-//                .add(Restrictions.eq("hangar_Id",null))
-//                .uniqueResult();
-//    }
-
     @Override
     public List<Avion> verAvionesSinHangar() {
 //        Todo lo que tengo que hacer tiene que ir dentro del try

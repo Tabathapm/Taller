@@ -52,7 +52,7 @@ public class ControladorHangar {
 
 
     @RequestMapping(path = "/homeDos", method = RequestMethod.POST)
-    public ModelAndView asignarHangaresVacios(@ModelAttribute("asignarAvionAHangar") AsignarAvionAHangar asignarAvionAHangar, HttpServletRequest request) {
+    public ModelAndView asignarHangaresVacios(@ModelAttribute("asignarAvionAHangar") AsignarAvionAHangar asignarAvionAHangar) {
         ModelMap model = new ModelMap();
         servicioHangar.asigarAvionesAHangar(asignarAvionAHangar.getIdAvion(),asignarAvionAHangar.getIdHangar());
         return new ModelAndView("homeDos",model);
