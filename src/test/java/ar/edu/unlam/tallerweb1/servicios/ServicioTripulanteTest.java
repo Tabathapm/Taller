@@ -38,6 +38,8 @@ public class ServicioTripulanteTest {
     private RepositorioVuelo repositorioVuelo = mock(RepositorioVuelo.class);
     private ServicioTripulanteImpl servicioTripulante = new ServicioTripulanteImpl(repositorioTripulante,repositorioVuelo);
     
+    
+    
     @Test
     public void queSePuedaAsignarUnTripulanteAUnVuelo() {
     	
@@ -83,7 +85,7 @@ public class ServicioTripulanteTest {
     
     @Test
 	 public void queNoSePuedaAsignarUnTripulanteAUnVueloEnLaMismaFecha() { //No se puede resolver, requiere repo funcional 
-	    																	// pasar a repo ? a revisar
+	    																	// usar when()
 	    	Vuelo v1 = givenVueloConFecha(nv1);
 	    	Vuelo v2 = givenVueloConFecha(nv2);
 
@@ -99,7 +101,43 @@ public class ServicioTripulanteTest {
 	
 	    }
     
-    private VueloTripulante whenAsignoTripulanteAVuelo(Vuelo v, Tripulante t) {
+    @Test
+	public void queSeCalculenCorrectamenteLasHorasDeActivoYDescansoDeUnTripulante() { 
+    	
+	    	Vuelo v1 = givenVueloCompletoB();
+			Vuelo v2 = givenVueloCompleto();
+			Tripulante t1 = givenTripulante("t1");
+			VueloTripulante vt1 = givenVT(v1,t1);
+			VueloTripulante vt2 = givenVT(v2,t1);
+			List <VueloTripulante> vtl = new ArrayList<>();
+			vtl.add(vt1);
+			vtl.add(vt2);
+			
+			when(repositorioTripulante.obtenerVuelosDeTripulante(t1)).thenReturn(vtl);
+			
+
+	    	Tripulante t1B = whenCalculoLasHoras(t1);
+	    	
+	    	
+	    	thenSeCalculo(t1B);
+	    	
+	
+	    }
+    
+    private void thenSeCalculo(Tripulante t) {
+		assertThat(t.getHorasActivo()).isNotNull();
+		assertThat(t.getHorasDescanso()).isNotNull();
+		
+		System.out.println(t.getHorasActivo() + "" + t.getHorasDescanso());
+		
+	}
+
+	private Tripulante whenCalculoLasHoras(Tripulante t1) {
+		return servicioTripulante.setHorasActivoDeTripulante(t1);
+		
+	}
+
+	private VueloTripulante whenAsignoTripulanteAVuelo(Vuelo v, Tripulante t) {
 		return servicioTripulante.asignarUnTripulanteAvuelo(v, t);
 		
 	}
@@ -201,8 +239,8 @@ public class ServicioTripulanteTest {
 		
 		
         try {
-			salida=formato.parse("05-05-2005 15:55");
-			llegada=formato.parse("05-05-2005 16:00");
+			salida=formato.parse("18-06-2022 13:00");
+			llegada=formato.parse("18-06-2022 14:00");
 	
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -233,8 +271,8 @@ public class ServicioTripulanteTest {
 		
 		
         try {
-			salida=formato.parse("05-05-2022 15:55");
-			llegada=formato.parse("05-05-2022 16:00");
+			salida=formato.parse("05-05-2023 15:55");
+			llegada=formato.parse("05-05-2023 16:00");
 	
 		} catch (ParseException e) {
 			e.printStackTrace();
