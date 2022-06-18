@@ -32,6 +32,8 @@ public interface ServicioTripulante {
 
 	Vuelo obtenerPrimerVueloDeTripulante(Tripulante tripulante);
 
+	void fechaDisponibleParaTripulante(List<VueloTripulante> vt, Vuelo vuelo);
+
 
 	
 

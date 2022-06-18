@@ -22,7 +22,7 @@ public class Tripulante {
     private Date inicioActividad;
     
     private Long horasActivo;
-    private Long horasDecanso;
+    private Long horasDescanso;
     private Boolean estado;
     
     
@@ -82,12 +82,12 @@ public class Tripulante {
 		this.estado = estado;
 	}
 
-	public Long getHorasDecanso() {
-		return horasDecanso;
+	public Long getHorasDescanso() {
+		return horasDescanso;
 	}
 
-	public void setHorasDecanso(Long horasDecanso) {
-		this.horasDecanso = horasDecanso;
+	public void setHorasDescanso(Long horasDecanso) {
+		this.horasDescanso = horasDecanso;
 	}
 	
     

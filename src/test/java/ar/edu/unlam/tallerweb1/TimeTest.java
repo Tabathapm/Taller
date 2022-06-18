@@ -11,26 +11,70 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 
+import ar.edu.unlam.tallerweb1.modelo.Tripulante;
+import ar.edu.unlam.tallerweb1.modelo.Vuelo;
+
 
 public class TimeTest {
-/*
-	@Test
-	public void queSePuedaCrearUnClienteDeTelefonia() {
-		ClienteTelefonia nuevo = new ClienteTelefonia(1000, "Camila", "11", "63598237");
-
-		assertEquals(nuevo.getCodigoDeArea(), "11");
-		assertEquals(nuevo.getTelefono(), "63598237");
-		
-	}
 	
 	@Test
-	public void queSePuedaCrearUnClienteDeCable() {
-		ClienteCable nuevo = new ClienteCable(1000, "Camila", "46546546504637");
+	public void testCalculoActivoYDescanso() {
 		
-		assertEquals(nuevo.getCodigoDecodificador(), "46546546504637");
+		SimpleDateFormat formato = new SimpleDateFormat ("dd-MM-yyyy HH:mm");
+
+		Date salida = new Date();
+		Date llegada = new Date();
+
+		  try {
+		    	salida=formato.parse("18-06-2022 13:00");
+		    	llegada=formato.parse("18-06-2022 14:00");
+		    }
+		    catch (ParseException e){
+		    	System.out.println("Oh nyo");
+		    }
 		
+		Vuelo v = new Vuelo();
+		
+		v.setSalida(salida);
+		v.setLlegada(llegada);
+		
+		Date salidaVuelo = v.getSalida();
+		Date llegadaVuelo = v.getLlegada();
+		Date hoy = new Date();
+		hoy.getTime();
+
+		Long horasDesdeSalida = ( ((hoy.getTime()-salidaVuelo.getTime()) /60000)/60);
+		Long horasActivo =   (((llegada.getTime()-salidaVuelo.getTime()) /60000)/60);
+		Long minutosActivo =   (((llegada.getTime()-salidaVuelo.getTime()) /60000));
+		Long minutosDesdeSalida = ( ((hoy.getTime()-salidaVuelo.getTime()) /60000));
+		Long minutosDesdeLlegada = ( ((hoy.getTime()-llegadaVuelo.getTime()) /60000));
+		Long horasDescanso = ( ((hoy.getTime()-llegadaVuelo.getTime()) /60000)/60);
+		
+		
+		if(hoy.after(salidaVuelo)&&hoy.before(llegadaVuelo)) {
+		    horasActivo = horasDesdeSalida;
+		  System.out.println("Primer IF");
+		}
+		
+		if(hoy.after(llegadaVuelo)) {
+		 //set horasDescanso = horasDescanso;
+		}
+
+		if(minutosDesdeLlegada+120L>minutosDesdeSalida&&horasDescanso>=2L) {
+			horasActivo=0L;
+			System.out.println("Tercer IF");
+		}
+		System.out.println("Minutos Desde Salida: " + minutosDesdeSalida);
+		System.out.println("Minutos Desde Llegada: " + minutosDesdeLlegada);
+		System.out.println("Minutos Activo: " + minutosActivo);
+		System.out.println("Horas Desde Salida: " + horasDesdeSalida);
+		System.out.println("Horas Desde Llegada: " + horasDescanso);
+		System.out.println("Horas Activo: " + horasActivo);
+		System.out.println("Horas Descanso: " + horasDescanso);
+				
 	}
-	*/ /*
+	
+ /*
 	@Test
 	public void datetest() {
 		Date date = new Date();
@@ -95,11 +139,23 @@ public class TimeTest {
 
 		Date date1 = new Date();
 		Date date2 = new Date();
+		
+		
+		
+		
 
 		
 		  try {
 		    	 date1=formato.parse("05-05-2005 15:55");
 		    	 date2=formato.parse("05-05-2005 20:30");
+		    	 
+		    	 Integer a = date1.getMonth();
+			 	 Integer m = date1.getMinutes();
+			 	 Integer h = date1.getHours();
+			 	 
+			 	System.out.println(a);
+				System.out.println(m);
+				System.out.println(h);
 		    
 		    	 long diffInMillies = date2.getTime() - date1.getTime();
 		    	 System.out.println(diffInMillies/60000 + " " + (diffInMillies/60000)/60); //primer valor en minutos, segundo en horas
