@@ -1,6 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import ar.edu.unlam.tallerweb1.excepciones.FechaYaOcupadaException;
+import ar.edu.unlam.tallerweb1.excepciones.FechaNoDisponibleException;
 import ar.edu.unlam.tallerweb1.excepciones.TripulanteSinVueloException;
 import ar.edu.unlam.tallerweb1.excepciones.VueloSinFechaException;
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
@@ -88,7 +88,7 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 
     		if(vt.get(i).getVuelo().getSalida()!=(null))
     		if(vt.get(i).getVuelo().getSalida().equals(fecha)) 
-    			throw new FechaYaOcupadaException();
+    			throw new FechaNoDisponibleException();
 	
 		}
     }
@@ -114,69 +114,107 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 	   return vueloEncontrado;  
     }
     
-
-    @Override
-	public Tripulante setHorasActivoDeTripulante(Tripulante t) {
-	   	
-    	Vuelo vueloObtenido = obtenerPrimerVueloDeTripulante(t);
-    	
-    	Date salidaVuelo = vueloObtenido.getSalida();
-    	Date llegadaVuelo = vueloObtenido.getLlegada();
-    	Boolean nocturno = false;
-    	Date hoy = new Date();
-    	hoy.getTime();
-    	
-
-    	Long horasDesdeSalida = ( ((hoy.getTime()-salidaVuelo.getTime()) /60000)/60);
-		Long horasActivo =   (((llegadaVuelo.getTime()-salidaVuelo.getTime()) /60000)/60);
-		Long minutosActivo =   (((llegadaVuelo.getTime()-salidaVuelo.getTime()) /60000));
-		Long minutosDesdeLlegada = ( ((hoy.getTime()-llegadaVuelo.getTime()) /60000));
-		Long horasDescanso = ( ((hoy.getTime()-llegadaVuelo.getTime()) /60000)/60);
-    	
-		if(salidaVuelo.getHours()>=23L||salidaVuelo.getHours()<=6L||llegadaVuelo.getHours()>=23L||llegadaVuelo.getHours()<=6L)
-			nocturno = true;
+	@Override
+	public Boolean determinarSiDisponible(List<VueloTripulante> vt, Vuelo v) { // reemplazar a fechaDisponibleParaTripulante()
+		Date salida = v.getSalida();
 		
-		if(hoy.after(salidaVuelo)&&hoy.before(llegadaVuelo)) 
-		    horasActivo = horasDesdeSalida;
+		for (int i = 0; i < vt.size(); i++) {
+			Date llegadaRegistrado = vt.get(i).getVuelo().getLlegada();
+			Date salidaRegistrado = vt.get(i).getVuelo().getSalida();
+			
+			if(salida.after(salidaRegistrado)&&salida.before(llegadaRegistrado)) 
+				throw new FechaNoDisponibleException();
+				
+			if(salida.after(llegadaRegistrado))
+			   if(checkActivo(vt.get(i).getVuelo(),v))
+				   return true;			
+		}	
+		return false;
+	}
 		
+	 @Override
+		public Boolean checkActivo(Vuelo vReg,Vuelo vEnt) {
+		   	
+	    	Date salidaVuelo = vReg.getSalida();
+	    	Date llegadaVuelo = vReg.getLlegada();
+	    	Date salidaEntrante = vEnt.getSalida();
+	    	Boolean nocturno = false;
+	    	Date hoy = new Date();
+	    	hoy.getTime();
+	    	
+			Long horasActivo =   (((llegadaVuelo.getTime()-salidaVuelo.getTime()) /60000)/60);
+			Long minutosActivo =   (((llegadaVuelo.getTime()-salidaVuelo.getTime()) /60000));
+			Long minutosDescanso = ( ((salidaEntrante.getTime()-llegadaVuelo.getTime()) /60000));
+			Long horasDescanso = ( ((salidaEntrante.getTime()-llegadaVuelo.getTime()) /60000)/60);
+	    	
+			if(salidaVuelo.getHours()>=23L||salidaVuelo.getHours()<=6L||llegadaVuelo.getHours()>=23L||llegadaVuelo.getHours()<=6L)
+				nocturno = true;
+
+			if(!nocturno)
+			if(horasDescanso>=2L+horasActivo&&minutosDescanso>=(120L+minutosActivo)) 
+				return true;	
+
+			
+			if(nocturno)
+			if(horasDescanso>=4L+horasActivo&&minutosDescanso>=(240L+minutosActivo)) 
+				return true;	
+			
+			return false;
+		}
+
+	 @Override //To do
+	    public void asignarTripulantesAlVuelo(Vuelo v, List<Tripulante> tripulantes) {
+	        repositorioTripulante.asignarTripulantesAlVuelo(v,tripulantes);
+	    }
+	 
+	 
+	 // Deprecado
+	 @Override
+		public Tripulante setHorasDeTripulante(Tripulante t) {
+		   	
+	    	Vuelo vueloObtenido = obtenerPrimerVueloDeTripulante(t);
+	    	
+	    	Date salidaVuelo = vueloObtenido.getSalida();
+	    	Date llegadaVuelo = vueloObtenido.getLlegada();
+	    	Boolean nocturno = false;
+	    	Date hoy = new Date();
+	    	hoy.getTime();
+	    	
+
+	    	Long horasDesdeSalida = ( ((hoy.getTime()-salidaVuelo.getTime()) /60000)/60);
+			Long horasActivo =   (((llegadaVuelo.getTime()-salidaVuelo.getTime()) /60000)/60);
+			Long minutosActivo =   (((llegadaVuelo.getTime()-salidaVuelo.getTime()) /60000));
+			Long minutosDesdeLlegada = ( ((hoy.getTime()-llegadaVuelo.getTime()) /60000));
+			Long horasDescanso = ( ((hoy.getTime()-llegadaVuelo.getTime()) /60000)/60);
+	    	
+			if(salidaVuelo.getHours()>=23L||salidaVuelo.getHours()<=6L||llegadaVuelo.getHours()>=23L||llegadaVuelo.getHours()<=6L)
+				nocturno = true;
+			
+			if(hoy.after(salidaVuelo)&&hoy.before(llegadaVuelo)) 
+			    horasActivo = horasDesdeSalida;
+			
+		
+			if(hoy.after(llegadaVuelo)) 
+			 t.setHorasDescanso(horasDescanso);
+			else
+			 t.setHorasDescanso(0L);
+			
+			
+			if(!nocturno)
+			if(minutosDesdeLlegada+120L>minutosActivo&&horasDescanso>=2L) 
+				horasActivo=0L;	
+			
+			
+			if(nocturno)
+			if(minutosDesdeLlegada+240L>minutosActivo&&horasDescanso>=4L) 
+				horasActivo=0L;	
+			
+	    	t.setHorasActivo(horasActivo);
+	    	
+	    	
+			return t;
+		} 
+
 	
-		if(hoy.after(llegadaVuelo)) 
-		 t.setHorasDescanso(horasDescanso);
-		else
-		 t.setHorasDescanso(0L);
-		
-		
-		if(!nocturno)
-		if(minutosDesdeLlegada+120L>minutosActivo&&horasDescanso>=2L) 
-			horasActivo=0L;	
-		
-		
-		if(nocturno)
-		if(minutosDesdeLlegada+240L>minutosActivo&&horasDescanso>=4L) 
-			horasActivo=0L;	
-		
-    	t.setHorasActivo(horasActivo);
-    	
-    	
-		return t;
-	}
-
-	@Override
-	public Tripulante setHorasDescansoDeTripulante(Tripulante t) {
-		
-		return t;
-	}
-    
- 
-	@Override
-	public void calcularTripulanteDisponibleParaVuelo(Vuelo v, Tripulante t) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override //To do
-    public void asignarTripulantesAlVuelo(Vuelo vuelo, List<Tripulante> tripulantes) {
-        repositorioTripulante.asignarTripulantesAlVuelo(vuelo,tripulantes);
-    }
 
 }

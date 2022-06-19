@@ -1,5 +1,5 @@
 package ar.edu.unlam.tallerweb1.servicios;
-import ar.edu.unlam.tallerweb1.excepciones.FechaYaOcupadaException;
+import ar.edu.unlam.tallerweb1.excepciones.FechaNoDisponibleException;
 import ar.edu.unlam.tallerweb1.excepciones.TripulanteSinVueloException;
 import ar.edu.unlam.tallerweb1.modelo.Avion;
 import ar.edu.unlam.tallerweb1.modelo.Locacion;
@@ -55,8 +55,8 @@ public class ServicioTripulanteTest {
     @Test
 	public void queSeObtengaElPrimerVueloDelTripulante() {
 		
-		Vuelo v1 = givenVueloCompletoB();
-		Vuelo v2 = givenVueloCompleto();
+    	Vuelo v1 = givenVueloCompletoConstructor("20-06-2022 15:00","20-06-2022 16:00");
+		Vuelo v2 = givenVueloCompletoConstructor("18-06-2022 13:00","18-06-2022 14:00");
 		Tripulante t1 = givenTripulante("t1");
 		VueloTripulante vt1 = givenVT(v1,t1);
 		VueloTripulante vt2 = givenVT(v2,t1);
@@ -104,8 +104,8 @@ public class ServicioTripulanteTest {
     @Test
 	public void queSeCalculenCorrectamenteLasHorasDeActivoYDescansoDeUnTripulante() { 
     	
-	    	Vuelo v1 = givenVueloCompletoB();
-			Vuelo v2 = givenVueloCompleto();
+	    	Vuelo v1 = givenVueloCompletoConstructor("20-06-2022 15:00","20-06-2022 16:00");
+			Vuelo v2 = givenVueloCompletoConstructor("18-06-2022 13:00","18-06-2022 14:00");
 			Tripulante t1 = givenTripulante("t1");
 			VueloTripulante vt1 = givenVT(v1,t1);
 			VueloTripulante vt2 = givenVT(v2,t1);
@@ -124,7 +124,46 @@ public class ServicioTripulanteTest {
 	
 	    }
     
-    private void thenSeCalculo(Tripulante t) {
+    
+    @Test
+	public void queCheckActivoRetorneTrueTest() { 
+    	
+	    	Vuelo vRegistrado = givenVueloCompletoConstructor("20-06-2022 15:00","20-06-2022 17:00");
+			Vuelo vEntrante = givenVueloCompletoConstructor("21-06-2022 15:00","21-06-2022 17:00");
+			
+	    	Boolean resultado = whenCheckActivo(vRegistrado,vEntrante);
+	    	
+	    	thenSeObtuvoTrue(resultado);
+	    	
+	    }
+    
+    @Test
+   	public void queCheckActivoRetorneFalseTest() { 
+       	
+   	    	Vuelo vRegistrado = givenVueloCompletoConstructor("20-06-2022 13:00","20-06-2022 16:00");
+   			Vuelo vEntrante = givenVueloCompletoConstructor("20-06-2022 20:00","20-06-2022 20:00");
+   			
+   	    	Boolean resultado = whenCheckActivo(vRegistrado,vEntrante);
+   	    	
+   	    	thenSeObtuvoFalse(resultado);
+   	    	
+   	    }
+    
+	private void thenSeObtuvoFalse(Boolean resultado) {
+    	assertThat(resultado).isFalse();
+		
+	}
+
+	private void thenSeObtuvoTrue(Boolean resultado) {
+		assertThat(resultado).isTrue();
+		
+	}
+
+	private Boolean whenCheckActivo(Vuelo v1, Vuelo v2) {
+		return servicioTripulante.checkActivo(v1,v2);
+	}
+
+	private void thenSeCalculo(Tripulante t) {
 		assertThat(t.getHorasActivo()).isNotNull();
 		assertThat(t.getHorasDescanso()).isNotNull();
 		
@@ -133,7 +172,7 @@ public class ServicioTripulanteTest {
 	}
 
 	private Tripulante whenCalculoLasHoras(Tripulante t1) {
-		return servicioTripulante.setHorasActivoDeTripulante(t1);
+		return servicioTripulante.setHorasDeTripulante(t1);
 		
 	}
 
@@ -227,7 +266,7 @@ public class ServicioTripulanteTest {
 		return v;
 	}
 	
-	private Vuelo givenVueloCompleto() {
+	private Vuelo givenVueloCompletoConstructor(String date1,String date2) {
 		Vuelo v = new Vuelo();
 		Date salida = new Date();
 		Date llegada = new Date();
@@ -239,40 +278,8 @@ public class ServicioTripulanteTest {
 		
 		
         try {
-			salida=formato.parse("18-06-2022 13:00");
-			llegada=formato.parse("18-06-2022 14:00");
-	
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-        
-        destino.setCoordenadas("iwiwo");
-		origen.setCoordenadas("owowo");
-    	v.setId(new Random().nextLong());
-    	v.setSalida(salida);
-    	v.setLlegada(llegada);
-    	v.setDestino(destino);
-    	v.setOrigen(origen);
-    	v.setAvion(avion);
-
-    	
-		return v;
-	}
-	
-	private Vuelo givenVueloCompletoB() {
-		Vuelo v = new Vuelo();
-		Date salida = new Date();
-		Date llegada = new Date();
-		Locacion destino = new Locacion();
-		Locacion origen = new Locacion();
-		Avion avion = new Avion();
-		SimpleDateFormat formato = new SimpleDateFormat ("dd-MM-yyyy HH:mm");
-		
-		
-		
-        try {
-			salida=formato.parse("05-05-2023 15:55");
-			llegada=formato.parse("05-05-2023 16:00");
+			salida=formato.parse(date1);
+			llegada=formato.parse(date2);
 	
 		} catch (ParseException e) {
 			e.printStackTrace();

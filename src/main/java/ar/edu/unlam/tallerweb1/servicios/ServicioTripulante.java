@@ -4,6 +4,7 @@ import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ServicioTripulante {
@@ -24,18 +25,17 @@ public interface ServicioTripulante {
 
 	List<Tripulante> listarTodosLosTripulantes();
 
-	void calcularTripulanteDisponibleParaVuelo(Vuelo v,Tripulante t);
-
-	Tripulante setHorasActivoDeTripulante(Tripulante t);
+	Tripulante setHorasDeTripulante(Tripulante t);
 	
-	Tripulante setHorasDescansoDeTripulante(Tripulante t);
-
 	Vuelo obtenerPrimerVueloDeTripulante(Tripulante tripulante);
 
 	void fechaDisponibleParaTripulante(List<VueloTripulante> vt, Vuelo vuelo);
-
-
 	
+	Boolean determinarSiDisponible(List<VueloTripulante> vt,Vuelo vuelo);
+
+	Boolean checkActivo(Vuelo vReg,Vuelo vEnt);
+	
+
 
 
 }
