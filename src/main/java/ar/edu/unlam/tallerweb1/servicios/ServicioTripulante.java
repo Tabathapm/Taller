@@ -31,7 +31,7 @@ public interface ServicioTripulante {
 
 	void fechaDisponibleParaTripulante(List<VueloTripulante> vt, Vuelo vuelo);
 	
-	Boolean determinarSiDisponible(List<VueloTripulante> vt,Vuelo vuelo);
+	Boolean determinarSiDisponible(Vuelo encontrado,Vuelo entrante);
 
 	Boolean checkActivo(Vuelo vReg,Vuelo vEnt);
 

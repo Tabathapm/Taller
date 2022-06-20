@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 import ar.edu.unlam.tallerweb1.excepciones.FechaNoDisponibleException;
+import ar.edu.unlam.tallerweb1.excepciones.TripulanteNoDisponibleParaEsaFechaException;
 import ar.edu.unlam.tallerweb1.excepciones.TripulanteSinVueloException;
 import ar.edu.unlam.tallerweb1.modelo.Avion;
 import ar.edu.unlam.tallerweb1.modelo.Locacion;
@@ -119,12 +120,14 @@ public class ServicioTripulanteTest {
 
     }
     
-    @Test
+    @Test(expected = TripulanteNoDisponibleParaEsaFechaException.class)
     public void queNoSePuedaAsignarUnTripulanteAUnVueloConOtrosVuelos() {
     	
+    	// +5 horas descanso
+		// a partir de 21
     	Vuelo v1 = givenVueloCompletoConstructor("20-06-2022 13:00","20-06-2022 16:00");
 		Vuelo v2 = givenVueloCompletoConstructor("18-06-2022 13:00","18-06-2022 16:00");
-		Vuelo v3 = givenVueloCompletoConstructor("20-06-2022 16:05","20-06-2022 20:00"); 
+		Vuelo v3 = givenVueloCompletoConstructor("20-06-2022 20:00","20-06-2022 20:00"); 
 		Tripulante t1 = givenTripulante("t1");
 		VueloTripulante vt1 = givenVT(v1,t1);
 		VueloTripulante vt2 = givenVT(v2,t1);
@@ -250,7 +253,7 @@ public class ServicioTripulanteTest {
    	public void queCheckActivoRetorneFalseTest() { 
        	
    	    	Vuelo vRegistrado = givenVueloCompletoConstructor("20-06-2022 13:00","20-06-2022 16:00"); // +5 horas descanso
-   			Vuelo vEntrante = givenVueloCompletoConstructor("20-06-2022 20:00","20-06-2022 24:00");
+   			Vuelo vEntrante = givenVueloCompletoConstructor("20-06-2022 20:00","20-06-2022 24:00"); // a partir de 21
    			
    	    	Boolean resultado = whenCheckActivo(vRegistrado,vEntrante);
    	    	

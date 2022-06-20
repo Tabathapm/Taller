@@ -73,38 +73,32 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
     	if(vt.isEmpty())
     		return repositorioTripulante.asignarUnTripulanteAvuelo(v,tripulante);
     	
-    	if(determinarSiDisponible(vt,v))
+    	Vuelo encontrado=obtenerVueloMasCercano(vt,v);
+    	
+    	if(determinarSiDisponible(encontrado,v))
            return repositorioTripulante.asignarUnTripulanteAvuelo(v,tripulante);
     	else
     		throw new TripulanteNoDisponibleParaEsaFechaException();
     }
     
 	@Override
-	public Boolean determinarSiDisponible(List<VueloTripulante> vt, Vuelo v) { 
+	public Boolean determinarSiDisponible(Vuelo encontrado, Vuelo entrante) { 
 		
-		Date salida = v.getSalida();
-		Date llegadaRegistrado = new Date();
-		Date salidaRegistrado = new Date();
-		Date siguienteSalida = new Date();
+		Date salida = entrante.getSalida();
+		Date llegadaRegistrado = encontrado.getLlegada();
+		Date salidaRegistrado = encontrado.getSalida();
 		
 		if(salida==null) {
     		throw new VueloSinFechaException();
     	}
 		
-		for (int i = 0; i < vt.size(); i++) {
-
-			llegadaRegistrado = vt.get(i).getVuelo().getLlegada();
-			salidaRegistrado = vt.get(i).getVuelo().getSalida();
-
-			if(salida.after(salidaRegistrado)&&salida.before(llegadaRegistrado)||salida.equals(salidaRegistrado)) 
-				throw new FechaNoDisponibleException();
+		if(salida.after(salidaRegistrado)&&salida.before(llegadaRegistrado)||salida.equals(salidaRegistrado)) 
+			throw new FechaNoDisponibleException();
 			
-			if(salida.after(llegadaRegistrado))
-			if(checkActivo(vt.get(i).getVuelo(),v))
-				return true;			
+		if(checkActivo(encontrado,entrante))
+			return true;			
 			
-		}
-		
+
 		return false;
 	}
 	
@@ -127,13 +121,10 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 				
     		fechaEncontradaA = vt.get(i).getVuelo().getSalida();	
     		fechaEncontradaB = vt.get(j).getVuelo().getSalida();
-        	
-        	
+        		
     			if(salida.after(fechaEncontradaA)&&salida.before(fechaEncontradaB)) 
-    			   vueloEncontrado = vt.get(i).getVuelo();
-    				
-    		}
-    		
+    			   vueloEncontrado = vt.get(i).getVuelo();			
+    		}	
     	}
     		
 	   return vueloEncontrado;  
@@ -263,6 +254,35 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 	    	
 			return t;
 		} 
+//	 
+//	 @Override
+//		public Boolean determinarSiDisponible(List<VueloTripulante> vt, Vuelo v) { 
+//			
+//			Date salida = v.getSalida();
+//			Date llegadaRegistrado = new Date();
+//			Date salidaRegistrado = new Date();
+//			Date siguienteSalida = new Date();
+//			
+//			if(salida==null) {
+//	    		throw new VueloSinFechaException();
+//	    	}
+//			
+//			for (int i = 0; i < vt.size(); i++) {
+//
+//				llegadaRegistrado = vt.get(i).getVuelo().getLlegada();
+//				salidaRegistrado = vt.get(i).getVuelo().getSalida();
+//
+//				if(salida.after(salidaRegistrado)&&salida.before(llegadaRegistrado)||salida.equals(salidaRegistrado)) 
+//					throw new FechaNoDisponibleException();
+//				
+//				if(salida.after(llegadaRegistrado))
+//				if(checkActivo(vt.get(i).getVuelo(),v))
+//					return true;			
+//				
+//			}
+//			
+//			return false;
+//		}
 
 	
 
