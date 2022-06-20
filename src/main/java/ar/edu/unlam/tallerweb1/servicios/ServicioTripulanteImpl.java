@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.excepciones.FechaNoDisponibleException;
+import ar.edu.unlam.tallerweb1.excepciones.TripulanteNoDisponibleParaEsaFechaException;
 import ar.edu.unlam.tallerweb1.excepciones.TripulanteSinVueloException;
 import ar.edu.unlam.tallerweb1.excepciones.VueloSinFechaException;
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
@@ -14,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -65,72 +66,78 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
     	}
 
     @Override
-    public VueloTripulante asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante tripulante){
+    public VueloTripulante asignarUnTripulanteAvuelo(Vuelo v, Tripulante tripulante){
     	
     	List <VueloTripulante> vt = repositorioTripulante.obtenerVuelosDeTripulante(tripulante);
     	
-    	fechaDisponibleParaTripulante(vt,vuelo);
-  
-       return repositorioTripulante.asignarUnTripulanteAvuelo(vuelo,tripulante);
-    }
-    
-    @Override
-    public void fechaDisponibleParaTripulante(List<VueloTripulante> vt,Vuelo vuelo) { 
-    	//agregar calculo para saber si el tripulante esta en vuelo o en descanso para el vuelo al que se lo quiere agregar
-    	Date fecha = vuelo.getSalida();
+    	if(vt.isEmpty())
+    		return repositorioTripulante.asignarUnTripulanteAvuelo(v,tripulante);
     	
-    	if(fecha==null) {
-    		throw new VueloSinFechaException();
-    	}
-    	
-    	
-    	for (int i = 0; i < vt.size(); i++) {
-
-    		if(vt.get(i).getVuelo().getSalida()!=(null))
-    		if(vt.get(i).getVuelo().getSalida().equals(fecha)) 
-    			throw new FechaNoDisponibleException();
-	
-		}
-    }
-    
-    @Override
-    public Vuelo obtenerPrimerVueloDeTripulante(Tripulante tripulante) {
-
-    	List<VueloTripulante> vt=repositorioTripulante.obtenerVuelosDeTripulante(tripulante);
-    	Vuelo vueloEncontrado = new Vuelo();
-    	
-    	if(vt.size()==0) {
-    		throw new TripulanteSinVueloException();
-    	}
-    	
-    	vueloEncontrado = vt.get(0).getVuelo();
-	
-    	for (int i = 0; i < vt.size(); i++) {
-    			if(vueloEncontrado.getSalida().after(vt.get(i).getVuelo().getSalida())) {
-    				vueloEncontrado = vt.get(i).getVuelo();
-    			}	
-		}
-    		
-	   return vueloEncontrado;  
+    	if(determinarSiDisponible(vt,v))
+           return repositorioTripulante.asignarUnTripulanteAvuelo(v,tripulante);
+    	else
+    		throw new TripulanteNoDisponibleParaEsaFechaException();
     }
     
 	@Override
-	public Boolean determinarSiDisponible(List<VueloTripulante> vt, Vuelo v) { // reemplazar a fechaDisponibleParaTripulante()
+	public Boolean determinarSiDisponible(List<VueloTripulante> vt, Vuelo v) { 
+		
 		Date salida = v.getSalida();
+		Date llegadaRegistrado = new Date();
+		Date salidaRegistrado = new Date();
+		Date siguienteSalida = new Date();
+		
+		if(salida==null) {
+    		throw new VueloSinFechaException();
+    	}
 		
 		for (int i = 0; i < vt.size(); i++) {
-			Date llegadaRegistrado = vt.get(i).getVuelo().getLlegada();
-			Date salidaRegistrado = vt.get(i).getVuelo().getSalida();
-			
-			if(salida.after(salidaRegistrado)&&salida.before(llegadaRegistrado)) 
+
+			llegadaRegistrado = vt.get(i).getVuelo().getLlegada();
+			salidaRegistrado = vt.get(i).getVuelo().getSalida();
+
+			if(salida.after(salidaRegistrado)&&salida.before(llegadaRegistrado)||salida.equals(salidaRegistrado)) 
 				throw new FechaNoDisponibleException();
-				
+			
 			if(salida.after(llegadaRegistrado))
-			   if(checkActivo(vt.get(i).getVuelo(),v))
-				   return true;			
-		}	
+			if(checkActivo(vt.get(i).getVuelo(),v))
+				return true;			
+			
+		}
+		
 		return false;
 	}
+	
+	@Override
+    public Vuelo obtenerVueloMasCercano(List<VueloTripulante> vt,Vuelo v) {
+
+		Date salida = v.getSalida();
+		Date fechaEncontradaA = new Date();
+		Date fechaEncontradaB = new Date();
+    	Vuelo vueloEncontrado = new Vuelo();
+    	
+    	if(salida==null) {
+    		throw new VueloSinFechaException();
+    	}
+		
+    	vueloEncontrado = vt.get(0).getVuelo();
+	
+    	for (int i = 0; i < vt.size(); i++) {
+    		for (int j = 1; j < vt.size(); j++) {
+				
+    		fechaEncontradaA = vt.get(i).getVuelo().getSalida();	
+    		fechaEncontradaB = vt.get(j).getVuelo().getSalida();
+        	
+        	
+    			if(salida.after(fechaEncontradaA)&&salida.before(fechaEncontradaB)) 
+    			   vueloEncontrado = vt.get(i).getVuelo();
+    				
+    		}
+    		
+    	}
+    		
+	   return vueloEncontrado;  
+    }
 		
 	 @Override
 		public Boolean checkActivo(Vuelo vReg,Vuelo vEnt) {
@@ -139,8 +146,7 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 	    	Date llegadaVuelo = vReg.getLlegada();
 	    	Date salidaEntrante = vEnt.getSalida();
 	    	Boolean nocturno = false;
-	    	Date hoy = new Date();
-	    	hoy.getTime();
+
 	    	
 			Long horasActivo =   (((llegadaVuelo.getTime()-salidaVuelo.getTime()) /60000)/60);
 			Long minutosActivo =   (((llegadaVuelo.getTime()-salidaVuelo.getTime()) /60000));
@@ -151,16 +157,39 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 				nocturno = true;
 
 			if(!nocturno)
-			if(horasDescanso>=2L+horasActivo&&minutosDescanso>=(120L+minutosActivo)) 
+			if(horasDescanso>=(2L+horasActivo)&&minutosDescanso>=(120L+minutosActivo)) 
 				return true;	
 
 			
 			if(nocturno)
-			if(horasDescanso>=4L+horasActivo&&minutosDescanso>=(240L+minutosActivo)) 
+			if(horasDescanso>=(4L+horasActivo)&&minutosDescanso>=(240L+minutosActivo)) 
 				return true;	
 			
 			return false;
 		}
+	 
+	 @Override
+	    public Vuelo obtenerPrimerVueloDeTripulante(Tripulante tripulante) {
+
+	    	List<VueloTripulante> vt=repositorioTripulante.obtenerVuelosDeTripulante(tripulante);
+	    	Vuelo vueloEncontrado = new Vuelo();
+	    	
+	    	if(vt.size()==0) {
+	    		throw new TripulanteSinVueloException();
+	    	}
+	    	
+	    	vueloEncontrado = vt.get(0).getVuelo();
+		
+	    	for (int i = 0; i < vt.size(); i++) {
+	    			if(vueloEncontrado.getSalida().after(vt.get(i).getVuelo().getSalida())) {
+	    				vueloEncontrado = vt.get(i).getVuelo();
+	    			}	
+			}
+	    		
+		   return vueloEncontrado;  
+	    }
+	 
+	 
 
 	 @Override //To do
 	    public void asignarTripulantesAlVuelo(Vuelo v, List<Tripulante> tripulantes) {
@@ -169,6 +198,26 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 	 
 	 
 	 // Deprecado
+	 
+	 @Override
+	    public void fechaDisponibleParaTripulante(List<VueloTripulante> vt,Vuelo vuelo) { 
+	    	//agregar calculo para saber si el tripulante esta en vuelo o en descanso para el vuelo al que se lo quiere agregar
+	    	Date fecha = vuelo.getSalida();
+	    	
+	    	if(fecha==null) {
+	    		throw new VueloSinFechaException();
+	    	}
+	    	
+	    	
+	    	for (int i = 0; i < vt.size(); i++) {
+
+	    		if(vt.get(i).getVuelo().getSalida()!=(null))
+	    		if(vt.get(i).getVuelo().getSalida().equals(fecha)) 
+	    			throw new FechaNoDisponibleException();
+		
+			}
+	    }
+	 
 	 @Override
 		public Tripulante setHorasDeTripulante(Tripulante t) {
 		   	

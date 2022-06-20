@@ -34,7 +34,9 @@ public interface ServicioTripulante {
 	Boolean determinarSiDisponible(List<VueloTripulante> vt,Vuelo vuelo);
 
 	Boolean checkActivo(Vuelo vReg,Vuelo vEnt);
-	
+
+	Vuelo obtenerVueloMasCercano(List<VueloTripulante> vt,Vuelo v);
+
 
 
 
