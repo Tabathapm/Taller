@@ -87,3 +87,9 @@ UPDATE avion
 SET hangar_Id = 0001
 WHERE avion.Id = 1;
 
+-- eliminar columna hangar_id de la tabla avion
+
+ALTER TABLE avion DROP FOREIGN KEY `FK14bpbthfqwdm0joglvniooh3q`;
+
+ALTER TABLE avion
+DROP COLUMN hangar_Id;

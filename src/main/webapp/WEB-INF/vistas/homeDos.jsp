@@ -19,7 +19,8 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Contenido</h1>
+                    <h1 class="mt-4">Bienvenidos al sistema</h1>
+                    <img src="<c:url value="/images/runway_192834344.jpg" />" style="width: 100%">
 
                 </div>
             </main>
