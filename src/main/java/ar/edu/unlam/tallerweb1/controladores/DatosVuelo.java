@@ -4,8 +4,10 @@ public class DatosVuelo {
 
     private String origen;
     private String destino;
-    private String fecha;
-    private String hora;
+    private String fechaSalida;
+    private String horaSalida;
+    private String fechaLlegada;
+    private String horaLlegada;
     private String tipoDeAvion;
     private String piloto;
     private String copiloto;
@@ -29,20 +31,36 @@ public class DatosVuelo {
         this.destino = destino;
     }
 
-    public String getFecha() {
-        return fecha;
+    public String getFechaSalida() {
+        return fechaSalida;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setFechaSalida(String fechaSalida) {
+        this.fechaSalida = fechaSalida;
     }
 
-    public String getHora() {
-        return hora;
+    public String getHoraSalida() {
+        return horaSalida;
     }
 
-    public void setHora(String hora) {
-        this.hora = hora;
+    public void setHoraSalida(String horaSalida) {
+        this.horaSalida = horaSalida;
+    }
+
+    public String getFechaLlegada() {
+        return fechaLlegada;
+    }
+
+    public void setFechaLlegada(String fechaLlegada) {
+        this.fechaLlegada = fechaLlegada;
+    }
+
+    public String getHoraLlegada() {
+        return horaLlegada;
+    }
+
+    public void setHoraLlegada(String horaLlegada) {
+        this.horaLlegada = horaLlegada;
     }
 
     public String getTipoDeAvion() {

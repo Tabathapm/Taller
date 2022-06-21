@@ -21,6 +21,6 @@ public interface RepositorioVuelo {
 	
 	void guardar(Vuelo vuelo);
 
-	List<Locacion> mostrarLocacion();
+
 
 }

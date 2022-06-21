@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import ar.edu.unlam.tallerweb1.modelo.Locacion;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLocacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,11 +25,13 @@ public class ControladorVuelos {
 	
 	private ServicioVuelo servicioVuelo;
 	private ServicioTripulante servicioTripulante;
+    private ServicioLocacion servicioLocacion;
 	
 	@Autowired
-	public ControladorVuelos(ServicioVuelo servicioVuelo,ServicioTripulante servicioTripulante) {
+	public ControladorVuelos(ServicioVuelo servicioVuelo,ServicioTripulante servicioTripulante, ServicioLocacion servicioLocacion) {
 		this.servicioVuelo = servicioVuelo;
 		this.servicioTripulante = servicioTripulante;
+        this.servicioLocacion = servicioLocacion;
 	}
 
     @RequestMapping("/agregar-vuelo")
@@ -36,7 +39,7 @@ public class ControladorVuelos {
 //      --------------------------------
         ModelMap modelo = new ModelMap();
 //      --------------------------------
-        List <Locacion> listaLocaciones = servicioVuelo.mostrarLocaciones();
+        List <Locacion> listaLocaciones = servicioLocacion.mostrarLocaciones();
         List <Tripulante> listaPilotos  = servicioTripulante.mostrarTripulantesTipo("Piloto");
         List <Tripulante> listaCopilotos  = servicioTripulante.mostrarTripulantesTipo("Copiloto");
         List <Tripulante> listaTripulantesDeCabina  = servicioTripulante.mostrarTripulantesTipo("tripulante de cabina");
@@ -57,7 +60,12 @@ public class ControladorVuelos {
         ModelMap model = new ModelMap();
         Vuelo vuelo = new Vuelo();
 
-        model.put("verQueOnda", datosVuelo);
+        Long origenId = Long.parseLong(datosVuelo.getOrigen());
+//        Long origenId = Long.valueOf(datosVuelo.getOrigen()).longValue();
+
+        Locacion origen = servicioLocacion.buscarPorId(origenId);
+
+        model.put("verQueOnda", origen);
 
 //        quiero ver que recibe 'datosVuelo'
         return new ModelAndView("verDatosVuelos", model);

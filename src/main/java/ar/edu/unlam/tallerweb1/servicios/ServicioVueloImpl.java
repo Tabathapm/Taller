@@ -188,11 +188,6 @@ public class ServicioVueloImpl implements ServicioVuelo {
 	}
 
 	@Override
-	public List<Locacion> mostrarLocaciones() {
-		return repositorioVuelo.mostrarLocacion();
-	}
-
-	@Override
 	public void addVuelo(Vuelo vuelo) {
 		repositorioVuelo.guardar(vuelo);
 	}

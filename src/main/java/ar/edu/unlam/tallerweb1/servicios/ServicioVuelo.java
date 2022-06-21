@@ -28,6 +28,5 @@ public interface ServicioVuelo {
 
 	Vuelo setEstimadoDeVuelo(Vuelo vuelo);
 
-	List<Locacion> mostrarLocaciones();
 	void addVuelo(Vuelo vuelo);
 }
