@@ -37,6 +37,7 @@ public class RepositorioVueloTest extends SpringTest {
     	Tripulante tripC = new Tripulante();
     	
     	VueloTripulante vtA = new VueloTripulante();
+    	VueloTripulante vtB = new VueloTripulante();
     	VueloTripulante vtC = new VueloTripulante();
     	
     	
@@ -46,8 +47,11 @@ public class RepositorioVueloTest extends SpringTest {
     	
     	vtA.setTripulante(tripA);
     	vtA.setVuelo(vueloA);
+    	
     	vtC.setTripulante(tripC);
     	vtC.setVuelo(vueloC);
+    	
+    	vtB.setVuelo(vueloB);
     	
 
     	session().save(vueloA);
@@ -58,12 +62,17 @@ public class RepositorioVueloTest extends SpringTest {
     	session().save(tripC);
     	
     	session().save(vtA);
+    	session().save(vtB);
     	session().save(vtC);
     	
     	List <Vuelo> vuelosEncontrados = repositorioVuelo.listarTodosLosVuelosSinTripulacion();
+    	List <VueloTripulante> vuelosEncontrados2 = repositorioVuelo.obtenerVuelosSinTripulacion();
     	
     	//assertThat(vuelosEncontrados).isNotEmpty();
-    	assertThat(vuelosEncontrados.size()).isEqualTo(1);
+    	assertThat(vuelosEncontrados2.size()).isEqualTo(1);
+    //	assertThat(vuelosEncontrados.size()).isEqualTo(1);
+    	
+    	assertThat(vuelosEncontrados2.get(0).getVuelo().getNombre()).isEqualTo("VueloA");
     	 	
     }
     

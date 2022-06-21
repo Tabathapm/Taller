@@ -123,7 +123,7 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 		 
 		 if(vuelos.size()==0) {
 			 
-			 return vuelos; //tirar excepcion? noooo
+			 return vuelos; 
 			 
 		 }
 
@@ -141,6 +141,19 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 		 return vuelosSinTripulacion;
 		 
 	}
+	
+	 @Override
+	  	public List<VueloTripulante> obtenerVuelosSinTripulacion() { //revisar
+	  	   
+	         Criterion rest1 = Restrictions.like("vt.tripulante",null);
+	         
+	         List<VueloTripulante> result=getSession().createCriteria(VueloTripulante.class,"vt")
+	      		   				   .createAlias("tripulante", "t")
+	      		   				   .createAlias("vuelo", "v")
+	                               .add(rest1).list();
+	         
+	         return result;
+	  	}
 
 
 	/*

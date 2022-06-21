@@ -49,7 +49,7 @@
                             <td><p>${tripulantes.estado}</p></td>
                            
                             
-                            <td><a href="vueloDescripcion?idVuelo=${tripulantes.id}">ver</a></td> 
+                            <td><a href="asignarTripulante?tripulanteId=${tripulantes.id}">asignar</a></td> 
                                         
                         </tr>
                         </c:forEach>

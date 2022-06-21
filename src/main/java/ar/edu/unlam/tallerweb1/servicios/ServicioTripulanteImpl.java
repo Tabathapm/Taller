@@ -63,7 +63,7 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
     @Override
     public List<Tripulante> tripulacionAsignada(Vuelo vuelo) {
     	return repositorioTripulante.tripulacionAsignada(vuelo); 
-    	}
+    }
 
     @Override
     public VueloTripulante asignarUnTripulanteAvuelo(Vuelo v, Tripulante tripulante){
