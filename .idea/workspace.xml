@@ -9,9 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0710c379-e97b-4a16-8bff-50d42a38f420" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="524c6bfb-5b4d-4e0c-b0b8-7415c4263fcd" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -262,6 +260,14 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.All in proyecto-limpio-spring" />
+      <item itemvalue="JUnit.RepositorioHangarTest.testQueAsignaAvionAHangar" />
+      <item itemvalue="JUnit.RepositorioHangarTest.testQueConsultaHangares" />
+      <item itemvalue="JUnit.RepositorioHangarTest.testQueObtieneAvionesSinAsignarAHangares" />
+      <item itemvalue="JUnit.RepositorioHangarTest.testQueObtieneTodosLosHangaresDisponibles" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.54" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.RepositorioHangarTest.testQueObtieneTodosLosHangaresDisponibles" />
