@@ -18,9 +18,17 @@ public class Hangar {
 	    private String Nombre;
 	    private Boolean Ocupado;
 
+	public Hangar() {
+	}
 
-	    
-	    public Long getId() {
+	public Hangar(Long id, Avion avion, String nombre, Boolean ocupado) {
+		Id = id;
+		this.avion = avion;
+		Nombre = nombre;
+		Ocupado = ocupado;
+	}
+
+	public Long getId() {
 			return Id;
 		}
 

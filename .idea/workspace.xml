@@ -10,9 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0710c379-e97b-4a16-8bff-50d42a38f420" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ar/edu/unlam/tallerweb1/repositorios/RepositorioHangarTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ar/edu/unlam/tallerweb1/repositorios/RepositorioHangarTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/modelo/Hangar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/modelo/Hangar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ar/edu/unlam/tallerweb1/servicios/ServicioHangarTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ar/edu/unlam/tallerweb1/servicios/ServicioHangarTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +103,7 @@
       <recent name="ar.edu.unlam.tallerweb1.servicios" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RepositorioHangarTest.testQueTraeTodosLosHangares">
+  <component name="RunManager" selected="JUnit.ServicioHangarTest.testQueTraeHangaresVacios">
     <configuration name="ControladorHangarTest.testQueAsignaHangaresVacios" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="proyecto-limpio-spring" />
       <extension name="coverage">
@@ -152,22 +152,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RepositorioHangarTest.testQueObtieneTodosLosHangaresDisponibles" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="proyecto-limpio-spring" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ar.edu.unlam.tallerweb1.repositorios.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ar.edu.unlam.tallerweb1.repositorios" />
-      <option name="MAIN_CLASS_NAME" value="ar.edu.unlam.tallerweb1.repositorios.RepositorioHangarTest" />
-      <option name="METHOD_NAME" value="testQueObtieneTodosLosHangaresDisponibles" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="RepositorioHangarTest.testQueTraeTodosLosHangares" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="proyecto-limpio-spring" />
       <extension name="coverage">
@@ -179,6 +163,22 @@
       <option name="PACKAGE_NAME" value="ar.edu.unlam.tallerweb1.repositorios" />
       <option name="MAIN_CLASS_NAME" value="ar.edu.unlam.tallerweb1.repositorios.RepositorioHangarTest" />
       <option name="METHOD_NAME" value="testQueTraeTodosLosHangares" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServicioHangarTest.testQueTraeHangaresVacios" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="proyecto-limpio-spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ar.edu.unlam.tallerweb1.servicios.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ar.edu.unlam.tallerweb1.servicios" />
+      <option name="MAIN_CLASS_NAME" value="ar.edu.unlam.tallerweb1.servicios.ServicioHangarTest" />
+      <option name="METHOD_NAME" value="testQueTraeHangaresVacios" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -276,17 +276,17 @@
       <item itemvalue="JUnit.ControladorHangarTest.testQueAsignaHangaresVacios" />
       <item itemvalue="JUnit.ControladorHangarTest.testQueVaALaVistaDeHangares" />
       <item itemvalue="JUnit.RepositorioHangarTest.testQueAsignaUnAvionAHangar" />
-      <item itemvalue="JUnit.RepositorioHangarTest.testQueObtieneTodosLosHangaresDisponibles" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.54" />
       <item itemvalue="JUnit.RepositorioHangarTest.testQueTraeTodosLosHangares" />
+      <item itemvalue="JUnit.ServicioHangarTest.testQueTraeHangaresVacios" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ServicioHangarTest.testQueTraeHangaresVacios" />
         <item itemvalue="JUnit.RepositorioHangarTest.testQueTraeTodosLosHangares" />
         <item itemvalue="JUnit.ControladorHangarTest.testQueAsignaHangaresVacios" />
         <item itemvalue="JUnit.ControladorHangarTest.testQueVaALaVistaDeHangares" />
         <item itemvalue="JUnit.RepositorioHangarTest.testQueAsignaUnAvionAHangar" />
-        <item itemvalue="JUnit.RepositorioHangarTest.testQueObtieneTodosLosHangaresDisponibles" />
       </list>
     </recent_temporary>
   </component>
@@ -333,7 +333,7 @@
       <workItem from="1654100590919" duration="710000" />
       <workItem from="1655414479767" duration="3420000" />
       <workItem from="1655488822981" duration="4693000" />
-      <workItem from="1655866305132" duration="2853000" />
+      <workItem from="1655866305132" duration="7328000" />
     </task>
     <servers />
   </component>

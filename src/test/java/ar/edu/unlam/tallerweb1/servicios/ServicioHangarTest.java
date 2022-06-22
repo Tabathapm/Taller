@@ -1,4 +1,5 @@
 package ar.edu.unlam.tallerweb1.servicios;
+import ar.edu.unlam.tallerweb1.modelo.Avion;
 import ar.edu.unlam.tallerweb1.modelo.Hangar;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioHangar;
 import org.junit.Test;
@@ -50,6 +51,11 @@ public class ServicioHangarTest {
     @Test
     public void testQueTraeHangaresVacios(){
 
+        //when
+        when(servicioHangar.traerHangaresVacios()).thenReturn(Arrays.asList(new Hangar(10L,null,"hangar1",false)));
+
+        //then
+        assertThat(servicioHangar.traerHangaresVacios().size()).isEqualTo(1);
 
 
     }
