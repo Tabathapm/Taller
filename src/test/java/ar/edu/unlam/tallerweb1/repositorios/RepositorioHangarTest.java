@@ -167,10 +167,53 @@ public class RepositorioHangarTest extends SpringTest {
         repositorioHangar.asignarAvionAHangar(avion.getId(),hangar.getId());
 
         //then
-        
 
+    }
 
+    @Test
+    @Transactional
+    @Rollback
+    public void testQueTraeTodosLosHangares(){
 
+        givenSeInsertanCuatroHangares();
+        whenSeObtienenTodosLosHangares();
+        thenTraerTodosLosHangaresEsExitoso();
+
+    }
+
+    private void thenTraerTodosLosHangaresEsExitoso() {
+        assertThat(repositorioHangar.obtenerTodosLosHangares().size()).isEqualTo(4);
+    }
+
+    private void whenSeObtienenTodosLosHangares() {
+         repositorioHangar.obtenerTodosLosHangares();
+    }
+
+    private void givenSeInsertanCuatroHangares() {
+        Hangar hangar = new Hangar();
+        hangar.setId(6L);
+        hangar.setOcupado(false);
+        hangar.setAvion(null);
+
+        Hangar hangar1 = new Hangar();
+        hangar1.setId(8L);
+        hangar1.setOcupado(true);
+        hangar1.setAvion(new Avion());
+
+        Hangar hangar2 = new Hangar();
+        hangar2.setId(80L);
+        hangar2.setOcupado(false);
+        hangar2.setAvion(null);
+
+        Hangar hangar3 = new Hangar();
+        hangar3.setId(9L);
+        hangar3.setOcupado(true);
+        hangar3.setAvion(new Avion());
+
+        session().save(hangar);
+        session().save(hangar1);
+        session().save(hangar2);
+        session().save(hangar3);
     }
 
 
