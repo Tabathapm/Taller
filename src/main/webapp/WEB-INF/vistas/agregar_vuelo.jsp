@@ -35,7 +35,7 @@
                                     <div class="col-sm-3">
                                         <label>Origen</label>
                                         <br>
-                                        <select class=""  id="selectOrigen">
+                                        <select name="origen"  id="selectOrigen">
                                             <option selected disabled>--- SELECCIONE ---</option>
                                             <c:forEach items="${locaciones}" var="locacion">
                                                 <option value="${locacion.id}">${locacion.ciudad}, ${locacion.pais}</option>
@@ -51,10 +51,10 @@
                                     <div class="col-sm">
                                         <label>Destino</label>
                                         <br>
-                                        <select class=""  id="selectDestino">
+                                        <select name="destino"  id="selectDestino">
                                             <option selected disabled>--- SELECCIONE ---</option>
                                             <c:forEach items="${locaciones}" var="locacion">
-                                                <option value="${locacion.ciudad} ${locacion.pais}">${locacion.ciudad}, ${locacion.pais}</option>
+                                                <option value="${locacion.id}">${locacion.ciudad}, ${locacion.pais}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -67,12 +67,12 @@
                                                 <legend class="float-none w-auto p-2">Salida</legend>
                                                 <div class="col-sm">
                                                     <label for="fechaVueloSalida">Fecha</label>
-                                                    <input type="date" id="fechaVueloSalida" class="form-control">
+                                                    <input name="fechaSalida" type="date" id="fechaVueloSalida" class="form-control">
                                                 </div>
                                                 <div class="col-sm">
                                                     <label for="horaVueloSalida">Hora</label>
                                                         <%--                                            <input type="text" id="horaVuelo" class="form-control">--%>
-                                                    <input type="time" id="horaVueloSalida" class="form-control">
+                                                    <input name="horaSalida" type="time" id="horaVueloSalida" class="form-control">
                                                 </div>
                                             </fieldset>
                                         </div>
@@ -82,12 +82,12 @@
                                                 <legend class="float-none w-auto p-2">Llegada</legend>
                                                 <div class="col-sm">
                                                     <label for="fechaVueloLlegada">Fecha</label>
-                                                    <input type="date" id="fechaVueloLlegada" class="form-control">
+                                                    <input name="fechaLlegada" type="date" id="fechaVueloLlegada" class="form-control">
                                                 </div>
                                                 <div class="col-sm">
                                                     <label for="horaVueloLlegada">Hora</label>
                                                         <%--                                            <input type="text" id="horaVuelo" class="form-control">--%>
-                                                    <input type="time" id="horaVueloLlegada" class="form-control">
+                                                    <input name="horaLlegada" type="time" id="horaVueloLlegada" class="form-control">
                                                 </div>
                                             </fieldset>
                                         </div>
@@ -98,12 +98,12 @@
                                         <h5>Avi&oacute;n</h5>
 
                                         <div class="form-check">
-                                            <input class="form-check-input tipoAvion" type="checkbox" name="tipoAvionComercial" value="comercial" id="comercial">
+                                            <input class="form-check-input tipoAvion" type="checkbox" name="tipoDeAvion" value="comercial" id="comercial">
                                             <label class="form-check-label" for="comercial">Comercial</label>
                                         </div>
 
                                         <div class="form-check">
-                                            <input class="form-check-input tipoAvion" type="checkbox" name="tipoAvionCarga" value="carga" id="carga" >
+                                            <input class="form-check-input tipoAvion" type="checkbox" name="tipoDeAvion" value="carga" id="carga" >
                                             <label class="form-check-label" for="carga">Carga</label>
                                         </div>
                                     </div>
@@ -116,7 +116,7 @@
                                         <div class="col-sm-3" id="campoPiloto">
                                             <label>Piloto</label>
                                             <br>
-                                            <select class=""  id="selectPiloto">
+                                            <select name="piloto" class=""  id="selectPiloto">
                                                 <option selected disabled>--- SELECCIONE ---</option>
                                                 <c:forEach items="${pilotos}" var="piloto">
                                                     <option value="${piloto.id}">${piloto.nombre} ${piloto.apellido}</option>
@@ -127,7 +127,7 @@
                                         <div class="col-sm-3" id="campoIngDeVuelo">
                                             <label>Ing. de vuelo</label>
                                             <br>
-                                            <select class="" id="selectIngDeVuelo">
+                                            <select name="ingDeVuelo" class="" id="selectIngDeVuelo">
                                                 <option selected disabled>--- SELECCIONE ---</option>
                                                 <c:forEach items="${ingsDeVuelo}" var="ingDeVuelo">
                                                     <option value="${ingDeVuelo.id}">${ingDeVuelo.nombre} ${ingDeVuelo.apellido}</option>
@@ -140,7 +140,7 @@
                                         <div class="col-sm-3" id="campoCopiloto">
                                             <label>Copiloto</label>
                                             <br>
-                                            <select class=""  id="selectCopiloto">
+                                            <select name="copiloto" class=""  id="selectCopiloto">
                                                 <option selected disabled>--- SELECCIONE ---</option>
                                                 <c:forEach items="${copilotos}" var="copiloto">
                                                     <option value="${copiloto.id}">${copiloto.nombre} ${copiloto.apellido}</option>
@@ -152,7 +152,7 @@
                                             <label>Tripulantes de cabina</label>
                                             <br>
 <%--                                            selectpicker: devuelve un array con las opciones marcadas   --%>
-                                            <select class="selectpicker" multiple data-live-search="true">
+                                            <select name="tripulantes" class="selectpicker" multiple data-live-search="true">
                                                 <c:forEach items="${tripulantes}" var="tripulante">
                                                     <option value="${tripulante.id}">${tripulante.nombre} ${tripulante.apellido}</option>
                                                 </c:forEach>

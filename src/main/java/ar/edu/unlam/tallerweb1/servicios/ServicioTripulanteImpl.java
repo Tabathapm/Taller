@@ -165,4 +165,9 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 	public List<Tripulante> mostrarTripulantesTipo(String titulo) {
 		return repositorioTripulante.mostrarTripulacion(titulo);
 	}
+
+	@Override
+	public Tripulante traerTripulante(Long id){
+		return repositorioTripulante.traerTalTripulante(id);
+	}
 }

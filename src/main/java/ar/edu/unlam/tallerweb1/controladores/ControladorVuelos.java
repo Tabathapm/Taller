@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.lang.reflect.Array;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -61,11 +62,22 @@ public class ControladorVuelos {
         Vuelo vuelo = new Vuelo();
 
         Long origenId = Long.parseLong(datosVuelo.getOrigen());
-//        Long origenId = Long.valueOf(datosVuelo.getOrigen()).longValue();
+        Long destinoId = Long.parseLong(datosVuelo.getDestino());
+
+        Long idPiloto = Long.parseLong(datosVuelo.getPiloto());
+        Long idCopiloto = Long.parseLong(datosVuelo.getCopiloto());
+
+        String[] idTripulantes = {datosVuelo.getTripulantes()};
+        Integer idTripulante;
+
+        for (String i: idTripulantes) {
+            idTripulante = Integer.parseInt(i);
+        }
+
 
         Locacion origen = servicioLocacion.buscarPorId(origenId);
 
-        model.put("verQueOnda", origen);
+        model.put("verQueOnda", idTripulantes);
 
 //        quiero ver que recibe 'datosVuelo'
         return new ModelAndView("verDatosVuelos", model);

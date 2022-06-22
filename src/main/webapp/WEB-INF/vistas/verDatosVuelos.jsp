@@ -8,6 +8,7 @@
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <%--	Icono	--%>
         <link rel="icon" type="image/png" href="<c:url value="/images/viajar.png"/>">
+        <script type="text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
     </head>
     <body class="sb-nav-fixed">
         <%@include file="partial/navBar.jsp"%>
@@ -19,9 +20,57 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-<%--                        <c:forEach items="${verQueOnda}" var="ver">--%>
-                            <p>${verQueOnda}</p>
-<%--                        </c:forEach>--%>
+
+<%--                        <div id = "grafico" style="width: 700px; height: 500px;"></div>--%>
+
+
+                        <c:forEach items="${verQueOnda}" var="ver">
+<%--                            <p>${verQueOnda.chars()}</p>--%>
+                            <p>${ver}</p>
+<%--                            <p>${verQueOnda}</p>--%>
+<%--                            <p>${verQueOnda}</p>--%>
+                        </c:forEach>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <script>
+                            <%--google.charts.load('current', {'packages':['corechart']});--%>
+                            <%--google.charts.setOnLoadCallback(drawChart);--%>
+                            <%--function drawChart() {--%>
+                            <%--    let data = google.visualization.arrayToDataTable([--%>
+                            <%--        ['cabina', 'cantidad'],--%>
+                            <%--        ['${verQueOnda.ciudad}', parseInt('${verQueOnda.id}')],--%>
+                            <%--    ]);--%>
+                            <%--        let options = {--%>
+                            <%--            title: 'Ver que onda'--%>
+                            <%--        };--%>
+                            <%--        let chart = new google.visualization.PieChart(document.getElementById('grafico'));--%>
+                            <%--        chart.draw(data, options);--%>
+                            <%--    }--%>
+                        </script>
                     </div>
                 </main>
             </div>

@@ -242,7 +242,14 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
         return tripulantes;
     }
 
-	
+	@Override
+    public Tripulante traerTalTripulante(Long id){
+        Tripulante tripulanteEncontrado = (Tripulante) sessionFactory.getCurrentSession().createCriteria(Tripulante.class)
+                .add(Restrictions.eq("Id", id))
+                .uniqueResult();
+
+        return tripulanteEncontrado;
+    }
 
 	
 }

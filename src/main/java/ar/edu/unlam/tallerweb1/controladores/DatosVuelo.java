@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.lang.reflect.Array;
+
 public class DatosVuelo {
 
     private String origen;

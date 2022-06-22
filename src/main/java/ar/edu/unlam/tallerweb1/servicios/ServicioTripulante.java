@@ -34,6 +34,8 @@ public interface ServicioTripulante {
 
     List<Tripulante> mostrarTripulantesTipo(String titulo);
 
+    Tripulante traerTripulante(Long id);
+
 
 	
 

@@ -31,6 +31,7 @@ public interface RepositorioTripulante {
 
 		List<Tripulante> mostrarTripulacion(String titulo);
 
+		Tripulante traerTalTripulante(Long id);
 
 	}
 
