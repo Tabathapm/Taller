@@ -4,6 +4,7 @@ import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.Locacion;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
+import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 
 public interface RepositorioVuelo {
 
@@ -20,4 +21,6 @@ public interface RepositorioVuelo {
 	List<Vuelo> listarTodosLosVuelosSinTripulacion();
 	
 	void guardar(Vuelo vuelo);
+
+	List<VueloTripulante> obtenerVuelosSinTripulacion();
 }

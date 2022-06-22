@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
-import ar.edu.unlam.tallerweb1.excepciones.FechaYaOcupadaException;
+import ar.edu.unlam.tallerweb1.excepciones.FechaNoDisponibleException;
+import ar.edu.unlam.tallerweb1.excepciones.TripulanteNoDisponibleParaEsaFechaException;
 import ar.edu.unlam.tallerweb1.excepciones.TripulanteSinVueloException;
 import ar.edu.unlam.tallerweb1.modelo.Avion;
 import ar.edu.unlam.tallerweb1.modelo.Locacion;
@@ -39,24 +40,148 @@ public class ServicioTripulanteTest {
     private ServicioTripulanteImpl servicioTripulante = new ServicioTripulanteImpl(repositorioTripulante,repositorioVuelo);
     
     
-    
     @Test
-    public void queSePuedaAsignarUnTripulanteAUnVuelo() {
+    public void obtenerVueloMasCercanoTest() {
     	
-    	Vuelo v1 = givenVueloConFecha(nv1);
-    	Tripulante t1 = givenTripulante(nt1);
+    	Vuelo v1 = givenVueloCompletoConstructor("25-05-2022 18:00","25-05-2022 21:00");
     	
-    	whenAsignoTripulanteAVuelo(v1,t1);
+    	Vuelo v2 = givenVueloCompletoConstructor("22-02-2022 15:00","22-02-2022 16:00");
+    	Vuelo v3 = givenVueloCompletoConstructor("23-06-2022 15:00","23-06-2022 16:00");
+    	Vuelo v4 = givenVueloCompletoConstructor("24-05-2022 15:00","24-05-2022 16:00");
+    	Vuelo v5 = givenVueloCompletoConstructor("25-06-2022 15:00","25-06-2022 16:00");
+    	Vuelo v6 = givenVueloCompletoConstructor("26-07-2022 15:00","26-07-2022 16:00");
+    	Vuelo v7 = givenVueloCompletoConstructor("27-06-2022 15:00","27-06-2022 16:00");
+    	Vuelo v8 = givenVueloCompletoConstructor("30-08-2022 15:00","30-08-2022 16:00");
+		Tripulante t1 = givenTripulante("t1");
+		VueloTripulante vt1 = givenVT(v2,t1);
+		VueloTripulante vt2 = givenVT(v3,t1);
+		VueloTripulante vt3 = givenVT(v4,t1);
+		VueloTripulante vt4 = givenVT(v5,t1);
+		VueloTripulante vt5 = givenVT(v6,t1);
+		VueloTripulante vt6 = givenVT(v7,t1);
+		VueloTripulante vt7 = givenVT(v8,t1);
+		List <VueloTripulante> vt = new ArrayList<>();
+		vt.add(vt1);
+		vt.add(vt2);
+		vt.add(vt3);
+		vt.add(vt4);
+		vt.add(vt5);
+		vt.add(vt6);
+		vt.add(vt7);
+
+    	Vuelo vE=whenObtengoElVuelo(vt,v1);
   	
-    	thenSeAsignoCorrectamente(v1,t1);
+    	thenSeObtuvoElVueloCorrecto(vE,v1);
 
     }
     
-    @Test
+    
+    private void thenSeObtuvoElVueloCorrecto(Vuelo vE,Vuelo v1) {
+//    	System.out.println(v1.getSalida());
+//    	System.out.println(vE.getSalida());
+		assertThat(v1.getSalida().after(vE.getSalida())).isTrue();
+		
+	}
+
+
+	private Vuelo whenObtengoElVuelo(List<VueloTripulante> vt,Vuelo v1) {
+
+		return servicioTripulante.obtenerVueloMasCercano(vt, v1);
+	}
+
+
+	@Test
+    public void queSePuedaAsignarUnTripulanteAUnVueloSinOtrosVuelos() {
+    	
+    	Vuelo v1 = givenVueloCompletoConstructor("20-06-2022 15:00","20-06-2022 16:00");
+		Vuelo v2 = givenVueloCompletoConstructor("18-06-2022 13:00","18-06-2022 14:00");
+		Tripulante t1 = givenTripulante("t1");
+
+		when(repositorioTripulante.traerTripulante(t1.getId())).thenReturn(t1);
+		when(repositorioVuelo.consultarVuelo(v1.getId())).thenReturn(v1);
+		
+    	VueloTripulante vt=whenAsignoTripulanteAVuelo(v1.getId(),t1.getId());
+  	
+    	thenSeAsignoCorrectamente(v1,t1,vt);
+
+    }
+    
+    @Test(expected = FechaNoDisponibleException.class)
+    public void queSeObtengaFechaNoDisponibleExceptionParaFechaRepetida() {
+    	
+    	Vuelo v1 = givenVueloCompletoConstructor("20-06-2022 15:00","20-06-2022 16:00");
+		Tripulante t1 = givenTripulante("t1");
+		VueloTripulante vt1 = givenVT(v1,t1);
+		List <VueloTripulante> vt = new ArrayList<>();
+		vt.add(vt1);
+		
+		when(repositorioTripulante.traerTripulante(t1.getId())).thenReturn(t1);
+		when(repositorioVuelo.consultarVuelo(v1.getId())).thenReturn(v1);
+
+		when(repositorioTripulante.obtenerVuelosDeTripulante(t1)).thenReturn(vt);
+
+    	VueloTripulante vtO=whenAsignoTripulanteAVuelo(v1.getId(),t1.getId());
+  	
+    	thenSeAsignoCorrectamente(v1,t1,vtO);
+
+    }
+    
+    @Test(expected = TripulanteNoDisponibleParaEsaFechaException.class)
+    public void queNoSePuedaAsignarUnTripulanteAUnVueloConOtrosVuelos() {
+    	
+    	// +5 horas descanso
+		// a partir de 21
+    	Vuelo v1 = givenVueloCompletoConstructor("20-06-2022 13:00","20-06-2022 16:00");
+		Vuelo v2 = givenVueloCompletoConstructor("18-06-2022 13:00","18-06-2022 16:00");
+		Vuelo v3 = givenVueloCompletoConstructor("20-06-2022 20:00","20-06-2022 23:00"); 
+		Tripulante t1 = givenTripulante("t1");
+		VueloTripulante vt1 = givenVT(v1,t1);
+		VueloTripulante vt2 = givenVT(v2,t1);
+		List <VueloTripulante> vt = new ArrayList<>();
+		vt.add(vt1);
+		vt.add(vt2);
+		
+		when(repositorioTripulante.obtenerVuelosDeTripulante(t1)).thenReturn(vt);
+		when(repositorioTripulante.traerTripulante(t1.getId())).thenReturn(t1);
+		when(repositorioVuelo.consultarVuelo(v3.getId())).thenReturn(v3);
+		
+		System.out.println(v3.getSalida());
+
+    	VueloTripulante vtO=whenAsignoTripulanteAVuelo(v3.getId(),t1.getId());
+    	
+    	thenNoSeAsignoCorrectamente(v3,t1,vtO);
+    	
+    }
+
+    
+    private void thenNoSeAsignoCorrectamente(Vuelo v1, Tripulante t1, VueloTripulante vtO) {
+    	
+    	
+    	assertThat(v1).isNotNull();
+		assertThat(t1).isNotNull();
+		assertThat(vtO).isNotNull();
+		
+		verify(repositorioTripulante,times(0)).asignarUnTripulanteAvuelo(v1,t1);
+		
+	}
+
+	private void thenSeAsignoCorrectamente(Vuelo v1, Tripulante t1,VueloTripulante vt) {
+		assertThat(v1).isNotNull();
+		assertThat(t1).isNotNull();
+		
+		verify(repositorioTripulante,times(1)).asignarUnTripulanteAvuelo(v1,t1);
+	}
+
+	private VueloTripulante whenAsignoTripulanteAVuelo(Long v1, Long t1) {
+		return servicioTripulante.asignarUnTripulanteAvuelo(v1, t1);
+		
+	}
+
+	@Test
 	public void queSeObtengaElPrimerVueloDelTripulante() {
 		
-		Vuelo v1 = givenVueloCompletoB();
-		Vuelo v2 = givenVueloCompleto();
+    	Vuelo v1 = givenVueloCompletoConstructor("20-06-2022 15:00","20-06-2022 16:00");
+		Vuelo v2 = givenVueloCompletoConstructor("18-06-2022 13:00","18-06-2022 14:00");
 		Tripulante t1 = givenTripulante("t1");
 		VueloTripulante vt1 = givenVT(v1,t1);
 		VueloTripulante vt2 = givenVT(v2,t1);
@@ -82,7 +207,7 @@ public class ServicioTripulanteTest {
 		
 		
 	}
-    
+   /* 
     @Test
 	 public void queNoSePuedaAsignarUnTripulanteAUnVueloEnLaMismaFecha() { //No se puede resolver, requiere repo funcional 
 	    																	// usar when()
@@ -100,12 +225,12 @@ public class ServicioTripulanteTest {
 	    	
 	
 	    }
-    
+    */
     @Test
 	public void queSeCalculenCorrectamenteLasHorasDeActivoYDescansoDeUnTripulante() { 
     	
-	    	Vuelo v1 = givenVueloCompletoB();
-			Vuelo v2 = givenVueloCompleto();
+	    	Vuelo v1 = givenVueloCompletoConstructor("20-06-2022 15:00","20-06-2022 16:00");
+			Vuelo v2 = givenVueloCompletoConstructor("18-06-2022 13:00","18-06-2022 14:00");
 			Tripulante t1 = givenTripulante("t1");
 			VueloTripulante vt1 = givenVT(v1,t1);
 			VueloTripulante vt2 = givenVT(v2,t1);
@@ -124,7 +249,46 @@ public class ServicioTripulanteTest {
 	
 	    }
     
-    private void thenSeCalculo(Tripulante t) {
+    
+    @Test
+	public void queCheckActivoRetorneTrueTest() { 
+    	
+	    	Vuelo vRegistrado = givenVueloCompletoConstructor("20-06-2022 15:00","20-06-2022 17:00");
+			Vuelo vEntrante = givenVueloCompletoConstructor("21-06-2022 17:00","21-06-2022 20:00");
+			
+	    	Boolean resultado = whenCheckActivo(vRegistrado,vEntrante);
+	    	
+	    	thenSeObtuvoTrue(resultado);
+	    	
+	    }
+    
+    @Test
+   	public void queCheckActivoRetorneFalseTest() { 
+       	
+   	    	Vuelo vRegistrado = givenVueloCompletoConstructor("20-06-2022 13:00","20-06-2022 16:00"); // +5 horas descanso
+   			Vuelo vEntrante = givenVueloCompletoConstructor("20-06-2022 20:00","20-06-2022 24:00"); // a partir de 21
+   			
+   	    	Boolean resultado = whenCheckActivo(vRegistrado,vEntrante);
+   	    	
+   	    	thenSeObtuvoFalse(resultado);
+   	    	
+   	    }
+    
+	private void thenSeObtuvoFalse(Boolean resultado) {
+    	assertThat(resultado).isFalse();
+		
+	}
+
+	private void thenSeObtuvoTrue(Boolean resultado) {
+		assertThat(resultado).isTrue();
+		
+	}
+
+	private Boolean whenCheckActivo(Vuelo v1, Vuelo v2) {
+		return servicioTripulante.checkActivo(v1,v2);
+	}
+
+	private void thenSeCalculo(Tripulante t) {
 		assertThat(t.getHorasActivo()).isNotNull();
 		assertThat(t.getHorasDescanso()).isNotNull();
 		
@@ -133,24 +297,9 @@ public class ServicioTripulanteTest {
 	}
 
 	private Tripulante whenCalculoLasHoras(Tripulante t1) {
-		return servicioTripulante.setHorasActivoDeTripulante(t1);
+		return servicioTripulante.setHorasDeTripulante(t1);
 		
 	}
-
-	private VueloTripulante whenAsignoTripulanteAVuelo(Vuelo v, Tripulante t) {
-		return servicioTripulante.asignarUnTripulanteAvuelo(v, t);
-		
-	}
-
-	private void thenSeAsignoCorrectamente(Vuelo v,Tripulante t) {
-    	
-    	assertThat(t).isNotNull();
-    	assertThat(v).isNotNull();
-    	
-    	verify(repositorioTripulante,times(1)).asignarUnTripulanteAvuelo(v,t);
-    	
-    }
-	
 
 	private void thenSeObtieneElVuelo(Vuelo v1,Vuelo v2) {
 		assertThat(v1).isNotNull();
@@ -227,7 +376,7 @@ public class ServicioTripulanteTest {
 		return v;
 	}
 	
-	private Vuelo givenVueloCompleto() {
+	private Vuelo givenVueloCompletoConstructor(String date1,String date2) {
 		Vuelo v = new Vuelo();
 		Date salida = new Date();
 		Date llegada = new Date();
@@ -239,40 +388,8 @@ public class ServicioTripulanteTest {
 		
 		
         try {
-			salida=formato.parse("18-06-2022 13:00");
-			llegada=formato.parse("18-06-2022 14:00");
-	
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-        
-        destino.setCoordenadas("iwiwo");
-		origen.setCoordenadas("owowo");
-    	v.setId(new Random().nextLong());
-    	v.setSalida(salida);
-    	v.setLlegada(llegada);
-    	v.setDestino(destino);
-    	v.setOrigen(origen);
-    	v.setAvion(avion);
-
-    	
-		return v;
-	}
-	
-	private Vuelo givenVueloCompletoB() {
-		Vuelo v = new Vuelo();
-		Date salida = new Date();
-		Date llegada = new Date();
-		Locacion destino = new Locacion();
-		Locacion origen = new Locacion();
-		Avion avion = new Avion();
-		SimpleDateFormat formato = new SimpleDateFormat ("dd-MM-yyyy HH:mm");
-		
-		
-		
-        try {
-			salida=formato.parse("05-05-2023 15:55");
-			llegada=formato.parse("05-05-2023 16:00");
+			salida=formato.parse(date1);
+			llegada=formato.parse(date2);
 	
 		} catch (ParseException e) {
 			e.printStackTrace();

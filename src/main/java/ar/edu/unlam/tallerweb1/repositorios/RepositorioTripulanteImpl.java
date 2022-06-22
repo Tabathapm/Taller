@@ -109,7 +109,7 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
                 .add(Restrictions.eq("vt.vuelo",vuelo)).list();
     }
  */
-   @Override
+    @Override
     public VueloTripulante asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante unTripulante) {
             
         VueloTripulante vt = new VueloTripulante ();
@@ -123,8 +123,9 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
 
     }
    
-   @Override
-	public List<VueloTripulante> obtenerVuelosDeTripulante(Tripulante tripulante) {
+   
+       @Override
+   	   public List<VueloTripulante> obtenerVuelosDeTripulante(Tripulante tripulante) {
 	   
 	   Long id = tripulante.getId();
 	   
@@ -137,8 +138,6 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
        
        return result;
 	}
-   
-   
    
     /*
      * 
@@ -157,26 +156,6 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
      
        return r;
 	}
-    @Override
-    public void asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante unTripulante) {
-    	
-    	
-       Tripulante tr = (Tripulante) sessionFactory.getCurrentSession().createCriteria(Tripulante.class)
-               .add(Restrictions.eq("id", unTripulante.getId())).uniqueResult();
-        tr.setVuelo(vuelo);
-        sessionFactory.getCurrentSession().update(tr);
-        
-		Criterion crit1 = Restrictions.eq("vuelo.id", unTripulante.getId());
-				
-				
-	  VueloTripulante vt = (VueloTripulante) getSession().createCriteria(VueloTripulante.class)
-				 .createAlias("tripulante", "Tripulante")
-				 .createAlias("vuelo","Vuelo")
-				 .add(crit1).uniqueResult();
-				 
-				 getSession().save(vt);
-        
-    }
     
     @Override
     public void asignarTripulantesAlVuelo(Vuelo vuelo, List<Tripulante> tripulantes) {

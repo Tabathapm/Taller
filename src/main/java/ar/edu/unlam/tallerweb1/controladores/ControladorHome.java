@@ -10,16 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.servicios.ServicioTripulante;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVuelo;
 
 @Controller
 public class ControladorHome {
 	
 	private ServicioVuelo servicioVuelo;
+	private ServicioTripulante servicioTripulante;
 	
 	@Autowired
-	public ControladorHome(ServicioVuelo servicioVuelo) {
+	public ControladorHome(ServicioVuelo servicioVuelo,ServicioTripulante servicioTripulante) {
 		this.servicioVuelo = servicioVuelo;
+		this.servicioTripulante = servicioTripulante;
 	}
 
     @RequestMapping("/home")
@@ -50,7 +53,12 @@ public class ControladorHome {
 
     @RequestMapping("/tripulacion")
     public ModelAndView irTripulacion(){
-        return new ModelAndView("tripulacion");
+    	
+    	ModelMap modelo = new ModelMap();
+    	
+    	modelo.put("tripulantes",servicioTripulante.listarTodosLosTripulantes());
+    	
+        return new ModelAndView("tripulacion",modelo);
     }
 
     @RequestMapping("/pasajes")
