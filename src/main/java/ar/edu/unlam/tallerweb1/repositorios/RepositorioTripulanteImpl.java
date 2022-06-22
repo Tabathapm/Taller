@@ -109,7 +109,7 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
                 .add(Restrictions.eq("vt.vuelo",vuelo)).list();
     }
  */
-   @Override
+    @Override
     public VueloTripulante asignarUnTripulanteAvuelo(Vuelo vuelo, Tripulante unTripulante) {
             
         VueloTripulante vt = new VueloTripulante ();
@@ -123,8 +123,9 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
 
     }
    
-   @Override
-	public List<VueloTripulante> obtenerVuelosDeTripulante(Tripulante tripulante) {
+   
+       @Override
+   	   public List<VueloTripulante> obtenerVuelosDeTripulante(Tripulante tripulante) {
 	   
 	   Long id = tripulante.getId();
 	   

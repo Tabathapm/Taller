@@ -97,7 +97,10 @@ public class ServicioTripulanteTest {
 		Vuelo v2 = givenVueloCompletoConstructor("18-06-2022 13:00","18-06-2022 14:00");
 		Tripulante t1 = givenTripulante("t1");
 
-    	VueloTripulante vt=whenAsignoTripulanteAVuelo(v1,t1);
+		when(repositorioTripulante.traerTripulante(t1.getId())).thenReturn(t1);
+		when(repositorioVuelo.consultarVuelo(v1.getId())).thenReturn(v1);
+		
+    	VueloTripulante vt=whenAsignoTripulanteAVuelo(v1.getId(),t1.getId());
   	
     	thenSeAsignoCorrectamente(v1,t1,vt);
 
@@ -111,10 +114,13 @@ public class ServicioTripulanteTest {
 		VueloTripulante vt1 = givenVT(v1,t1);
 		List <VueloTripulante> vt = new ArrayList<>();
 		vt.add(vt1);
+		
+		when(repositorioTripulante.traerTripulante(t1.getId())).thenReturn(t1);
+		when(repositorioVuelo.consultarVuelo(v1.getId())).thenReturn(v1);
 
 		when(repositorioTripulante.obtenerVuelosDeTripulante(t1)).thenReturn(vt);
 
-    	VueloTripulante vtO=whenAsignoTripulanteAVuelo(v1,t1);
+    	VueloTripulante vtO=whenAsignoTripulanteAVuelo(v1.getId(),t1.getId());
   	
     	thenSeAsignoCorrectamente(v1,t1,vtO);
 
@@ -127,7 +133,7 @@ public class ServicioTripulanteTest {
 		// a partir de 21
     	Vuelo v1 = givenVueloCompletoConstructor("20-06-2022 13:00","20-06-2022 16:00");
 		Vuelo v2 = givenVueloCompletoConstructor("18-06-2022 13:00","18-06-2022 16:00");
-		Vuelo v3 = givenVueloCompletoConstructor("20-06-2022 20:00","20-06-2022 20:00"); 
+		Vuelo v3 = givenVueloCompletoConstructor("20-06-2022 20:00","20-06-2022 23:00"); 
 		Tripulante t1 = givenTripulante("t1");
 		VueloTripulante vt1 = givenVT(v1,t1);
 		VueloTripulante vt2 = givenVT(v2,t1);
@@ -136,17 +142,24 @@ public class ServicioTripulanteTest {
 		vt.add(vt2);
 		
 		when(repositorioTripulante.obtenerVuelosDeTripulante(t1)).thenReturn(vt);
+		when(repositorioTripulante.traerTripulante(t1.getId())).thenReturn(t1);
+		when(repositorioVuelo.consultarVuelo(v3.getId())).thenReturn(v3);
+		
+		System.out.println(v3.getSalida());
 
-    	VueloTripulante vtO=whenAsignoTripulanteAVuelo(v3,t1);
-  	
+    	VueloTripulante vtO=whenAsignoTripulanteAVuelo(v3.getId(),t1.getId());
+    	
     	thenNoSeAsignoCorrectamente(v3,t1,vtO);
-
+    	
     }
 
     
     private void thenNoSeAsignoCorrectamente(Vuelo v1, Tripulante t1, VueloTripulante vtO) {
+    	
+    	
     	assertThat(v1).isNotNull();
 		assertThat(t1).isNotNull();
+		assertThat(vtO).isNotNull();
 		
 		verify(repositorioTripulante,times(0)).asignarUnTripulanteAvuelo(v1,t1);
 		
@@ -159,7 +172,7 @@ public class ServicioTripulanteTest {
 		verify(repositorioTripulante,times(1)).asignarUnTripulanteAvuelo(v1,t1);
 	}
 
-	private VueloTripulante whenAsignoTripulanteAVuelo(Vuelo v1, Tripulante t1) {
+	private VueloTripulante whenAsignoTripulanteAVuelo(Long v1, Long t1) {
 		return servicioTripulante.asignarUnTripulanteAvuelo(v1, t1);
 		
 	}

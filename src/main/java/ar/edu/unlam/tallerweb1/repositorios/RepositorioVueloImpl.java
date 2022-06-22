@@ -49,7 +49,7 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 	@Override
 	public Vuelo consultarVuelo(Long id) {
 		
-		Criterion crit1 = Restrictions.eq("vuelo.id", id);
+		Criterion crit1 = Restrictions.eq("vuelo.Id", id);
 		
 		return (Vuelo)
 		 getSession().createCriteria(Vuelo.class,"vuelo")
@@ -113,31 +113,48 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 	
 
 	@Override
-	public List<Vuelo> listarTodosLosVuelosSinTripulacion() { //arreglar junto al test
+	public List<Vuelo> listarTodosLosVuelosSinTripulacion() { //arreglar junto al test revisar
 		
 		 List <Vuelo> vuelos = getSession().createCriteria(Vuelo.class).list();
 		 
 		 List <VueloTripulante> vt = getSession().createCriteria(VueloTripulante.class).list();
 		 
+		 Vuelo encontrado = new Vuelo();
+		 
+		 Vuelo vtVuelo = new Vuelo();
+		 
 		 List <Vuelo> vuelosSinTripulacion = new ArrayList <>();
 		 
-		 if(vuelos.size()==0) {
+		 if(vuelos.size()==0||vt.size()==0) {
 			 
 			 return vuelos; 
 			 
 		 }
-
+		 
 		 for (int i = 0 ; i < vuelos.size() ; i++) {
 			 for (int j = 0 ; j < vt.size() ; j++) {
-	
-		  if(null!=vt.get(j).getVuelo()) 	 
-			if(!(vuelosSinTripulacion.contains(vuelos.get(i)))
-			   &&(vuelos.get(i).getId().equals(vt.get(j).getVuelo().getId()))) 
-				vuelosSinTripulacion.add(vuelos.get(i));
-			  		
-			 }
-		  } 
+			 
+			 encontrado = vuelos.get(i);
+			 vtVuelo = vt.get(j).getVuelo();
+			 
+			 if(!(encontrado.equals(vtVuelo)))
+					vuelosSinTripulacion.add(encontrado);
+		 		  		
+		   }
+		 }
+
+//		 for (int i = 0 ; i < vuelos.size() ; i++) {
+//			 for (int j = 0 ; j < vt.size() ; j++) {
+//	
+//		  if(null!=vt.get(j).getVuelo()) 	 
+//			if(!(vuelosSinTripulacion.contains(vuelos.get(i)))
+//			   &&(vuelos.get(i).getId().equals(vt.get(j).getVuelo().getId()))) 
+//				vuelosSinTripulacion.add(vuelos.get(i));
+//			  		
+//			 }
+//		  } 
 		 
+	 
 		 return vuelosSinTripulacion;
 		 
 	}
@@ -148,8 +165,6 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 	         Criterion rest1 = Restrictions.like("vt.tripulante",null);
 	         
 	         List<VueloTripulante> result=getSession().createCriteria(VueloTripulante.class,"vt")
-	      		   				   .createAlias("tripulante", "t")
-	      		   				   .createAlias("vuelo", "v")
 	                               .add(rest1).list();
 	         
 	         return result;

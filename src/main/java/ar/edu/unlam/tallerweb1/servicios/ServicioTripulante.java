@@ -19,7 +19,7 @@ public interface ServicioTripulante {
     
     List<Tripulante> tripulacionAsignada(Vuelo vuelo);
 
-    VueloTripulante asignarUnTripulanteAvuelo(Vuelo vuelo,Tripulante unTripulante);
+    VueloTripulante asignarUnTripulanteAvuelo(Long vuelo,Long unTripulante);
 
     void asignarTripulantesAlVuelo(Vuelo vuelo1, List<Tripulante> tripulantes);
 
@@ -37,7 +37,7 @@ public interface ServicioTripulante {
 
 	Vuelo obtenerVueloMasCercano(List<VueloTripulante> vt,Vuelo v);
 
-
+	Tripulante traerTripulante(Long id);
 
 
 }

@@ -24,8 +24,28 @@ public class ControladorTripulante {
 		this.servicioVuelo = servicioVuelo;
 		this.servicioTripulante = servicioTripulante;
 	}
+	
+	@RequestMapping("/tripulantes")
+    public ModelAndView traerVuelo(){
+        ModelMap modelo = new ModelMap();
 
+        modelo.put("tripulantes",servicioTripulante.listarTodosLosTripulantes());
+        
+        return new ModelAndView("tripulantes",modelo);
+
+    }
+	
 	@RequestMapping("/asignarTripulante")
+    public ModelAndView asignarTripulacionAVuelo() {
+    	
+    	ModelMap modelo = new ModelMap();
+    	
+    	modelo.put("tripulantes",servicioTripulante.listarTodosLosTripulantes());
+    	
+    	return new ModelAndView("asignarTripulante",modelo);  		
+    }
+
+	@RequestMapping("/asignarTripulante/asignar")
 	public ModelAndView asignarTripulanteAVuelo(
 			@RequestParam(value="tripulanteId") Long tripulanteId,
 			HttpServletRequest request) {
@@ -34,16 +54,23 @@ public class ControladorTripulante {
 		
 		request.getSession().setAttribute("tripulante", tripulanteId);
 		
+		modelo.put("tripulante", servicioTripulante.traerTripulante(tripulanteId));
 		modelo.put("vuelos",servicioVuelo.obtenerTodosLosVuelos());
 		
 		
-		return new ModelAndView(" ",modelo);
+		return new ModelAndView("asignar",modelo);
 	}
 	
-	@RequestMapping("/asignarTripulante")
-	public ModelAndView tripulanteAsignadoAVuelo() {
+	@RequestMapping("/asignarTripulante/exitoso")
+	public ModelAndView tripulanteAsignadoAVuelo(
+			@RequestParam(value="vueloId") Long vueloId,
+			HttpServletRequest request) {
+		
+		Long t = (Long) request.getSession().getAttribute("tripulante");
 		
 		
+	    this.servicioTripulante.asignarUnTripulanteAvuelo(vueloId,t);
+	      
 		
 		return new ModelAndView("tripulanteAsignadoConExito");
 	}

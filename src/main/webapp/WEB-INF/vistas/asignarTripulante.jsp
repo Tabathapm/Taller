@@ -6,36 +6,36 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Asignar Tripulacion</title>
+<title>Asignar Tripulante</title>
 </head>
 <body>
 
 	 <main>
             
+             
                     <h1 class="mt-4">Tripulantes</h1>
                     
 
-					
-					
 					<table class="table">
 					  <thead>
-					    <tr>
-					        <th scope="col">Nombre</th>
-                         
+					    <tr>	
+					    	<th scope="col">Nombre</th>
+					        <th scope="col">Apellido</th>
+                            <th scope="col">Titulo</th>
+                            
                             
 					    </tr>
 					  </thead>
 					  
 					    <tbody>
 					    
-                        <c:forEach items="${vuelosSinTripulacion}" var="vuelos">
+                        <c:forEach items="${tripulantes}" var="tripulantes">
                         <tr>
-                            <td><p>${vuelos.id}</p></td>
-                            <td><p>${vuelos.nombre}</p></td>
-                         
-                           
+                        	<td><p>${tripulantes.nombre}</p></td>
+                            <td><p>${tripulantes.apellido}</p></td>
+                            <td><p>${tripulantes.titulo}</p></td>
                             
-                            <td><a href="vueloDescripcion?idVuelo=${vuelos.id}">ver</a></td> 
+                            <td><a href="asignarTripulante/asignar?tripulanteId=${tripulantes.id}">asignar</a></td> 
                                         
                         </tr>
                         </c:forEach>
@@ -47,10 +47,9 @@
                       
              
               </main>
-  
-  
-  
-  
+           
+   
+
  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/homeDos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -58,6 +57,7 @@
     <script src="assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>      
-
+														
 </body>
 </html>
+

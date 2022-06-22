@@ -66,17 +66,20 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
     }
 
     @Override
-    public VueloTripulante asignarUnTripulanteAvuelo(Vuelo v, Tripulante tripulante){
+    public VueloTripulante asignarUnTripulanteAvuelo(Long vuelo, Long tripulante){
     	
-    	List <VueloTripulante> vt = repositorioTripulante.obtenerVuelosDeTripulante(tripulante);
+    	Tripulante t = repositorioTripulante.traerTripulante(tripulante);
+    	Vuelo v = repositorioVuelo.consultarVuelo(vuelo);
+    	
+    	List <VueloTripulante> vt = repositorioTripulante.obtenerVuelosDeTripulante(t);
     	
     	if(vt.isEmpty())
-    		return repositorioTripulante.asignarUnTripulanteAvuelo(v,tripulante);
+    		return repositorioTripulante.asignarUnTripulanteAvuelo(v,t);
     	
     	Vuelo encontrado=obtenerVueloMasCercano(vt,v);
     	
     	if(determinarSiDisponible(encontrado,v))
-           return repositorioTripulante.asignarUnTripulanteAvuelo(v,tripulante);
+           return repositorioTripulante.asignarUnTripulanteAvuelo(v,t);
     	else
     		throw new TripulanteNoDisponibleParaEsaFechaException();
     }
@@ -104,16 +107,16 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 	
 	@Override
     public Vuelo obtenerVueloMasCercano(List<VueloTripulante> vt,Vuelo v) {
+		
+		if(v.getSalida()==null) {
+    		throw new VueloSinFechaException();
+    	}
 
 		Date salida = v.getSalida();
 		Date fechaEncontradaA = new Date();
 		Date fechaEncontradaB = new Date();
     	Vuelo vueloEncontrado = new Vuelo();
     	
-    	if(salida==null) {
-    		throw new VueloSinFechaException();
-    	}
-		
     	vueloEncontrado = vt.get(0).getVuelo();
 	
     	for (int i = 0; i < vt.size(); i++) {
@@ -144,7 +147,8 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 			Long minutosDescanso = ( ((salidaEntrante.getTime()-llegadaVuelo.getTime()) /60000));
 			Long horasDescanso = ( ((salidaEntrante.getTime()-llegadaVuelo.getTime()) /60000)/60);
 	    	
-			if(salidaVuelo.getHours()>=23L||salidaVuelo.getHours()<=6L||llegadaVuelo.getHours()>=23L||llegadaVuelo.getHours()<=6L)
+			if(salidaVuelo.getHours()>=23L||salidaVuelo.getHours()<=6L||
+					llegadaVuelo.getHours()>=23L||llegadaVuelo.getHours()<=6L)
 				nocturno = true;
 
 			if(!nocturno)
@@ -254,6 +258,11 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 	    	
 			return t;
 		} 
+	 
+	 @Override
+		public Tripulante traerTripulante(Long id){
+			return repositorioTripulante.traerTripulante(id);
+		}
 //	 
 //	 @Override
 //		public Boolean determinarSiDisponible(List<VueloTripulante> vt, Vuelo v) { 
@@ -284,6 +293,7 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 //			return false;
 //		}
 
+	
 	
 
 }
