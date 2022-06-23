@@ -23,19 +23,13 @@
                     <h1 class="mt-4">Tripulantes</h1>
                     
 
-					<div>
-					<form:form action=" ">
-					<input type="text" class="navbar navbar-default input-lg" placeholder=" " name="busqueda">
-					<button type="submit">Buscar</button>
-					</form:form>
-					</div>
-					
 					<table class="table">
 					  <thead>
-					    <tr>
+					    <tr>	
+					    	<th scope="col">Nombre</th>
 					        <th scope="col">Apellido</th>
                             <th scope="col">Titulo</th>
-                            <th scope="col">Estado</th>
+                            
                             
 					    </tr>
 					  </thead>
@@ -44,12 +38,11 @@
 					    
                         <c:forEach items="${tripulantes}" var="tripulantes">
                         <tr>
+                        	<td><p>${tripulantes.nombre}</p></td>
                             <td><p>${tripulantes.apellido}</p></td>
                             <td><p>${tripulantes.titulo}</p></td>
-                            <td><p>${tripulantes.estado}</p></td>
-                           
                             
-                            <td><a href="vueloDescripcion?idVuelo=${tripulantes.id}">ver</a></td> 
+                            <td><a href="asignarTripulante?tripulanteId=${tripulantes.id}">asignar</a></td> 
                                         
                         </tr>
                         </c:forEach>

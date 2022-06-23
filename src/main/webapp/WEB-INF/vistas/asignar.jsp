@@ -1,36 +1,22 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%><%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Asignar Tripulante</title>
+</head>
+<body>
 
-	<head>
-	
-	    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-	    <link href="css/homeDos.css" rel="stylesheet" />
-	    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-	    
-	  
-	    <title>Vuelos</title>
-	    
-	</head>
-	
-<body class="sb-nav-fixed">
- 
-
- <main>
+	 <main>
             
-                    <h1 class="mt-4">Vuelos</h1>
+             
+                    <h1 class="mt-4">Tripulante - ${tripulante.Id}</h1>
                     
 
-					<div>
-					<form:form action="buscarVuelos">
-					<input type="text" class="navbar navbar-default input-lg" placeholder="Buscar vuelo" name="busqueda">
-					<button type="submit">Buscar</button>
-					</form:form>
-					</div>
-					
-					<table class="table">
+				<table class="table">
 					  <thead>
 					    <tr>
 					        <th scope="col">Vuelo</th>
@@ -52,7 +38,7 @@
                             <td><p>${vuelos.avion.tipoAvion.categoriaAvion}</p></td>
                             <td><p>${vuelos.salida}</p></td>
                             
-                            <td><a href="vueloDescripcion?idVuelo=${vuelos.Id}">ver</a></td> 
+                            <td><a href="asignarTripulante/exitoso?vueloId=${vuelos.Id}">Asignar</a></td> 
                                         
                         </tr>
                         </c:forEach>
@@ -77,5 +63,3 @@
 														
 </body>
 </html>
-
-

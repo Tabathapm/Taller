@@ -10,6 +10,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="0710c379-e97b-4a16-8bff-50d42a38f420" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -31,6 +32,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/agregarViaje.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/agregarViaje.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
     </list>
+
+    <list default="true" id="524c6bfb-5b4d-4e0c-b0b8-7415c4263fcd" name="Changes" comment="" />
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -296,6 +300,7 @@
       <item itemvalue="JUnit.RepositorioHangarTest.testQueObtieneAvionesSinAsignarAHangares" />
       <item itemvalue="JUnit.RepositorioHangarTest.testQueObtieneTodosLosHangaresDisponibles" />
       <item itemvalue="Tomcat Server.Tomcat 8.5.65" />
+
     </list>
     <recent_temporary>
       <list>

@@ -198,29 +198,9 @@ public class ControladorVuelos {
     	return new ModelAndView("vueloDescripcion",modelo);
     }
     
-    @RequestMapping("/tripulantes")
-    public ModelAndView traerVuelo(){
-        ModelMap modelo = new ModelMap();
-
-        modelo.put("tripulantes",servicioTripulante.listarTodosLosTripulantes());
-        
-        return new ModelAndView("tripulantes",modelo);
-
-    }
     
-    @RequestMapping("/asignarTripulacion")
-    public ModelAndView asignarTripulacionAVuelo() {
-    	
-    	ModelMap modelo = new ModelMap();
-    	
-    	modelo.put("vuelosSinTripulacion",servicioVuelo.listarTodosLosVuelosSinTripulacion());
-    	
-    	
-    	return new ModelAndView("asignarTripulacion",modelo);
-    	
-    	
-    	
-    }
+    
+    
     /*
      * 
 	    @RequestMapping(value = "/traerVuelo",method = RequestMethod.GET)
