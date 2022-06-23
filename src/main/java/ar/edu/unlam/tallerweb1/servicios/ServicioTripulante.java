@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
+import ar.edu.unlam.tallerweb1.modelo.VueloDos;
 import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 
 import java.util.Date;
@@ -35,7 +36,16 @@ public interface ServicioTripulante {
 
 	Boolean checkActivo(Vuelo vReg,Vuelo vEnt);
 
+
+    List<Tripulante> mostrarTripulantesTipo(String titulo);
+
+    Tripulante traerTripulante(Long id);
+
+    VueloTripulante asignarUnTripulanteAvueloDos(VueloDos vuelo, Tripulante unTripulante);
+
+
 	Vuelo obtenerVueloMasCercano(List<VueloTripulante> vt,Vuelo v);
+
 
 	Tripulante traerTripulante(Long id);
 

@@ -6,6 +6,7 @@ import ar.edu.unlam.tallerweb1.excepciones.TripulanteSinVueloException;
 import ar.edu.unlam.tallerweb1.excepciones.VueloSinFechaException;
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
+import ar.edu.unlam.tallerweb1.modelo.VueloDos;
 import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTripulante;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioVuelo;
@@ -296,4 +297,17 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 	
 	
 
+	@Override
+	public List<Tripulante> mostrarTripulantesTipo(String titulo) {
+		return repositorioTripulante.mostrarTripulacion(titulo);
+	}
+
+	@Override
+	public Tripulante traerTripulante(Long id){
+		return repositorioTripulante.traerTalTripulante(id);
+	}
+	@Override
+	public VueloTripulante asignarUnTripulanteAvueloDos(VueloDos vuelo, Tripulante tripulante){
+		return repositorioTripulante.asignarUnTripulanteAvueloDos(vuelo, tripulante);
+	}
 }
