@@ -203,6 +203,34 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 	}
 	*/
 
+	@Override
+	public List<Vuelo> destinoConMasVuelos(){
+		List<Vuelo> listaDeVuelosConMasDestinos = new ArrayList<>();
+
+
+		try {
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC","root","");
+			Statement sentencia = conexion.createStatement();
+			String consulta = "SELECT COUNT(vuelo.destino_Id) AS 'destino', locacion.pais AS 'pais'\n" +
+								"FROM vuelo\n" +
+									"INNER JOIN locacion\n" +
+										"ON vuelo.destino_Id = locacion.Id\n" +
+											"GROUP BY vuelo.destino_Id;";
+			ResultSet rs = sentencia.executeQuery(consulta);
+			while(rs.next()) {
+			Long cantidadDeVuelos  =	rs.getLong("destino");
+			String pais = rs.getString("pais");
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return listaDeVuelosConMasDestinos;
+
+
+	}
+
 
 	
 

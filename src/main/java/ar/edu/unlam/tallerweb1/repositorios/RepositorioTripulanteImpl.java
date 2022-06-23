@@ -244,5 +244,12 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
         return vt;
 
     }
-	
+
+    @Override
+    public void guardarPiloto(Tripulante piloto) {
+        sessionFactory.getCurrentSession().save(piloto);
+    }
+
+
+
 }

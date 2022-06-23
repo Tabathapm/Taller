@@ -36,6 +36,7 @@ public interface RepositorioTripulante {
 
 	VueloTripulante asignarUnTripulanteAvueloDos(VueloDos vuelo, Tripulante unTripulante);
 
-	}
+	void guardarPiloto(Tripulante piloto);
+}
 
 

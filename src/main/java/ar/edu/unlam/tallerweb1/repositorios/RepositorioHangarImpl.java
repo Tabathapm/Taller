@@ -77,8 +77,6 @@ public class RepositorioHangarImpl implements RepositorioHangar {
 
         return avionesSinAsignar;
 
-
-
     }
 
     @Override

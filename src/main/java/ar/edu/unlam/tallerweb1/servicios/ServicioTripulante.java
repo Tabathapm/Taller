@@ -1,10 +1,12 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import ar.edu.unlam.tallerweb1.controladores.TripulanteInfo;
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.modelo.VueloDos;
 import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -48,6 +50,8 @@ public interface ServicioTripulante {
 
 
 //	Tripulante traerTripulante(Long id);
+
+    void addPiloto(TripulanteInfo piloto) throws ParseException;
 
 
 }
