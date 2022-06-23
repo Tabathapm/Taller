@@ -75,15 +75,15 @@ public class ControladorTripulante {
 		return new ModelAndView("tripulanteAsignadoConExito");
 	}
 
-    @RequestMapping("/tripulacion")
-    public ModelAndView irTripulacion(){
-        return new ModelAndView("tripulacion");
-    }
-
-    @RequestMapping("/pasajes")
-    public ModelAndView irPasajes(){
-        return new ModelAndView("pasajes");
-    }
+//    @RequestMapping("/tripulacion")
+//    public ModelAndView irTripulacion(){
+//        return new ModelAndView("tripulacion");
+//    }
+//
+//    @RequestMapping("/pasajes")
+//    public ModelAndView irPasajes(){
+//        return new ModelAndView("pasajes");
+//    }
 
 
 }

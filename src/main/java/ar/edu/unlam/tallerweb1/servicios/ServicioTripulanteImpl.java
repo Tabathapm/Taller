@@ -302,10 +302,11 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 		return repositorioTripulante.mostrarTripulacion(titulo);
 	}
 
-	@Override
-	public Tripulante traerTripulante(Long id){
-		return repositorioTripulante.traerTalTripulante(id);
-	}
+//	@Override
+//	public Tripulante traerTripulante(Long id){
+//		return repositorioTripulante.traerTalTripulante(id);
+//	}
+
 	@Override
 	public VueloTripulante asignarUnTripulanteAvueloDos(VueloDos vuelo, Tripulante tripulante){
 		return repositorioTripulante.asignarUnTripulanteAvueloDos(vuelo, tripulante);

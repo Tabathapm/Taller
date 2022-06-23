@@ -47,7 +47,7 @@ public interface ServicioTripulante {
 	Vuelo obtenerVueloMasCercano(List<VueloTripulante> vt,Vuelo v);
 
 
-	Tripulante traerTripulante(Long id);
+//	Tripulante traerTripulante(Long id);
 
 
 }
