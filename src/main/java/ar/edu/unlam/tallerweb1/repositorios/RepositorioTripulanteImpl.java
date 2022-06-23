@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
+import ar.edu.unlam.tallerweb1.modelo.VueloDos;
 import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 
 import org.hibernate.Session;
@@ -251,5 +252,18 @@ public class RepositorioTripulanteImpl implements RepositorioTripulante {
         return tripulanteEncontrado;
     }
 
+    @Override
+    public VueloTripulante asignarUnTripulanteAvueloDos(VueloDos vuelo, Tripulante unTripulante) {
+
+        VueloTripulante vt = new VueloTripulante ();
+
+        vt.setVueloDos(vuelo);
+        vt.setTripulante(unTripulante);
+
+        getSession().save(vt);
+
+        return vt;
+
+    }
 	
 }

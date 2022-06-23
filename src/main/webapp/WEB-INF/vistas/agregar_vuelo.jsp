@@ -41,12 +41,7 @@
                                                 <option value="${locacion.id}">${locacion.ciudad}, ${locacion.pais}</option>
                                             </c:forEach>
                                         </select>
-<%--                                        <form:select path="selectOrigen" class=""  id="selectOrigen">--%>
-<%--                                            <option  selected disabled>--- SELECCIONE ---</option >--%>
-<%--                                            <c:forEach items="${locaciones}" var="locacion">--%>
-<%--                                                <form:option value="${locacion.id}">${locacion.ciudad}, ${locacion.pais}</form:option>--%>
-<%--                                            </c:forEach>--%>
-<%--                                        </form:select>--%>
+
                                     </div>
                                     <div class="col-sm">
                                         <label>Destino</label>
@@ -94,7 +89,7 @@
                                     </div>
                                 </div>
                                 <div class="row py-3">
-                                    <div class="col-sm">
+                                    <div class="col-sm-3">
                                         <h5>Avi&oacute;n</h5>
 
                                         <div class="form-check">
@@ -107,7 +102,26 @@
                                             <label class="form-check-label" for="carga">Carga</label>
                                         </div>
                                     </div>
-                                </div>
+
+                                    <%------- Avion carga -------%>
+<%--                                    <div class="col-sm-3" id="campoAvionCarga">--%>
+<%--                                        <select name="avion"  id="selectAvionCarga">--%>
+<%--                                            <option selected disabled>--- SELECCIONE ---</option>--%>
+<%--                                            <c:forEach items="${avionesDeCarga}" var="avionCarga">--%>
+<%--                                                <option value="${avionCarga.id}">${avionCarga.nombre}</option>--%>
+<%--                                            </c:forEach>--%>
+<%--                                        </select>--%>
+<%--                                    </div>--%>
+                                    <%------- Avion comercial -------%>
+<%--                                    <div class="col-sm-3" id="campoAvionComercial">--%>
+<%--                                        <select name="avion"  id="selectAvionComercial">--%>
+<%--                                            <option selected disabled>--- SELECCIONE ---</option>--%>
+<%--                                            <c:forEach items="${avionesComerciales}" var="avionComercial">--%>
+<%--                                                <option value="${avionComercial.id}">${avionComercial.nombre}</option>--%>
+<%--                                            </c:forEach>--%>
+<%--                                        </select>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
 
                                 <div class="row py-3">
                                     <h5>Tripulaci&oacute;n</h5>
@@ -157,19 +171,7 @@
                                                     <option value="${tripulante.id}">${tripulante.nombre} ${tripulante.apellido}</option>
                                                 </c:forEach>
                                             </select>
-<%--                                            <select class="custom-select" multiple>--%>
-<%--                                                <option selected disabled>--- SELECCIONE ---</option>--%>
-<%--                                                <c:forEach items="${tripulantes}" var="tripulante">--%>
-<%--                                                    <option value="${tripulante.id}">${tripulante.nombre} ${tripulante.apellido}</option>--%>
-<%--                                                </c:forEach>--%>
-<%--                                            </select>--%>
 
-<%--                                            <select class="form-select" multiple aria-label="multiple select example">--%>
-<%--                                                <option selected disabled>--- SELECCIONE ---</option>--%>
-<%--                                                <c:forEach items="${tripulantes}" var="tripulante">--%>
-<%--                                                    <option value="${tripulante.id}">${tripulante.nombre} ${tripulante.apellido}</option>--%>
-<%--                                                </c:forEach>--%>
-<%--                                            </select>--%>
 
                                         </div>
                                     </div>
@@ -185,113 +187,6 @@
 
 
 
-
-
-
-
-
-
-<%--                        <form:form action="addVuelo" method="POST" modelAttribute="datosVuelo">--%>
-<%--                            <div style="margin: 2% 20% 0 0;">--%>
-<%--                                <div class="row">--%>
-<%--                                    <div class="col-sm">--%>
-<%--                                        <label>Origen</label>--%>
-<%--                                        <br>--%>
-<%--                                        <form:select path="origen" class=""  id="selectOrigen">--%>
-<%--                                            <option selected disabled>--- SELECCIONE ---</option>--%>
-<%--                                            <c:forEach items="${locaciones}" var="locacion">--%>
-<%--                                                <form:option value="${locacion.id}">${locacion.ciudad}, ${locacion.pais}</form:option>--%>
-<%--                                            </c:forEach>--%>
-<%--                                        </form:select>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="col-sm">--%>
-<%--                                        <label>Destino</label>--%>
-<%--                                        <br>--%>
-<%--                                        <form:select path="destino" class=""  id="selectDestino">--%>
-<%--                                            <option selected disabled>--- SELECCIONE ---</option>--%>
-<%--                                            <c:forEach items="${locaciones}" var="locacion">--%>
-<%--                                                <form:option value="${locacion.ciudad} ${locacion.pais}">${locacion.ciudad}, ${locacion.pais}</form:option>--%>
-<%--                                            </c:forEach>--%>
-<%--                                        </form:select>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="col-sm">--%>
-<%--                                        <label for="fechaVuelo">Fecha</label>--%>
-<%--                                        <input type="date" id="fechaVuelo" class="form-control">--%>
-<%--                                    </div>--%>
-<%--                                    <div class="col-sm">--%>
-<%--                                        <label for="horaVuelo">Hora</label>--%>
-<%--                                            &lt;%&ndash;                                <input type="text" id="horaVuelo" class="form-control">&ndash;%&gt;--%>
-<%--                                        <input type="time" id="horaVuelo" class="form-control">--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <div class="row py-3">--%>
-<%--                                    <div class="col-sm">--%>
-<%--                                        <h5>Avi&oacute;n</h5>--%>
-
-<%--                                        <div class="form-check">--%>
-<%--                                            <input class="form-check-input tipoAvion" type="checkbox" name="tipoAvionComercial" value="comercial" id="comercial">--%>
-<%--                                            <label class="form-check-label" for="comercial">Comercial</label>--%>
-<%--                                        </div>--%>
-
-<%--                                        <div class="form-check">--%>
-<%--                                            <input class="form-check-input tipoAvion" type="checkbox" name="tipoAvionCarga" value="carga" id="carga" >--%>
-<%--                                            <label class="form-check-label" for="carga">Carga</label>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-
-<%--                                <div class="row py-3">--%>
-<%--                                    <h5>Tripulaci&oacute;n</h5>--%>
-
-<%--                                    <div class="col-sm" id="campoPiloto">--%>
-<%--                                        <label>Piloto</label>--%>
-<%--                                        <br>--%>
-<%--                                        <form:select path="piloto" class=""  id="selectPiloto">--%>
-<%--                                            <option selected disabled>--- SELECCIONE ---</option>--%>
-<%--                                            <c:forEach items="${pilotos}" var="piloto">--%>
-<%--                                                <form:option value="${piloto.id}">${piloto.nombre} ${piloto.apellido}</form:option>--%>
-<%--                                            </c:forEach>--%>
-<%--                                        </form:select>--%>
-<%--                                    </div>--%>
-
-<%--                                    <div class="col-sm" id="campoCopiloto">--%>
-<%--                                        <label>Copiloto</label>--%>
-<%--                                        <br>--%>
-<%--                                        <form:select path="copiloto" class=""  id="selectCopiloto">--%>
-<%--                                            <option selected disabled>--- SELECCIONE ---</option>--%>
-<%--                                            <c:forEach items="${copilotos}" var="copiloto">--%>
-<%--                                                <form:option value="${copiloto.id}">${copiloto.nombre} ${copiloto.apellido}</form:option>--%>
-<%--                                            </c:forEach>--%>
-<%--                                        </form:select>--%>
-<%--                                    </div>--%>
-
-<%--                                    <div class="col-sm" id="campoTripulanteDeCabina">--%>
-<%--                                        <label>Tripulantes de cabina</label>--%>
-<%--                                        <br>--%>
-<%--                                            &lt;%&ndash; selectpicker: devuelve un array con las opciones marcadas   &ndash;%&gt;--%>
-<%--                                        <form:select path="tripulante" class="selectpicker" multiple data-live-search="true">--%>
-<%--                                            <c:forEach items="${tripulantes}" var="tripulante">--%>
-<%--                                                <form:option value="${tripulante.id}">${tripulante.nombre} ${tripulante.apellido}</form:option>--%>
-<%--                                            </c:forEach>--%>
-<%--                                        </form:select>--%>
-<%--                                    </div>--%>
-
-<%--                                    <div class="col-sm" id="campoIngDeVuelo">--%>
-<%--                                        <label>Ing. de vuelo</label>--%>
-<%--                                        <br>--%>
-<%--                                        <form:select path="ingDeVuelo" class="" id="selectIngDeVuelo">--%>
-<%--                                            <option selected disabled>--- SELECCIONE ---</option>--%>
-<%--                                            <c:forEach items="${ingsDeVuelo}" var="ingDeVuelo">--%>
-<%--                                                <form:option value="${ingDeVuelo.id}">${ingDeVuelo.nombre} ${ingDeVuelo.apellido}</form:option>--%>
-<%--                                            </c:forEach>--%>
-<%--                                        </form:select>--%>
-<%--                                    </div>--%>
-
-<%--                                </div>--%>
-<%--                            </div>--%>
-
-<%--                            <button class="btn btn-primary w-50" Type="Submit"/>Agregar</button>--%>
-<%--                        </form:form>--%>
 
                     </div>
                 </main>

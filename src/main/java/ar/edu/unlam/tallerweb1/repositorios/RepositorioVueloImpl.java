@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
+import ar.edu.unlam.tallerweb1.modelo.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
@@ -19,11 +20,6 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import ar.edu.unlam.tallerweb1.modelo.Locacion;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.modelo.Vuelo;
-import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 
 
 @SuppressWarnings({ "unchecked", "deprecation" })
@@ -45,7 +41,12 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 	public void guardar(Vuelo vuelo) {
 		sessionFactory.getCurrentSession().save(vuelo);
 	}
-	
+
+	@Override
+	public void addVuelo(VueloDos vuelo) {
+		sessionFactory.getCurrentSession().save(vuelo);
+	}
+
 	@Override
 	public Vuelo consultarVuelo(Long id) {
 		
@@ -173,6 +174,7 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 	            		
 	}
 	*/
+
 
 	
 

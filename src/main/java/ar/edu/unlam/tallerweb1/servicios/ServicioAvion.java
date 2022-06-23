@@ -11,7 +11,8 @@ public interface ServicioAvion {
 
 Avion traerAvionSinHangar(Long id);
 List<Avion> traerAvionesSinHangar();
-
+    List<Avion> traerAvionesDeCarga();
+    List<Avion> traerAvionesComerciales();
 
 
 

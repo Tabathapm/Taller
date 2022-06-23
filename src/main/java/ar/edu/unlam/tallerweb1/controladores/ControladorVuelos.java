@@ -1,13 +1,16 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.lang.reflect.Array;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import ar.edu.unlam.tallerweb1.modelo.Locacion;
-import ar.edu.unlam.tallerweb1.servicios.ServicioLocacion;
+import ar.edu.unlam.tallerweb1.modelo.*;
+import ar.edu.unlam.tallerweb1.servicios.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,23 +20,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.modelo.Tripulante;
-import ar.edu.unlam.tallerweb1.modelo.Vuelo;
-import ar.edu.unlam.tallerweb1.servicios.ServicioTripulante;
-import ar.edu.unlam.tallerweb1.servicios.ServicioVuelo;
-
 @Controller
 public class ControladorVuelos {
 	
 	private ServicioVuelo servicioVuelo;
 	private ServicioTripulante servicioTripulante;
     private ServicioLocacion servicioLocacion;
+    private ServicioTipoAvion servicioTipoAvion;
+    private ServicioAvion servicioAvion;
 	
 	@Autowired
-	public ControladorVuelos(ServicioVuelo servicioVuelo,ServicioTripulante servicioTripulante, ServicioLocacion servicioLocacion) {
+	public ControladorVuelos(ServicioVuelo servicioVuelo,ServicioTripulante servicioTripulante,
+                             ServicioLocacion servicioLocacion, ServicioTipoAvion servicioTipoAvion,
+                             ServicioAvion servicioAvion) {
 		this.servicioVuelo = servicioVuelo;
 		this.servicioTripulante = servicioTripulante;
         this.servicioLocacion = servicioLocacion;
+        this.servicioTipoAvion = servicioTipoAvion;
+        this.servicioAvion = servicioAvion;
 	}
 
     @RequestMapping("/agregar-vuelo")
@@ -46,46 +50,126 @@ public class ControladorVuelos {
         List <Tripulante> listaCopilotos  = servicioTripulante.mostrarTripulantesTipo("Copiloto");
         List <Tripulante> listaTripulantesDeCabina  = servicioTripulante.mostrarTripulantesTipo("tripulante de cabina");
         List <Tripulante> listaIngDeVuelo  = servicioTripulante.mostrarTripulantesTipo("Ingeniero de Vuelo");
+//        List <Avion> listaAvionesCarga = servicioAvion.traerAvionesDeCarga();
+//        List <Avion> listaAvionesComerciales = servicioAvion.traerAvionesComerciales();
 //      ------------------------------------------
         modelo.put("locaciones", listaLocaciones);
         modelo.put("pilotos", listaPilotos);
         modelo.put("copilotos", listaCopilotos);
         modelo.put("tripulantes", listaTripulantesDeCabina);
         modelo.put("ingsDeVuelo", listaIngDeVuelo);
+//        modelo.put("avionesDeCarga", listaAvionesCarga);
+//        modelo.put("avionesComerciales", listaAvionesComerciales);
 //      ------------------------------------------
         return new ModelAndView("agregar_vuelo", modelo);
     }
 
     @RequestMapping(path = "/addVuelo", method = RequestMethod.POST)
-    public ModelAndView agregarVuelo(@ModelAttribute("datosVuelo") DatosVuelo datosVuelo, HttpServletRequest request){
+    public ModelAndView agregarVuelo(@ModelAttribute("datosVuelo") DatosVuelo datosVuelo, HttpServletRequest request) throws ParseException {
 //      -------------------------------------------------------------------------------------------------------------
         ModelMap model = new ModelMap();
-        Vuelo vuelo = new Vuelo();
+        VueloDos vuelo    = new VueloDos();
+//      -------------------------------------------------
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat formatHora = new SimpleDateFormat("hh:mm");
+//      -------------------------------------------------
+        String tipoDeAvion = datosVuelo.getTipoDeAvion();
+//        TipoAvion tipoAvion = servicioTipoAvion.tipoDeAvion(tipoDeAvion);
 
-        Long origenId = Long.parseLong(datosVuelo.getOrigen());
+//      ------------------ Salida -----------------------
+        Date fechaSalida = formatter.parse(datosVuelo.getFechaSalida());
+        Long hSalida = formatHora.parse(datosVuelo.getHoraSalida()).getTime();
+        Time horaSalida = new Time(hSalida);
+
+//      ------------------ Llegada-----------------------
+        Date fechaLlegada = formatter.parse(datosVuelo.getFechaLlegada());
+        Long hLlegada = formatHora.parse(datosVuelo.getHoraLlegada()).getTime();
+        Time horaLlegada = new Time(hLlegada);
+
+//      ------------------ Locaciones ------------------------
+        Long origenId  = Long.parseLong(datosVuelo.getOrigen());
         Long destinoId = Long.parseLong(datosVuelo.getDestino());
 
-        Long idPiloto = Long.parseLong(datosVuelo.getPiloto());
-        Long idCopiloto = Long.parseLong(datosVuelo.getCopiloto());
+        Locacion origen  = servicioLocacion.buscarPorId(origenId);
+        Locacion destino = servicioLocacion.buscarPorId(destinoId);
 
-        String tripulantesElegido = datosVuelo.getTripulantes();
-        String[] cadaIdTripulante = tripulantesElegido.split(",");
+//      ------------------ Tripulantes ------------------------
+        Long idPiloto;
+        Long idCopiloto;
+        Long idIngDeVuelo;
 
-        List <Long> idTripulante = new ArrayList<>();
+        Tripulante piloto;
+        Tripulante copiloto;
+        Tripulante ingDeVuelo;
 
-        for (String i: cadaIdTripulante) {
-            Long idParseados = Long.parseLong(i);
-            idTripulante.add(idParseados);
+//      --------------------------------------------
+        switch (tipoDeAvion){
+            case "comercial":
+
+                idPiloto     = Long.parseLong(datosVuelo.getPiloto());
+                idCopiloto   = Long.parseLong(datosVuelo.getCopiloto());
+                idIngDeVuelo = Long.parseLong(datosVuelo.getIngDeVuelo());
+
+                piloto     = servicioTripulante.traerTripulante(idPiloto);
+                copiloto   = servicioTripulante.traerTripulante(idCopiloto);
+                ingDeVuelo = servicioTripulante.traerTripulante(idIngDeVuelo);
+
+                servicioTripulante.asignarUnTripulanteAvueloDos(vuelo, piloto);
+                servicioTripulante.asignarUnTripulanteAvueloDos(vuelo, copiloto);
+                servicioTripulante.asignarUnTripulanteAvueloDos(vuelo, ingDeVuelo);
+
+                List <Long> idTripulante      = new ArrayList<>();
+                List <Tripulante> tripulantes = new ArrayList<>();
+                String tripulantesElegido;
+
+                tripulantesElegido = datosVuelo.getTripulantes();
+                String[] cadaIdTripulante = tripulantesElegido.split(",");
+
+                for (String i: cadaIdTripulante) {
+                    Long idParseados = Long.parseLong(i);
+                    idTripulante.add(idParseados);
+
+                    for (Long j: idTripulante) {
+                        Tripulante tripulante = servicioTripulante.traerTripulante(j);
+                        tripulantes.add(tripulante);
+
+                        for (Tripulante t: tripulantes) {
+//                            servicioTripulante.asignarTripulantesAlVuelo(vuelo, t);
+                        }
+                    }
+                }
+
+                vuelo.setOrigen(origen);
+
+                break;
+
+            case "carga":
+
+                idPiloto = Long.parseLong(datosVuelo.getPiloto());
+                idIngDeVuelo = Long.parseLong(datosVuelo.getIngDeVuelo());
+
+                piloto     = servicioTripulante.traerTripulante(idPiloto);
+                ingDeVuelo = servicioTripulante.traerTripulante(idIngDeVuelo);
+
+//                servicioTripulante.asignarUnTripulanteAvueloDos(vuelo, piloto);
+//                servicioTripulante.asignarUnTripulanteAvueloDos(vuelo, ingDeVuelo);
+
+                vuelo.setOrigen(origen);
+                vuelo.setDestino(destino);
+                vuelo.setFechaSalida(fechaSalida);
+                vuelo.setFechaLlegada(fechaLlegada);
+                vuelo.setHoraSalida(horaSalida);
+                vuelo.setHoraLlegada(horaLlegada);
+
+                servicioVuelo.addVuelo(vuelo);
+
+                break;
         }
-
-
-
-        Locacion origen = servicioLocacion.buscarPorId(origenId);
 
 //        model.put("verQueOnda", idTripulantes);
 
 //        quiero ver que recibe 'datosVuelo'
-        return new ModelAndView("verDatosVuelos");
+        return new ModelAndView("homeDos");
     }
     
     @RequestMapping("/buscarVuelos")

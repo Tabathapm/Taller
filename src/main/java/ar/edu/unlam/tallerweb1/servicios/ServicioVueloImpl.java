@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import ar.edu.unlam.tallerweb1.modelo.VueloDos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +38,7 @@ public class ServicioVueloImpl implements ServicioVuelo {
 
 	@Override
 	public Vuelo consultarVuelo(Long id) {
-		
+
 		Vuelo vuelo = repositorioVuelo.consultarVuelo(id);
 			
 		vuelo.getLlegada();
@@ -188,8 +189,8 @@ public class ServicioVueloImpl implements ServicioVuelo {
 	}
 
 	@Override
-	public void addVuelo(Vuelo vuelo) {
-		repositorioVuelo.guardar(vuelo);
+	public void addVuelo(VueloDos vuelo) {
+		repositorioVuelo.addVuelo(vuelo);
 	}
 	
 

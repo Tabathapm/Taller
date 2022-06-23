@@ -1,6 +1,8 @@
 //----------------------------------------------------------------------------------------
     let campoTripulanteDeCabina = document.getElementById("campoTripulanteDeCabina");
     let campoCopiloto           = document.getElementById("campoCopiloto");
+    let campoAvionCarga           = document.getElementById("campoAvionCarga");
+    let campoAvionComercial           = document.getElementById("campoAvionComercial");
     let Checked                 = null;
     let ultimoValorValido       = null;
 //----------------------------------------------------------------------------------------
@@ -15,9 +17,11 @@
             if (Checked.id === "carga"){
                 campoCopiloto.setAttribute("hidden", true);
                 campoTripulanteDeCabina.setAttribute("hidden", true);
+                campoAvionComercial.setAttribute("hidden", true);
             }else if (Checked.id !== "carga"){
                 campoCopiloto.removeAttribute("hidden");
                 campoTripulanteDeCabina.removeAttribute("hidden");
+                campoAvionCarga.setAttribute("hidden", true);
 
                 // $("#tripulantes").on("change", function() {
                 //     if ($("#tripulantes option:checked").length > 2) {

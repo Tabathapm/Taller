@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
+import ar.edu.unlam.tallerweb1.modelo.VueloDos;
 import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 
 import java.util.Date;
@@ -32,6 +33,8 @@ public interface RepositorioTripulante {
 		List<Tripulante> mostrarTripulacion(String titulo);
 
 		Tripulante traerTalTripulante(Long id);
+
+	VueloTripulante asignarUnTripulanteAvueloDos(VueloDos vuelo, Tripulante unTripulante);
 
 	}
 

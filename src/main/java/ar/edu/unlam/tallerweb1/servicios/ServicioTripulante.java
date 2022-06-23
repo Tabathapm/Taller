@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
+import ar.edu.unlam.tallerweb1.modelo.VueloDos;
 import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
 
 import java.util.List;
@@ -35,6 +36,8 @@ public interface ServicioTripulante {
     List<Tripulante> mostrarTripulantesTipo(String titulo);
 
     Tripulante traerTripulante(Long id);
+
+    VueloTripulante asignarUnTripulanteAvueloDos(VueloDos vuelo, Tripulante unTripulante);
 
 
 	
