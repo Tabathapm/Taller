@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import ar.edu.unlam.tallerweb1.controladores.TripulanteInfo;
 import ar.edu.unlam.tallerweb1.excepciones.FechaNoDisponibleException;
 import ar.edu.unlam.tallerweb1.excepciones.TripulanteNoDisponibleParaEsaFechaException;
 import ar.edu.unlam.tallerweb1.excepciones.TripulanteSinVueloException;
@@ -15,6 +16,8 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioVuelo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -310,5 +313,19 @@ public class ServicioTripulanteImpl implements ServicioTripulante {
 	@Override
 	public VueloTripulante asignarUnTripulanteAvueloDos(VueloDos vuelo, Tripulante tripulante){
 		return repositorioTripulante.asignarUnTripulanteAvueloDos(vuelo, tripulante);
+	}
+
+	@Override
+	public void addPiloto(TripulanteInfo pilotoInfo) throws ParseException {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Tripulante piloto = new Tripulante();
+		piloto.setNombre(pilotoInfo.getNombre());
+		piloto.setApellido(pilotoInfo.getApellido());
+		piloto.setTitulo(pilotoInfo.getTitulo());
+		piloto.setHorasDescanso(pilotoInfo.getHorasDescanso());
+		piloto.setHorasActivo(pilotoInfo.getHorasActivo());
+		piloto.setEstado(pilotoInfo.getEstado());
+		piloto.setInicioActividad(formatter.parse(pilotoInfo.getInicioActividad()));
+		repositorioTripulante.guardarPiloto(piloto);
 	}
 }

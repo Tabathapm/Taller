@@ -21,7 +21,7 @@
                 </a>
                 <div class="collapse" id="collapseTripulacion" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="#">Pilotos</a>
+                        <a class="nav-link" href="pilotos">Pilotos</a>
                         <a class="nav-link" href="#">Copilotos</a>
                         <a class="nav-link" href="#">Ing. de vuelo</a>
                         <a class="nav-link" href="#">Tripulantes de cabina</a>

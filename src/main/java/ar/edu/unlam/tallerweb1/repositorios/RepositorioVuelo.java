@@ -26,6 +26,8 @@ public interface RepositorioVuelo {
 	
 	void guardar(Vuelo vuelo);
 
+	List<Vuelo> destinoConMasVuelos();
+
 
 	void addVuelo(VueloDos vuelo);
 
