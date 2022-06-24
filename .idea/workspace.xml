@@ -10,6 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0710c379-e97b-4a16-8bff-50d42a38f420" name="Changes" comment="">
+
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_21_6_2022_14_20__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_21_6_2022_14_20__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_5_2022_19_02__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_5_2022_19_02__Changes_.xml" afterDir="false" />
@@ -29,6 +30,7 @@
       <change beforePath="$PROJECT_DIR$/target/classes/hibernateContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/hibernateContext.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/WEB-INF/classes/hibernateContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/WEB-INF/classes/hibernateContext.xml" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,8 +109,8 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.32733223" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -199,6 +201,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
     <configuration name="Tomcat 9.0.54" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.54" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/proyecto_limpio_spring_war_exploded/login" />
       <option name="UPDATING_POLICY" value="restart-server" />
