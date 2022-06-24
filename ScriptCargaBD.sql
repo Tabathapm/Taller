@@ -29,7 +29,51 @@ insert into Tripulante  (apellido,estado,titulo) values
  insert into vuelotripulante (tripulante_Id,vuelo_Id) values
 							 (1,1),
                              (2,1);
-                             
+ 
+ insert into tipoAvion
+values(001,10.000,1000,'Comercial'),
+      (002,20.000,2000,'Comercial');
+
+insert into tipoAvion(Id,Carga,categoriaAvion)
+values(003,1.000,'Carga'),
+      (004,1.000,'Carga');
+
+
+insert into avion
+values(1,'Avion Olimpia',001),
+      (2,'Avion Ackerman',002);
+
+insert into avion(Id,nombre,tipoAvion_Id)
+values(3,'Avion Juli',003),
+      (4,'Avion Rocio',004);
+
+
+select * from hangar;
+
+insert into hangar
+values(0001,'Hangar Olimpia',true,1),
+      (0002,'Hangar Manzanares',false,null),
+      (0003,'Hangar Alma',false,null),
+      (0004,'Hangar Pilar',false,null);
+
+insert into hangar(Id,Nombre,Ocupado)
+values(0005,'Hangar Wilson',false);
+
+insert into hangar(Id,Nombre,Ocupado)
+values(0006,'Hangar Zoe',false),
+      (0007,'Hangar Dua',false),
+      (0008,'Hangar Enzo',false),
+      (0009,'Hangar Shaila',false),
+      (0010,'Hangar Jordan',false);
+
+UPDATE hangar
+SET hangar.Ocupado = false
+WHERE hangar.Id = 0005;
+
+UPDATE avion
+SET hangar_Id = 0001
+WHERE avion.Id = 1;
+ 
 drop procedure if exists obtenerFechasDeTripulante;
 DELIMITER //
 create procedure obtenerFechasDeTripulante(in idTripulante long)
@@ -102,46 +146,3 @@ SELECT v1.id,v1.estimado,v1.llegada,v1.nombre,v1.salida,v1.avion_id,v1.destino_I
 */
 
 -- Script Leandro
-insert into tipoAvion
-values(001,10.000,1000,'Comercial'),
-      (002,20.000,2000,'Comercial');
-
-insert into tipoAvion(Id,Carga,categoriaAvion)
-values(003,1.000,'Carga'),
-      (004,1.000,'Carga');
-
-
-insert into avion
-values(1,'Avion Olimpia',001),
-      (2,'Avion Ackerman',002);
-
-insert into avion(Id,nombre,tipoAvion_Id)
-values(3,'Avion Juli',003),
-      (4,'Avion Rocio',004);
-
-
-select * from hangar;
-
-insert into hangar
-values(0001,'Hangar Olimpia',true,1),
-      (0002,'Hangar Manzanares',false,null),
-      (0003,'Hangar Alma',false,null),
-      (0004,'Hangar Pilar',false,null);
-
-insert into hangar(Id,Nombre,Ocupado)
-values(0005,'Hangar Wilson',false);
-
-insert into hangar(Id,Nombre,Ocupado)
-values(0006,'Hangar Zoe',false),
-      (0007,'Hangar Dua',false),
-      (0008,'Hangar Enzo',false),
-      (0009,'Hangar Shaila',false),
-      (0010,'Hangar Jordan',false);
-
-UPDATE hangar
-SET hangar.Ocupado = false
-WHERE hangar.Id = 0005;
-
-UPDATE avion
-SET hangar_Id = 0001
-WHERE avion.Id = 1;

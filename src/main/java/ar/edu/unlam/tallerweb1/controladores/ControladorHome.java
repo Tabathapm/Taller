@@ -51,20 +51,4 @@ public class ControladorHome {
     }
     
 
-    @RequestMapping("/tripulacion")
-    public ModelAndView irTripulacion(){
-    	
-    	ModelMap modelo = new ModelMap();
-    	
-    	modelo.put("tripulantes",servicioTripulante.listarTodosLosTripulantes());
-    	
-        return new ModelAndView("tripulacion",modelo);
-    }
-
-    @RequestMapping("/pasajes")
-    public ModelAndView irPasajes(){
-        return new ModelAndView("pasajes");
-    }
-
-
 }

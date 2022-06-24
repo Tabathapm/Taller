@@ -26,7 +26,7 @@ public class ControladorTripulante {
 	}
 	
 	@RequestMapping("/tripulantes")
-    public ModelAndView traerVuelo(){
+    public ModelAndView traerTripulantes(){
         ModelMap modelo = new ModelMap();
 
         modelo.put("tripulantes",servicioTripulante.listarTodosLosTripulantes());
@@ -74,16 +74,6 @@ public class ControladorTripulante {
 		
 		return new ModelAndView("tripulanteAsignadoConExito");
 	}
-
-    @RequestMapping("/tripulacion")
-    public ModelAndView irTripulacion(){
-        return new ModelAndView("tripulacion");
-    }
-
-    @RequestMapping("/pasajes")
-    public ModelAndView irPasajes(){
-        return new ModelAndView("pasajes");
-    }
 
 
 }
