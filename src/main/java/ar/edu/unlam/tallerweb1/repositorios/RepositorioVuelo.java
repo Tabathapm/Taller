@@ -2,12 +2,7 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import java.util.List;
 
-import ar.edu.unlam.tallerweb1.modelo.Locacion;
-import ar.edu.unlam.tallerweb1.modelo.Vuelo;
-
-import ar.edu.unlam.tallerweb1.modelo.VueloDos;
-
-import ar.edu.unlam.tallerweb1.modelo.VueloTripulante;
+import ar.edu.unlam.tallerweb1.modelo.*;
 
 
 public interface RepositorioVuelo {
@@ -28,6 +23,7 @@ public interface RepositorioVuelo {
 
 
 	void addVuelo(VueloDos vuelo);
+	Grafico destinoConMasVuelos();
 
 
 

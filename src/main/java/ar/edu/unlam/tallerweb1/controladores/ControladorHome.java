@@ -2,6 +2,8 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import javax.servlet.http.HttpServletRequest;
 
+import ar.edu.unlam.tallerweb1.modelo.Grafico;
+import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.servicios.ServicioTripulante;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVuelo;
+
+import java.util.List;
 
 @Controller
 public class ControladorHome {
@@ -27,7 +31,13 @@ public class ControladorHome {
 
     @RequestMapping("/home")
     public ModelAndView irHome(){
-        return new ModelAndView("homeDos");
+        ModelMap modelo = new ModelMap();
+
+//        List<Grafico> destinoConMasVuelos = servicioVuelo.destinoConMasVuelos();
+
+        modelo.put("destinos", servicioVuelo.destinoConMasVuelos());
+
+        return new ModelAndView("homeDos", modelo);
     }
 
     @RequestMapping("/perfil")

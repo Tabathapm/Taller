@@ -8,6 +8,8 @@
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <%--	Icono	--%>
     <link rel="icon" type="image/png" href="<c:url value="/images/viajar.png"/>">
+    <%--  Grafico  --%>
+    <script type="text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body class="sb-nav-fixed">
     <%@include file="partial/navBar.jsp"%>
@@ -20,7 +22,34 @@
             <main>
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Bienvenidos al sistema</h1>
+
+                    <div id = "grafico" style="width: 700px; height: 500px;"></div>
+
+<%--                    <c:forEach items="${destinos}" var="d">--%>
+<%--                        <p> ${d.id}, ${d.pais}  </p>--%>
+<%--                    </c:forEach>--%>
+
+                    <p> ${destinos} </p>
                     <img src="<c:url value="/images/runway_192834344.jpg" />" style="width: 100%">
+
+                    <script>
+                        google.charts.load('current', {'packages':['corechart']});
+                        google.charts.setOnLoadCallback(drawChart);
+                        function drawChart() {
+                            let data = google.visualization.arrayToDataTable([
+                                ['pais', 'cantidad'],
+<%--                                <c:forEach items="${destinos}" var="d">--%>
+<%--                                    ['${d.pais}', parseInt('${d.id}')],--%>
+<%--                                </c:forEach>--%>
+                                ['${destinos.pais}', parseInt('${destinos.id}')],
+                            ]);
+                            let options = {
+                                title: 'Destinos con mas vuelos'
+                            };
+                            let chart = new google.visualization.PieChart(document.getElementById('grafico'));
+                            chart.draw(data, options);
+                        }
+                    </script>
                 </div>
             </main>
         </div>
@@ -29,9 +58,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/homeDos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
+
 </body>
 </html>

@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.util.List;
 import java.util.Set;
 
+import ar.edu.unlam.tallerweb1.modelo.Grafico;
 import ar.edu.unlam.tallerweb1.modelo.Locacion;
 import ar.edu.unlam.tallerweb1.modelo.Vuelo;
 import ar.edu.unlam.tallerweb1.modelo.VueloDos;
@@ -30,4 +31,5 @@ public interface ServicioVuelo {
 	Vuelo setEstimadoDeVuelo(Vuelo vuelo);
 
 	void addVuelo(VueloDos vuelo);
+	Grafico destinoConMasVuelos();
 }

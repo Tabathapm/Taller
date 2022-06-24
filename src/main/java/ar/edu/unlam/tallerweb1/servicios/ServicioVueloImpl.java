@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import ar.edu.unlam.tallerweb1.modelo.Grafico;
 import ar.edu.unlam.tallerweb1.modelo.VueloDos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -192,6 +193,11 @@ public class ServicioVueloImpl implements ServicioVuelo {
 	public void addVuelo(VueloDos vuelo) {
 		repositorioVuelo.addVuelo(vuelo);
 	}
-	
+
+	@Override
+	public Grafico destinoConMasVuelos() {
+		return repositorioVuelo.destinoConMasVuelos();
+	}
+
 
 }

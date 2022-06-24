@@ -102,6 +102,9 @@ public class ControladorVuelos {
         Tripulante copiloto;
         Tripulante ingDeVuelo;
 
+        List <Tripulante> tripulantes   = new ArrayList<>();
+        VueloTripulante vueloTripulante = new VueloTripulante();
+
 //      --------------------------------------------
         switch (tipoDeAvion){
             case "comercial":
@@ -119,7 +122,6 @@ public class ControladorVuelos {
                 servicioTripulante.asignarUnTripulanteAvueloDos(vuelo, ingDeVuelo);
 
                 List <Long> idTripulante      = new ArrayList<>();
-                List <Tripulante> tripulantes = new ArrayList<>();
                 String tripulantesElegido;
 
                 tripulantesElegido = datosVuelo.getTripulantes();
@@ -135,6 +137,8 @@ public class ControladorVuelos {
 
                         for (Tripulante t: tripulantes) {
 //                            servicioTripulante.asignarTripulantesAlVuelo(vuelo, t);
+                            vueloTripulante.setVueloDos(vuelo);
+                            vueloTripulante.setTripulante(t);
                         }
                     }
                 }
@@ -151,8 +155,17 @@ public class ControladorVuelos {
                 piloto     = servicioTripulante.traerTripulante(idPiloto);
                 ingDeVuelo = servicioTripulante.traerTripulante(idIngDeVuelo);
 
+                tripulantes.add(piloto);
+                tripulantes.add(ingDeVuelo);
+
+                for (Tripulante t: tripulantes) {
+                    vueloTripulante.setVueloDos(vuelo);
+                    vueloTripulante.setTripulante(t);
+                }
+
 //                servicioTripulante.asignarUnTripulanteAvueloDos(vuelo, piloto);
 //                servicioTripulante.asignarUnTripulanteAvueloDos(vuelo, ingDeVuelo);
+
 
                 vuelo.setOrigen(origen);
                 vuelo.setDestino(destino);
