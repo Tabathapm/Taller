@@ -12,20 +12,29 @@ import java.util.List;
 public class ServicioAvionImpl implements ServicioAvion {
 
     @Autowired
-    private RepositorioAvion servicioAvion;
+    private RepositorioAvion repositorioAvion;
 
 
 
     @Override
     public Avion traerAvionSinHangar(Long id) {
-        return servicioAvion.verAvionSinHangar(id);
+        return repositorioAvion.verAvionSinHangar(id);
     }
 
     @Override
     public List<Avion> traerAvionesSinHangar() {
-        return servicioAvion.verAvionesSinHangar();
+        return repositorioAvion.verAvionesSinHangar();
     }
 
+    @Override
+    public List<Avion> traerAvionesDeCarga() {
+        return repositorioAvion.avionesTipoCarga();
+    }
+
+    @Override
+    public List<Avion> traerAvionesComerciales() {
+        return repositorioAvion.avionesTipoComercial();
+    }
 
 
 }

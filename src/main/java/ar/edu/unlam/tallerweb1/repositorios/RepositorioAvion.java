@@ -10,5 +10,7 @@ public interface RepositorioAvion {
 
     Avion verAvionSinHangar(Long id);
     List<Avion> verAvionesSinHangar();
+    List<Avion> avionesTipoCarga();
+    List<Avion> avionesTipoComercial();
 
 }

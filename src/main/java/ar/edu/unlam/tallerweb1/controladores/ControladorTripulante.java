@@ -2,16 +2,21 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import javax.servlet.http.HttpServletRequest;
 
+import ar.edu.unlam.tallerweb1.modelo.Tripulante;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.servicios.ServicioTripulante;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVuelo;
+
+import java.text.ParseException;
 
 @Controller
 public class ControladorTripulante {
@@ -73,6 +78,24 @@ public class ControladorTripulante {
 	      
 		
 		return new ModelAndView("tripulanteAsignadoConExito");
+	}
+
+
+	@RequestMapping(path="/pilotos")
+	public ModelAndView mostrarPilotos(){
+		ModelMap model = new ModelMap();
+		model.put("pilotos",servicioTripulante.listaTodosLosPilotos());
+
+		return new ModelAndView("formPiloto",model);
+	}
+
+
+	@RequestMapping(path = "/agregarPiloto")
+	public ModelAndView agregarPiloto(@ModelAttribute("piloto") TripulanteInfo pilotoInfo) throws ParseException {
+		ModelMap model = new ModelMap();
+		servicioTripulante.addPiloto(pilotoInfo);
+		model.put("pilotos",servicioTripulante.listaTodosLosPilotos());
+		return new ModelAndView("formPiloto", model);
 	}
 
 

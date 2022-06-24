@@ -18,6 +18,8 @@ public class AsignarAvionAHangar {
         this.idAvion = idAvion;
     }
 
+    public AsignarAvionAHangar() {
+    }
 
     public String getNombre() {
         return Nombre;

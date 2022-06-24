@@ -34,6 +34,23 @@ public class RepositorioAvionImpl implements RepositorioAvion {
 
     }
 
+    @Override
+    public List<Avion> avionesTipoCarga() {
+        List<Avion> aviones = sessionFactory.getCurrentSession().createCriteria(Avion.class)
+                .add(Restrictions.eq("tipoavion.id", 2))
+                .list();
+
+        return aviones;
+    }
+
+    @Override
+    public List<Avion> avionesTipoComercial() {
+        List<Avion> aviones = sessionFactory.getCurrentSession().createCriteria(Avion.class)
+                .add(Restrictions.eq("tipoAvion_Id", 1))
+                .list();
+
+        return aviones;
+    }
 
 
 //    select * from avion

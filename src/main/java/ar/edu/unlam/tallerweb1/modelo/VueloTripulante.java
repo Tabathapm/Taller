@@ -17,6 +17,9 @@ public class VueloTripulante {
 	
 	@ManyToOne
 	private Vuelo vuelo;
+
+	@ManyToOne
+	private VueloDos vueloDos;
 	
 	@ManyToOne
 	private Tripulante tripulante;
@@ -54,9 +57,12 @@ public class VueloTripulante {
 	public void setSalida(Date salida) {
 		this.salida = salida;
 	}
-	
-	
-	
-	
 
+	public VueloDos getVueloDos() {
+		return vueloDos;
+	}
+
+	public void setVueloDos(VueloDos vueloDos) {
+		this.vueloDos = vueloDos;
+	}
 }

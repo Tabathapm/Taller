@@ -10,7 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0710c379-e97b-4a16-8bff-50d42a38f420" name="Changes" comment="">
+
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_21_6_2022_14_20__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_21_6_2022_14_20__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_5_2022_19_02__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_9_5_2022_19_02__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Taller_war_exploded/WEB-INF/classes/hibernateContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Taller_war_exploded/WEB-INF/classes/hibernateContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/controladores/AsignarAvionAHangar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/controladores/AsignarAvionAHangar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/controladores/ControladorTripulante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/controladores/ControladorTripulante.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/repositorios/RepositorioHangarImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/repositorios/RepositorioHangarImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/repositorios/RepositorioTripulante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/repositorios/RepositorioTripulante.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/repositorios/RepositorioTripulanteImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/repositorios/RepositorioTripulanteImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/repositorios/RepositorioVuelo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/repositorios/RepositorioVuelo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/repositorios/RepositorioVueloImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/repositorios/RepositorioVueloImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/servicios/ServicioTripulante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/servicios/ServicioTripulante.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/servicios/ServicioTripulanteImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/servicios/ServicioTripulanteImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernateContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernateContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/vistas/partial/sidebar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/vistas/partial/sidebar.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/hibernateContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/hibernateContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/WEB-INF/classes/hibernateContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/proyecto-limpio-spring-0.0.1-SNAPSHOT/WEB-INF/classes/hibernateContext.xml" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,11 +40,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Interface" />
         <option value="Jsp File" />
         <option value="Class" />
-        <option value="Interface" />
-        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -47,6 +67,8 @@
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
       <map>
+        <entry key="JPA Palette" value="true" />
+        <entry key="JPA Structure" value="true" />
         <entry key="com.haulmont.jpb.jpaInspector" value="true" />
         <entry key="com.haulmont.jpb.jpaPalette" value="true" />
         <entry key="com.haulmont.jpb.jpaStructure" value="true" />
@@ -54,6 +76,8 @@
     </option>
     <option name="myId2Visible">
       <map>
+        <entry key="JPA Palette" value="false" />
+        <entry key="JPA Structure" value="false" />
         <entry key="com.haulmont.jpb.jpaInspector" value="false" />
         <entry key="com.haulmont.jpb.jpaPalette" value="false" />
         <entry key="com.haulmont.jpb.jpaStructure" value="false" />
@@ -81,9 +105,12 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.32733223" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -174,8 +201,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
     <configuration name="Tomcat 9.0.54" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.54" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/proyecto_limpio_spring_war_exploded/" />
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/proyecto_limpio_spring_war_exploded/login" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="proyecto-limpio-spring:war exploded">
@@ -258,10 +286,19 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
+          <artifact name="Taller:war" />
           <artifact name="proyecto-limpio-spring:war exploded" />
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.All in proyecto-limpio-spring" />
+      <item itemvalue="JUnit.RepositorioHangarTest.testQueAsignaAvionAHangar" />
+      <item itemvalue="JUnit.RepositorioHangarTest.testQueConsultaHangares" />
+      <item itemvalue="JUnit.RepositorioHangarTest.testQueObtieneAvionesSinAsignarAHangares" />
+      <item itemvalue="JUnit.RepositorioHangarTest.testQueObtieneTodosLosHangaresDisponibles" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.54" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.RepositorioHangarTest.testQueObtieneTodosLosHangaresDisponibles" />
@@ -313,6 +350,8 @@
       <workItem from="1654017772320" duration="19405000" />
       <workItem from="1654050630612" duration="1421000" />
       <workItem from="1654100590919" duration="710000" />
+      <workItem from="1655751834084" duration="14949000" />
+      <workItem from="1656011227815" duration="17280000" />
     </task>
     <servers />
   </component>
@@ -332,11 +371,20 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
-        <watch expression="avionesSinAsignar.get(3)" />
-      </configuration>
-    </watches-manager>
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/controladores/ControladorTripulante.java</url>
+          <line>103</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ar/edu/unlam/tallerweb1/servicios/ServicioTripulanteImpl.java</url>
+          <line>327</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
