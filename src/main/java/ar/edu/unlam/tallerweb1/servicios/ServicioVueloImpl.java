@@ -195,7 +195,7 @@ public class ServicioVueloImpl implements ServicioVuelo {
 	}
 
 	@Override
-	public Grafico destinoConMasVuelos() {
+	public List destinoConMasVuelos() {
 		return repositorioVuelo.destinoConMasVuelos();
 	}
 

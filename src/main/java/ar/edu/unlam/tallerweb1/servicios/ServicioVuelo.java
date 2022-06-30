@@ -31,5 +31,5 @@ public interface ServicioVuelo {
 	Vuelo setEstimadoDeVuelo(Vuelo vuelo);
 
 	void addVuelo(VueloDos vuelo);
-	Grafico destinoConMasVuelos();
+	List destinoConMasVuelos();
 }

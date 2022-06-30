@@ -14,10 +14,7 @@ import java.util.Locale;
 import ar.edu.unlam.tallerweb1.modelo.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -48,29 +45,45 @@ public class RepositorioVueloImpl implements RepositorioVuelo {
 	}
 
 	@Override
-	public Grafico destinoConMasVuelos(){
+	public List destinoConMasVuelos(){
 //		List<Vuelo> listaDeVuelosConMasDestinos = new ArrayList<>();
 		Grafico graficoDestinos = new Grafico();
-		List<Grafico> listaDeDatos = new ArrayList<>();
-		try {
-			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC","root","");
-			Statement sentencia = conexion.createStatement();
-			String consulta = "SELECT COUNT(vuelo.destino_Id) AS 'destino', vuelo.destino_Id\n" +
-							  "FROM vuelo\n" +
-							  "GROUP BY vuelo.destino_Id;";
-			ResultSet rs = sentencia.executeQuery(consulta);
-			while(rs.next()) {
-				Long cantidadDeVuelos = rs.getLong("destino");
-				String pais = rs.getString("pais");
-				graficoDestinos.setId(cantidadDeVuelos);
-				graficoDestinos.setPais(pais);
-				listaDeDatos.add(graficoDestinos);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+//		List<Grafico> listaDeDatos = new ArrayList<>();
 
-		return graficoDestinos;
+		List datos = sessionFactory.getCurrentSession().createCriteria(Vuelo.class)
+				.setProjection( Projections.projectionList()
+								.add(Projections.rowCount(), "destino_Id" )
+								.add( Projections.groupProperty("destino_Id"), "destino" )
+				).list();
+
+//		List<Grafico> listaDeDatos = sessionFactory.getCurrentSession().createCriteria(Vuelo.class)
+//				.add(Restrictions.sqlRestriction("SELECT COUNT(vuelo.destino_Id) AS 'destino', vuelo.destino_Id"))
+//				.add(Restrictions.sqlRestriction("GROUP BY vuelo.destino_Id"))
+//				.list();
+
+		return datos;
+
+
+//		try {
+//			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/db?serverTimezone=UTC","root","");
+//			Statement sentencia = conexion.createStatement();
+//			String consulta = "SELECT COUNT(vuelo.destino_Id) AS 'destino', vuelo.destino_Id\n" +
+//							  "FROM vuelo \n" +
+//							  "GROUP BY vuelo.destino_Id;";
+//			ResultSet rs = sentencia.executeQuery(consulta);
+//			while(rs.next()) {
+//				Long cantidadDeVuelos = rs.getLong("destino");
+//				String pais = rs.getString("pais");
+//				graficoDestinos.setId(cantidadDeVuelos);
+//				graficoDestinos.setPais(pais);
+//				listaDeDatos.add(graficoDestinos);
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+
+//		return listaDeDatos;
+//		return graficoDestinos;
 //		return listaDeVuelosConMasDestinos;
 	}
 

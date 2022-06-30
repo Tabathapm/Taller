@@ -25,6 +25,12 @@
 
                     <div id = "grafico" style="width: 700px; height: 500px;"></div>
 
+                    ${destinos}
+
+<%--                    <c:forEach items="${destinos}" var="d">--%>
+<%--                        <p> ${d}, ${d.id}</p>--%>
+<%--                    </c:forEach>--%>
+
 <%--                    <c:forEach items="${destinos}" var="d">--%>
 <%--                        <p> ${d.id}, ${d.pais}  </p>--%>
 <%--                    </c:forEach>--%>
@@ -38,10 +44,10 @@
                         function drawChart() {
                             let data = google.visualization.arrayToDataTable([
                                 ['pais', 'cantidad'],
-<%--                                <c:forEach items="${destinos}" var="d">--%>
-<%--                                    ['${d.pais}', parseInt('${d.id}')],--%>
-<%--                                </c:forEach>--%>
-                                ['${destinos.pais}', parseInt('${destinos.id}')],
+                                <c:forEach items="${destinos}" var="d">
+                                    ['${d.pais}', parseInt('${d.id}')],
+                                </c:forEach>
+<%--                                ['${destinos.pais}', parseInt('${destinos.id}')],--%>
                             ]);
                             let options = {
                                 title: 'Destinos con mas vuelos'

@@ -23,7 +23,7 @@ public interface RepositorioVuelo {
 
 
 	void addVuelo(VueloDos vuelo);
-	Grafico destinoConMasVuelos();
+	List destinoConMasVuelos();
 
 
 
